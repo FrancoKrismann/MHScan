@@ -2,15 +2,22 @@ import React from 'react';
 import styled from "styled-components";
 
 // Se que queja si esta vacio la interfaz
-export interface HomeProps {
-}
+// interface HomeProps {
+// }
+const HomeStl = styled.div`
+display: flex;
+justify-content: center;
 
-const Home: React.FC<HomeProps>  = ({}) => {
-	return <HomeStl>Home</HomeStl>;
-};
+height: 80vh;
 
-export const HomeStl = styled.div`
 
 `;
+const Home: React.FC  = () => {
+	return <HomeStl>
+		HOME
+	</HomeStl>;
+};
+
+
 
 export default Home;
