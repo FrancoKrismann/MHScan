@@ -10,38 +10,77 @@ interface MenuProps {
 }
 
 const MenuStl = styled.div<{ open: boolean }>`
-  display: none;
+  display: flex;
   width: 15vh;
   justify-content: center;
-  border: #5ca31a solid 1px;
+  /* border: #5ca31a solid 1px; */
+  
 
   .container-menu {
-    background-color: #bd31bd;
-    position: absolute;
-    top: 100px;
-    padding-top: 0px;
-    height: 200px;
-    right: ${({ open }) => (open ? "0" : "-100%")};
-    transition: transform 0.3s ease;
-  }
+    /* margin-top: 50px; */
+    display: flex;
+    
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: #50099c;
+  position: absolute;
+  top:8.5rem;
+  
+  right: ${props => (props.open ? "0" : "-90%")};
+  width: 25vh;
+  
+  height: 90vw;
+  transition: right .2s ease-in-out;
+  padding-top: 0px;
 
   @media screen and (max-width: 900px) {
+    
+    ul {
+    list-style: none;
+    width: 100%;
     display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
   }
+    }
+
+  }
+  @media screen and (max-width: 770px) {
+          .container-menu {
+            height: 111vw;
+            padding-bottom: 2px;
+          }
+
+          
+  }
+
+  @media screen and (max-width: 500px) {
+          .container-menu {
+            height: 181vw;
+            padding-bottom: 4px;
+          }
+
+          
+  }
+  
+  
+  
+  
 `;
 
 const MenuButton: React.FC<MenuProps> = ({ open, handleClick, children }) => {
   return (
     <MenuStl open={open}>
       {open ? (
-        <>
+        <div className="div-button-close">
           <AiOutlineClose
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer" , position:"relative" }}
             size={"3rem"}
             onClick={handleClick}
           />
-          <div className="container-menu">{children}</div>
-        </>
+        </div>
       ) : (
         <>
           <AiOutlineMenu
@@ -51,6 +90,8 @@ const MenuButton: React.FC<MenuProps> = ({ open, handleClick, children }) => {
           />
         </>
       )}
+
+      <div className="container-menu">{children}</div>
     </MenuStl>
   );
 };

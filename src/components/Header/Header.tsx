@@ -25,7 +25,7 @@ const HeaderStl = styled.header`
   .logo-container {
     
     margin: 20px 0 20px 20px;
-    border: #f4e006 solid 1px;
+    /* border: #f4e006 solid 1px; */
     img {
       height: 90px;
     }
@@ -35,13 +35,13 @@ const HeaderStl = styled.header`
 
   .navbar-container {
       display: flex;
-      border: #f30172 solid 1px;
+      /* border: #f30172 solid 1px; */
 
     }
 
     .menu-container {
       display: none;
-      border: #f97a03 solid 1px;
+      /* border: #f97a03 solid 1px; */
       
     }
   @media screen and (max-width: 900px) {
@@ -102,7 +102,7 @@ const Header: React.FC = () => {
     <>
       <HeaderStl>
         <div className="logo-container">
-          <LinkStyle to={"/inicio"}>
+          <LinkStyle to={"/"}>
           <img src={LogoMHSCan} alt="Logo" className="img-logo" />
         </LinkStyle>
         </div>
