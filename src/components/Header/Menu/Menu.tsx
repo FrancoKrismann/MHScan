@@ -30,10 +30,10 @@ const MenuStl = styled.div<{ open: boolean }>`
   right: ${props => (props.open ? "0" : "-90%")};
   width: 25vh;
   
-  height: 90vw;
+  height: 85%;
   transition: right .2s ease-in-out;
   padding-top: 0px;
-
+  z-index: 1;
   @media screen and (max-width: 900px) {
     
     ul {
@@ -49,8 +49,8 @@ const MenuStl = styled.div<{ open: boolean }>`
   }
   @media screen and (max-width: 770px) {
           .container-menu {
-            height: 111vw;
-            padding-bottom: 2px;
+            height: 83%;
+            padding-bottom: 4px;
           }
 
           
@@ -58,8 +58,8 @@ const MenuStl = styled.div<{ open: boolean }>`
 
   @media screen and (max-width: 500px) {
           .container-menu {
-            height: 181vw;
-            padding-bottom: 4px;
+            height: 83%;
+            padding-bottom: 10px;
           }
 
           

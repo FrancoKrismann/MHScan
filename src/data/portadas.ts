@@ -6,8 +6,9 @@ import Nigromante from "@/assets/images/Nigromante, la Llegada del Desastre.jpg"
 import SendaDemoniaca from "@/assets/images/Registros del Regreso de la Senda Demoníaca.jpg"
 import MonteHuan from "@/assets/images/Regreso de la Secta del Monte Hua.jpg"
 import Supremacia from "@/assets/images/Supremacía de las Misiones 720 x 1000.jpg"
+// import { DataPort_Item } from "@/interface"
 
-export const Portadas = [
+export const DataPorts = [
     {
         id:"1",
         image:Chaman,
@@ -28,24 +29,24 @@ export const Portadas = [
         image:ReyGuerra,
         title:"Memorias del Rey de la Guerra"
     },
-    {
-        id:"5",
-        image:Nigromante,
-        title:"Nigromante, la Llegada del Desastre"
-    },
-    {
-        id:"6",
-        image:SendaDemoniaca,
-        title:"Registros del Regreso de la Senda Demoníaca"
-    },
-    {
-        id:"7",
-        image:MonteHuan,
-        title:"Regreso de la Secta del Monte Hua"
-    },
-    {
-        id:"8",
-        image:Supremacia,
-        title:"Supremacía de las Misiones"
-    },
+    // {
+    //     id:"5",
+    //     image:Nigromante,
+    //     title:"Nigromante, la Llegada del Desastre"
+    // },
+    // {
+    //     id:"6",
+    //     image:SendaDemoniaca,
+    //     title:"Registros del Regreso de la Senda Demoníaca"
+    // },
+    // {
+    //     id:"7",
+    //     image:MonteHuan,
+    //     title:"Regreso de la Secta del Monte Hua"
+    // },
+    // {
+    //     id:"8",
+    //     image:Supremacia,
+    //     title:"Supremacía de las Misiones"
+    // },
 ]
