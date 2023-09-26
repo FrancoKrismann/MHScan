@@ -35,6 +35,7 @@ const CardRecomendStl = styled.div`
   cursor: pointer;
   margin: 20px;
 
+
   @media screen and (max-width: 1640px) {
     width: calc(28% - 6rem);
     height: 20rem;

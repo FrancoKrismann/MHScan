@@ -29,24 +29,24 @@ export const DataPorts = [
         image:ReyGuerra,
         title:"Memorias del Rey de la Guerra"
     },
-    // {
-    //     id:"5",
-    //     image:Nigromante,
-    //     title:"Nigromante, la Llegada del Desastre"
-    // },
-    // {
-    //     id:"6",
-    //     image:SendaDemoniaca,
-    //     title:"Registros del Regreso de la Senda Demoníaca"
-    // },
-    // {
-    //     id:"7",
-    //     image:MonteHuan,
-    //     title:"Regreso de la Secta del Monte Hua"
-    // },
-    // {
-    //     id:"8",
-    //     image:Supremacia,
-    //     title:"Supremacía de las Misiones"
-    // },
+    {
+        id:"5",
+        image:Nigromante,
+        title:"Nigromante, la Llegada del Desastre"
+    },
+    {
+        id:"6",
+        image:SendaDemoniaca,
+        title:"Registros del Regreso de la Senda Demoníaca"
+    },
+    {
+        id:"7",
+        image:MonteHuan,
+        title:"Regreso de la Secta del Monte Hua"
+    },
+    {
+        id:"8",
+        image:Supremacia,
+        title:"Supremacía de las Misiones"
+    },
 ]
