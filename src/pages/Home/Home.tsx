@@ -16,18 +16,23 @@ const HomeStl = styled.div`
 	margin: 8rem 10px 0 10px;
     display: flex;
     justify-content: center;
-    width: 85%;
+    align-items: center;
+    
+    width: 90%;
     height: fit-content;
     background-color: #262626;
     border-radius:20px;
     
-    @media screen and (max-width: 1640px) {
-    width:85%;
-    }
+    /* @media screen and (max-width: 1640px) {
+    width:95%;
+    } */
 
-    @media screen and (max-width: 1440px) {
-    width:100%;
+    /* @media screen and (max-width: 1440px) {
+    width:90%;
     }
+    @media screen and (max-width: 1240px) {
+    width:0%;
+    } */
 
     /* @media screen and (max-width: 900px) {
     width:100%;

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface CardRecomendProps {
   id: string;
@@ -19,14 +19,30 @@ const CardRecomend: React.FC<CardRecomendProps> = ({ id, title, image }) => {
   );
 };
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    
+  }
+  /* 50%{
+	opacity: 0.5;
+  } */
+  100% {
+    opacity: 1;
+  }
+  0%,100% {
+    transition: cubic-bezier(0.35,-0.01, 0.58, 1)
+  }
+`;
+
 const CardRecomendStl = styled.div`
   /* border: 1px solid #fff; */
   position: relative;
   display: flex;
   flex-direction: column;
   flex: 0 0 auto;
-  width: calc(23% - 6rem);
-  height: 19rem;
+  width: calc(27% - 6rem);
+  height: 22rem;
   /* height: 20rem; */
   border-radius: 30px;
   background: #212121;
@@ -35,16 +51,36 @@ const CardRecomendStl = styled.div`
   cursor: pointer;
   margin: 20px;
 
+  
+  animation: ${fadeIn} 0.3s ease-in-out;
+
+
+  @media screen and (max-width: 1840px) {
+    width: calc(28% - 6rem);
+    height: 22rem;
+    margin:15px
+}
 
   @media screen and (max-width: 1640px) {
-    width: calc(28% - 6rem);
-    height: 20rem;
+    width: calc(29% - 6rem);
+    height: 22rem;
     margin:15px
 }
 
   @media screen and (max-width: 1440px) {
-    width: calc(20% - 20px);
-    height: 17rem;
+    width: calc(22% - 20px);
+    height: 21rem;
+    margin:5px
+}
+
+@media screen and (max-width: 1240px) {
+    width: calc(26% - 20px);
+    height: 21rem;
+}
+
+@media screen and (max-width: 900px) {
+    width: calc(36% - 20px);
+    height: 24rem;
     margin:5px
 }
 

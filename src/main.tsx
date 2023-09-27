@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { BrowserRouter } from "react-router-dom";
+import { IconContext } from 'react-icons';
 
 
 const root = ReactDOM.createRoot(
@@ -11,9 +12,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <IconContext.Provider value={{ className: 'react-icons' }}>
+      <BrowserRouter>
       <App />
     </BrowserRouter>
+    </IconContext.Provider>
+    
   </React.StrictMode>
 );
 
