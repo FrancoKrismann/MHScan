@@ -1,28 +1,55 @@
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
 import { DataPort_Item } from "@/interface";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { CardRecomend } from "./CardRecomend";
-import { PiArrowCircleLeftFill, PiArrowCircleRightFill } from "react-icons/pi";
 
-interface DataRecommendProps {
+import { PiArrowCircleLeftFill, PiArrowCircleRightFill } from "react-icons/pi";
+import { CardRecomend } from "../components/cardRecomend";
+
+interface SectionRecommendProps {
   DataPorts: DataPort_Item[];
 }
 
-const DataRecommend: React.FC<DataRecommendProps> = ({ DataPorts }) => {
+const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataPorts }) => {
   // const [indexRecomend, setIndexRecomend] = useState<number>(0);
-  // const [maxIndex, setMaxIndex] = useState<number>(0);
   
-  // const [cardsNumbers, setCardNumbers] = useState<number>(0)
+  
   
   //Recorre el indice segun el numero del estado local
   const [indexRecomend, setIndexRecomend] = useState(0);
-
+  
+  const [cardsNumbers, setCardNumbers] = useState<number>(0)
 
   //Para desabilitar el boton del paginado del lado derecho.
-  const maxIndex = DataPorts.length - 4
+  // const maxIndex = DataPorts.length - 4
+  const [maxIndex, setMaxIndex] = useState<number>(0);
+  
+  const updateCardsCount = () => {
+    const widthWindow = window.innerWidth;
+    setCardNumbers(widthWindow < 1260 ? 2 : 4);
+    setMaxIndex(widthWindow < 1260 ? DataPorts.length - 2 : DataPorts.length - 4); 
+  }
 
-  const DataSlice = DataPorts.slice(indexRecomend, indexRecomend + 4)
+  useEffect(() => {
+    updateCardsCount(); // Llama a la función al principio para establecer el valor inicial
+
+    const handleResize = () => {
+      updateCardsCount(); // Llama a la función cada vez que cambie el tamaño de la ventana
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+
+
+
+  const cardsCount = indexRecomend + cardsNumbers;
+  const DataSlice = DataPorts.slice(indexRecomend, cardsCount)
   
 const handleNextClick = ():void => {
 	if(indexRecomend !== maxIndex) setIndexRecomend(prevIndex => prevIndex + 1);
@@ -31,7 +58,9 @@ const handleNextClick = ():void => {
   const handlePrevClick = ():void => {
     setIndexRecomend(prevIndex => Math.max(prevIndex - 1, 0)); // Asegura que el índice no sea negativo
   };
+  
 
+ 
 
   return (
     <DataRecommendStl>
@@ -125,4 +154,4 @@ const DataRecommendStl = styled.div`
   }
 `;
 
-export default DataRecommend;
+export default SectionRecommend;
