@@ -12,7 +12,6 @@ const CardRecomend: React.FC<CardRecomendProps> = ({ id, title, image }) => {
     <CardRecomendStl key={id}>
       <img src={image} alt={id} />
       <div className="container-title">
-        {/* <h4></h4> */}
         <p>{title}</p>
       </div>
     </CardRecomendStl>
@@ -24,9 +23,6 @@ const fadeIn = keyframes`
     opacity: 0;
     
   }
-  /* 50%{
-	opacity: 0.5;
-  } */
   100% {
     opacity: 1;
   }
@@ -43,7 +39,6 @@ const CardRecomendStl = styled.div`
   flex: 0 0 auto;
   width: calc(27% - 6rem);
   height: 22rem;
-  /* height: 20rem; */
   border-radius: 30px;
   background: #212121;
   box-shadow: 5px 5px 20px rgb(25, 25, 25), -1px -10px 40px rgb(60, 60, 60);

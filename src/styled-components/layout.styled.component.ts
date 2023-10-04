@@ -4,6 +4,7 @@ import {Link} from "react-router-dom"
 
 export const LayoutContainer = styled.div`
 
+
 height: 100%;
 width: 100%;
 max-width:80%;
