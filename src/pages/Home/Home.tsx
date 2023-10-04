@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { SectionRecommend } from "./SectionRecomend";
-import { DataPorts } from "@/data";
+import { DataPorts, DataUpdates } from "@/data";
 import { SectionUpdates } from "./SectionUpdates";
 
 
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
   return (
     <HomeStl>
         <SectionRecommend DataPorts={DataPorts} />
-        <SectionUpdates DataPorts={DataPorts} />
+        <SectionUpdates DataUpdates={DataUpdates} />
     </HomeStl>
   );
 };

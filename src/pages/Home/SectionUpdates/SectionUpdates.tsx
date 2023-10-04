@@ -1,23 +1,41 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import { DataPort_Item } from "@/interface";
+import { DataUpdate_Item } from "@/interface";
 import React from "react";
 import styled from "styled-components";
 import { CardUpdates } from "../components/CardUpdates";
 
 interface SectionUpdatesProps {
-  DataPorts: DataPort_Item[];
+  DataUpdates: DataUpdate_Item[];
 }
 
-const SectionUpdates: React.FC<SectionUpdatesProps> = ({ DataPorts }) => {
+const SectionUpdates: React.FC<SectionUpdatesProps> = ({ DataUpdates }) => {
+
+  const updatedDataUpdates = DataUpdates.map((item) => {
+    const updatedChapters = item.chapters.map((chapter, index) => {
+      const updatedChapter = {
+        chapter: String(index + 1),
+        href: chapter,
+        updateTime: `Hace ${index} horas`,
+      };
+      return updatedChapter;
+    });
+
+    return {
+      ...item,
+      chapters: updatedChapters,
+    };
+  });
+
   return (
     <SectionUpdatesStl>
       <ContainerCards>
 		{
-			DataPorts.map(item => (
+			updatedDataUpdates.map(item => (
 				<CardUpdates
 				id={item.id}
 				image={item.image}
 				title={item.title}
+        chapters={item.chapters}
 				key={item.id}
 				/>
 			))
@@ -38,8 +56,8 @@ justify-content: center;
 flex-wrap: wrap;
 gap: 20px;
 
-width: 90%;
-height: fit-content;
+/* width: 90%; */
+/* height: fit-content; */
 `;
 
 const SectionUpdatesStl = styled.div`

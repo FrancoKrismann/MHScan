@@ -10,43 +10,181 @@ import Supremacia from "@/assets/images/Supremacía de las Misiones 720 x 1000.j
 
 export const DataPorts = [
     {
-        id:"1",
-        image:Chaman,
-        title:"El camino del Chaman"
+        id: "1",
+        image: Chaman,
+        title: "El camino del Chaman"
     },
     {
-        id:"2",
-        image:InvocadorSSS,
-        title:"Invocador Solitario de Rango SSS"
+        id: "2",
+        image: InvocadorSSS,
+        title: "Invocador Solitario de Rango SSS"
     },
     {
-        id:"3",
-        image:TalentoSSS,
-        title:"Matanza global despertar del talento de rango SSS"
+        id: "3",
+        image: TalentoSSS,
+        title: "Matanza global despertar del talento de rango SSS"
     },
     {
-        id:"4",
-        image:ReyGuerra,
-        title:"Memorias del Rey de la Guerra"
+        id: "4",
+        image: ReyGuerra,
+        title: "Memorias del Rey de la Guerra"
     },
     {
-        id:"5",
-        image:Nigromante,
-        title:"Nigromante, la Llegada del Desastre"
+        id: "5",
+        image: Nigromante,
+        title: "Nigromante, la Llegada del Desastre"
     },
     {
-        id:"6",
-        image:SendaDemoniaca,
-        title:"Registros del Regreso de la Senda Demoníaca"
+        id: "6",
+        image: SendaDemoniaca,
+        title: "Registros del Regreso de la Senda Demoníaca"
     },
     {
-        id:"7",
-        image:MonteHuan,
-        title:"Regreso de la Secta del Monte Hua"
+        id: "7",
+        image: MonteHuan,
+        title: "Regreso de la Secta del Monte Hua"
     },
     {
-        id:"8",
-        image:Supremacia,
-        title:"Supremacía de las Misiones"
+        id: "8",
+        image: Supremacia,
+        title: "Supremacía de las Misiones"
+    },
+]
+
+export const DataUpdates = [
+    {
+        id: "1",
+        image: Chaman,
+        title: "El camino del Chaman",
+        chapters: [{
+            chapter:1,
+            href:"",
+            updateTime:"Hace 3 horas"
+        },
+        {
+            chapter:2,
+            href:"",
+            updateTime:"Hace 1 horas"
+        }
+        ]
+    },
+    {
+        id: "2",
+        image: InvocadorSSS,
+        title: "Invocador Solitario de Rango SSS",
+        chapters: [{
+            chapter:1,
+            href:"",
+            updateTime:"Hace 3 horas"
+        },
+        {
+            chapter:2,
+            href:"",
+            updateTime:"Hace 1 horas"
+        }
+        ]
+
+    },
+    {
+        id: "3",
+        image: TalentoSSS,
+        title: "Matanza global despertar del talento de rango SSS",
+        chapters: [{
+            chapter:1,
+            href:"",
+            updateTime:"Hace 3 horas"
+        },
+        {
+            chapter:2,
+            href:"",
+            updateTime:"Hace 1 horas"
+        }
+        ]
+
+    },
+    {
+        id: "4",
+        image: ReyGuerra,
+        title: "Memorias del Rey de la Guerra",
+        chapters: [{
+            chapter:1,
+            href:"",
+            updateTime:"Hace 3 horas"
+        },
+        {
+            chapter:2,
+            href:"",
+            updateTime:"Hace 1 horas"
+        }
+        ]
+
+    },
+    {
+        id: "5",
+        image: Nigromante,
+        title: "Nigromante, la Llegada del Desastre",
+        chapters: [{
+            chapter:1,
+            href:"",
+            updateTime:"Hace 3 horas"
+        },
+        {
+            chapter:2,
+            href:"",
+            updateTime:"Hace 1 horas"
+        }
+        ]
+
+    },
+    {
+        id: "6",
+        image: SendaDemoniaca,
+        title: "Registros del Regreso de la Senda Demoníaca",
+        chapters: [{
+            chapter:1,
+            href:"",
+            updateTime:"Hace 3 horas"
+        },
+        {
+            chapter:2,
+            href:"",
+            updateTime:"Hace 1 horas"
+        }
+        ]
+
+    },
+    {
+        id: "7",
+        image: MonteHuan,
+        title: "Regreso de la Secta del Monte Hua",
+        chapters: [{
+            chapter:1,
+            href:"",
+            updateTime:"Hace 3 horas"
+        },
+        {
+            chapter:2,
+            href:"",
+            updateTime:"Hace 1 horas"
+        }
+        ]
+
+    },
+    {
+        id: "8",
+        image: Supremacia,
+        title: "Supremacía de las Misiones",
+        chapters: [{
+            chapter:1,
+            href:"",
+            updateTime:"Hace 3 horas"
+        },
+        {
+            chapter:2,
+            href:"",
+            updateTime:"Hace 1 horas"
+        }
+        ]
+
     },
 ]

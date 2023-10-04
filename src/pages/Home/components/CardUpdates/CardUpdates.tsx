@@ -1,3 +1,5 @@
+import { Chapters_Item } from "@/interface";
+import { LinkStyle } from "@/styled-components";
 import React from "react";
 import styled from "styled-components";
 
@@ -5,24 +7,40 @@ interface CardUpdatesProps {
   id: string;
   title: string;
   image: string;
+  chapters: Chapters_Item[] ;
   key: string;
 }
 
-const CardUpdates: React.FC<CardUpdatesProps> = ({ id, title, image, key }) => {
+const CardUpdates: React.FC<CardUpdatesProps> = ({ id, title, chapters, image, key }) => {
   return (
     <CardUpdatesStl key={key}>
-      <img src={image} alt={id} />
+      <LinkStyle to="" className="container-img">
+        <img src={image} alt={id} />
+      </LinkStyle>
+
       <div className="container-title">
         <p>{title}</p>
+      </div>
+      <div className="container-chapters">
+      <ul>
+        {chapters.map((chapter) => (
+          <li key={chapter.chapter}>
+            Capítulo {chapter.chapter} - {chapter.updateTime}
+          </li>
+        ))}
+      </ul>
+        
+       
       </div>
     </CardUpdatesStl>
   );
 };
 
 const CardUpdatesStl = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   border: 1px solid #fff;
   border-radius: 30px;
@@ -31,22 +49,28 @@ const CardUpdatesStl = styled.div`
   overflow: hidden;
   cursor: pointer;
 
-  width: calc(26% - 5rem);
+  width: calc(24% - 2rem);
   height: 22rem;
 
-  img {
-    width: 100%;
-    height: 90%;
-    object-fit: cover;
+  .container-img {
+    display: flex;
+    border: 1px solid #b01313;
+
+    width: 11rem;
+    height: 100%;
+    img {
+      border-radius: 20px;
+
+      width: 100%;
+      /* height: 100%; */
+      object-fit: cover;
+    }
   }
 
   .container-title {
-    position: absolute;
-    bottom: 0;
-
-    width: 100%;
-    height: 180px;
-    background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+    height: 90px;
+    flex-grow: 1; /* Permite que el título ocupe todo el espacio vertical disponible */
+  word-wrap: break-word;
   }
 `;
 
