@@ -10,15 +10,17 @@ export interface DataPort_Item {
     title:string
 }
 
+
+
+export interface Chapters_Item {
+    chapter:number
+    href:string
+    updateTime:number
+}
 export interface DataUpdate_Item {
     id:string
     image:string
     title:string
-    chapters:[string]
-}
-
-export interface Chapters_Item {
-    chapter:string
     href:string
-    updateTime:string
+    chapters:Chapters_Item[]
 }

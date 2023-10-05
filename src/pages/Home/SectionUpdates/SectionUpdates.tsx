@@ -10,32 +10,35 @@ interface SectionUpdatesProps {
 
 const SectionUpdates: React.FC<SectionUpdatesProps> = ({ DataUpdates }) => {
 
-  const updatedDataUpdates = DataUpdates.map((item) => {
-    const updatedChapters = item.chapters.map((chapter, index) => {
-      const updatedChapter = {
-        chapter: String(index + 1),
-        href: chapter,
-        updateTime: `Hace ${index} horas`,
-      };
-      return updatedChapter;
-    });
+  // const updatedDataUpdates = DataUpdates.map((item) => {
+  //   const updatedChapters = item.chapters.map((chapter,update) => {
 
-    return {
-      ...item,
-      chapters: updatedChapters,
-    };
-  });
+  //     const updatedChapter = {
+  //       chapter ,
+  //       href: `/library/${item.title}/chapters/${chapter}`,
+  //       updateTime ,
+  //     };
+  //     return updatedChapter;
+  //   });
+
+  //   return {
+  //     ...item,
+  //     chapters: updatedChapters,
+  //   };
+  // });
+console.log(DataUpdates);
 
   return (
     <SectionUpdatesStl>
       <ContainerCards>
 		{
-			updatedDataUpdates.map(item => (
+			DataUpdates.map(item => (
 				<CardUpdates
 				id={item.id}
 				image={item.image}
 				title={item.title}
         chapters={item.chapters}
+        href={item.href}
 				key={item.id}
 				/>
 			))
@@ -49,15 +52,23 @@ const ContainerCards = styled.div`
 border: 1px solid #df0c0c;
 
 display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
 
-flex-wrap: wrap;
 gap: 20px;
+flex-wrap: wrap;
+justify-content: center;
+margin: 30px auto;
 
-/* width: 90%; */
-/* height: fit-content; */
+width: 80%;
+
+@media screen and (max-width: 1440px) {
+    width: 85%;
+  }
+
+  @media screen and (max-width: 1366px) {
+    width: 100%;
+  }
+
+  
 `;
 
 const SectionUpdatesStl = styled.div`
@@ -66,12 +77,21 @@ const SectionUpdatesStl = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  
 
   width: 90%;
   /* height: fit-content; */
-  height: 50rem;
+  /* height: 50rem; */
   background-color: #262626;
   border-radius: 20px;
+
+  @media screen and (max-width: 1366px) {
+    width: 95%;
+  }
+
+  @media screen and (max-width: 840px) {
+    width: 100%;
+  }
 `;
 
 export default SectionUpdates;

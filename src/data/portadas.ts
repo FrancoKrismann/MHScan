@@ -6,7 +6,7 @@ import Nigromante from "@/assets/images/Nigromante, la Llegada del Desastre.jpg"
 import SendaDemoniaca from "@/assets/images/Registros del Regreso de la Senda Demoníaca.jpg"
 import MonteHuan from "@/assets/images/Regreso de la Secta del Monte Hua.jpg"
 import Supremacia from "@/assets/images/Supremacía de las Misiones 720 x 1000.jpg"
-// import { DataPort_Item } from "@/interface"
+import MatandoDioses from "@/assets/images/Matando Dioses Sin Profesión.jpg"
 
 export const DataPorts = [
     {
@@ -49,6 +49,11 @@ export const DataPorts = [
         image: Supremacia,
         title: "Supremacía de las Misiones"
     },
+    {
+        id: "9",
+        image: MatandoDioses,
+        title: "Matando Dioses Sin Profesión"
+    },
 ]
 
 export const DataUpdates = [
@@ -56,15 +61,14 @@ export const DataUpdates = [
         id: "1",
         image: Chaman,
         title: "El camino del Chaman",
+        href:"El-camino-del-Chaman",
         chapters: [{
             chapter:1,
-            href:"",
-            updateTime:"Hace 3 horas"
+            updateTime:8
         },
         {
             chapter:2,
-            href:"",
-            updateTime:"Hace 1 horas"
+            updateTime:2
         }
         ]
     },
@@ -72,15 +76,14 @@ export const DataUpdates = [
         id: "2",
         image: InvocadorSSS,
         title: "Invocador Solitario de Rango SSS",
+        href:"Invocador-Solitario-de-Rango-SSS",
         chapters: [{
             chapter:1,
-            href:"",
-            updateTime:"Hace 3 horas"
+            updateTime:7
         },
         {
             chapter:2,
-            href:"",
-            updateTime:"Hace 1 horas"
+            updateTime:2
         }
         ]
 
@@ -89,15 +92,14 @@ export const DataUpdates = [
         id: "3",
         image: TalentoSSS,
         title: "Matanza global despertar del talento de rango SSS",
+        href:"Matanza-global-despertar-del-talento-de-rango-SSS",
         chapters: [{
             chapter:1,
-            href:"",
-            updateTime:"Hace 3 horas"
+            updateTime:2
         },
         {
             chapter:2,
-            href:"",
-            updateTime:"Hace 1 horas"
+            updateTime:6
         }
         ]
 
@@ -106,15 +108,14 @@ export const DataUpdates = [
         id: "4",
         image: ReyGuerra,
         title: "Memorias del Rey de la Guerra",
+        href:"Memorias-del-Rey-de-la-Guerra",
         chapters: [{
             chapter:1,
-            href:"",
-            updateTime:"Hace 3 horas"
+            updateTime:5
         },
         {
             chapter:2,
-            href:"",
-            updateTime:"Hace 1 horas"
+            updateTime:2
         }
         ]
 
@@ -123,15 +124,14 @@ export const DataUpdates = [
         id: "5",
         image: Nigromante,
         title: "Nigromante, la Llegada del Desastre",
+        href:"Nigromante-la-Llegada-del-Desastre",
         chapters: [{
             chapter:1,
-            href:"",
-            updateTime:"Hace 3 horas"
+            updateTime:4
         },
         {
             chapter:2,
-            href:"",
-            updateTime:"Hace 1 horas"
+            updateTime:2
         }
         ]
 
@@ -140,15 +140,14 @@ export const DataUpdates = [
         id: "6",
         image: SendaDemoniaca,
         title: "Registros del Regreso de la Senda Demoníaca",
+        href:"Registros-del-Regreso-de-la-Senda-Demoníaca",
         chapters: [{
-            chapter:1,
-            href:"",
-            updateTime:"Hace 3 horas"
+            chapter:2,
+            updateTime:3
         },
         {
             chapter:2,
-            href:"",
-            updateTime:"Hace 1 horas"
+            updateTime:1
         }
         ]
 
@@ -157,15 +156,14 @@ export const DataUpdates = [
         id: "7",
         image: MonteHuan,
         title: "Regreso de la Secta del Monte Hua",
+        href:"Regreso-de-la-Secta-del-Monte-Hua",
         chapters: [{
             chapter:1,
-            href:"",
-            updateTime:"Hace 3 horas"
+            updateTime:3
         },
         {
             chapter:2,
-            href:"",
-            updateTime:"Hace 1 horas"
+            updateTime:1
         }
         ]
 
@@ -174,17 +172,32 @@ export const DataUpdates = [
         id: "8",
         image: Supremacia,
         title: "Supremacía de las Misiones",
+        href:"Supremacía-de-las-Misiones",
         chapters: [{
             chapter:1,
-            href:"",
-            updateTime:"Hace 3 horas"
+            updateTime:6
         },
         {
             chapter:2,
-            href:"",
-            updateTime:"Hace 1 horas"
+            updateTime:2
         }
         ]
 
     },
+    // {
+    //     id: "9",
+    //     image: MatandoDioses,
+    //     title: "Matando Dioses Sin Profesión",
+    //     chapters: [{
+    //         chapter:1,
+    //         href:"",
+    //         updateTime:"Hace 3 horas"
+    //     },
+    //     {
+    //         chapter:2,
+    //         href:"",
+    //         updateTime:"Hace 1 horas"
+    //     }
+    //     ]
+    // },
 ]
