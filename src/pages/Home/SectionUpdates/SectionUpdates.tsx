@@ -49,7 +49,7 @@ console.log(DataUpdates);
 };
 
 const ContainerCards = styled.div`
-border: 1px solid #df0c0c;
+/* border: 1px solid #df0c0c; */
 
 display: flex;
 
@@ -58,10 +58,10 @@ flex-wrap: wrap;
 justify-content: center;
 margin: 30px auto;
 
-width: 80%;
+width: 90%;
 
 @media screen and (max-width: 1440px) {
-    width: 85%;
+    width: 95%;
   }
 
   @media screen and (max-width: 1366px) {

@@ -119,6 +119,9 @@ const ContainerMangaRecomend = styled.div`
   background-color: #262626;
   border-radius: 20px;
 
+  @media screen and (max-width: 1140px) {
+    width: 100%;
+  }
   .section-h2 {
     /* border: 1px solid #fff; */
     width: 100%;

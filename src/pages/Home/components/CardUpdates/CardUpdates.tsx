@@ -23,33 +23,32 @@ const CardUpdates: React.FC<CardUpdatesProps> = ({
       <LinkStyle to={`/library/${href}`} className="container-img">
         <img src={image} alt={id} />
       </LinkStyle>
-      {/* <div className="div-gradier"></div> */}
 
-      <div className="pointer-events-none absolute-b-left w-full h-2/4 bg-gradient-to-b from-transparent via-gray-800/70 to-gray-800/90 rounded-inherit"></div>
-      
-      {/* <div className="container-descrp">
-        <LinkStyle to={`/library/${href}`}>
-          <figcaption>{title}</figcaption>
-        </LinkStyle>
+      <div className="div-gradier"></div>
 
-        <div className="container-chapters">
-          <ul>
-            
-            {chapters.map(({ chapter, updateTime }, index) => (
-              <LinkStyle to={`/library/${href}/${chapter}`} key={index}>
-                <div className="div-chapter">
-                  <li>
-                    Capítulo {chapter} - Hace{" "}
-                    {updateTime === 1
-                      ? `${updateTime} hora`
-                      : `${updateTime} horas`}
-                  </li>
-                </div>
-              </LinkStyle>
-            ))}
-          </ul>
+      <div className="container-descrp">
+        <div className="div-title">
+          <LinkStyle to={`/library/${href}`}>
+            <figcaption>{title}</figcaption>
+          </LinkStyle>
         </div>
-      </div> */}
+
+        <ul className="container-chapters">
+          {chapters.map(({ chapter, updateTime }, index) => (
+            <LinkStyle to={`/library/${href}/${chapter}`} key={index}>
+              <li className="div-chapter">
+                <div className="chapter-Number">Capítulo {chapter}</div>
+                <div className="updateChapter">
+                  Hace{" "}
+                  {updateTime === 1
+                    ? `${updateTime} hora`
+                    : `${updateTime} horas`}
+                </div>
+              </li>
+            </LinkStyle>
+          ))}
+        </ul>
+      </div>
     </CardUpdatesStl>
   );
 };
@@ -59,9 +58,9 @@ const CardUpdatesStl = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 
-  border: 1px solid #fff;
+  border: inherit;
   border-radius: 15px;
   background: #212121;
   box-shadow: 5px 5px 20px rgb(25, 25, 25), -1px -10px 40px rgb(60, 60, 60);
@@ -103,7 +102,7 @@ const CardUpdatesStl = styled.div`
     /* border: 1px solid #b01313; */
 
     width: 100%;
-      height: 100%;
+    height: 100%;
     img {
       width: 100%;
       height: 100%;
@@ -115,73 +114,105 @@ const CardUpdatesStl = styled.div`
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 50%;
-    background-image: linear-gradient(var(--un-gradient-stops));
+    height: 80%;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(5, 7, 12, 0),
+      rgba(5, 7, 12, 5)
+    );
   }
-  .from-transparent {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 80%;
-  opacity:0.5;
-  background-image: linear-gradient(var(--un-gradient-stops));
-}
-.bg-gradient-to-b {
-    --un-gradient-shape: to bottom;
-    --un-gradient: var(--un-gradient-shape), var(--un-gradient-stops);
-    background-image: linear-gradient(var(--un-gradient));
-}
-.to-gray-800\/90 {
-    --un-gradient-to-position: 100%;
-    --un-gradient-to: rgba(31,41,55,.9) var(--un-gradient-to-position);
-}
-  .via-gray-800\/70 {
-    --un-gradient-via-position: 12%;
-    --un-gradient-to: rgba(31, 41, 55, 0);
-    --un-gradient-stops: var(--un-gradient-from),
-      rgba(10, 10, 11, 0.7) var(--un-gradient-via-position),
-      var(--un-gradient-to);
-  }
-  .from-transparent {
-    --un-gradient-from-position: 0%;
-    --un-gradient-from: transparent var(--un-gradient-from-position);
-    --un-gradient-to-position: 100%;
-    --un-gradient-to: hsla(0, 0%, 100%, 0) var(--un-gradient-to-position);
-    --un-gradient-stops: var(--un-gradient-from), var(--un-gradient-to);
-  }
+
   .container-descrp {
     position: absolute;
-    bottom: 0;
     left: 0;
+    bottom: 0;
     width: 100%;
-    word-wrap: break-word;
-    /* border: 1px solid #2708d6;  */
-    margin: 0 auto;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #f7df07; */
+  }
+
+  .div-title {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    flex-direction: column;
+    /* border: 1px solid #f7df07; */
+    overflow  :hidden ;
+    text-overflow: ellipsis;
+  white-space: inherit;
+  margin-bottom: 10px;
+
 
     figcaption {
+      /* ... Estilos para figcaption ... */
       font-weight: 500;
-      font-size: 20px;
+      font-size: 22px;
+      color: #e8dfdf;
+      line-height: 1.75rem;
+      margin-bottom: 5px;
+      text-transform:none;
+      font-family: Cabin, sans-serif;
+
     }
   }
+
   .container-chapters {
-    /* position: absolute;
-    bottom: 0; */
+    /* ... Tus estilos ... */
     width: 100%;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    border: 1px solid #f7df07;
+    /* border: 1px solid #bb00ff; */
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-block-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+  }
 
-    .div-chapter {
-      border: 1px solid #04d712;
+  .div-chapter {
+    /* width: 100%; */
+    height: 1.5rem;
+    background-color: #242424;
+    margin: 0 0 5px 0;
+    padding: 8px 20px;
+    line-height: 1;
+    border-radius: 5px;
+    /* ... Estilos para los elementos de la lista ... */
+    list-style: none;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
 
-      width: 100%;
-      height: auto;
-      background-color: #212121;
+  .chapter-Number {
+    /* border: 1px solid #fcfdfd; */
+    display: flex;
+    height: 100%;
+    font-size: 13px;
+    align-items: center;
+    padding: 0.25em 0.4em;
+  }
+
+  .updateChapter {
+    /* border: 1px solid #fe2f00; */
+    display: flex;
+    height: 100%;
+    font-size: 12px;
+    font-weight: 100;
+    align-items: center;
+    padding: 0.25em 0.4em;
+  }
+ 
+
+  @media screen and (max-width: 1440px) {
+    .chapter-Number {
+     font-size:12px ;
     }
-
-    li {
-      list-style: none;
+    .updateChapter {
+    font-size:10px;
     }
   }
 `;
