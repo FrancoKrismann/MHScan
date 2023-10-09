@@ -86,12 +86,12 @@ const SectionUpdatesStl = styled.div`
   border-radius: 20px;
 
   @media screen and (max-width: 1366px) {
-    width: 95%;
-  }
-
-  @media screen and (max-width: 840px) {
     width: 100%;
   }
+
+  /* @media screen and (max-width: 840px) {
+    width: 100%;
+  } */
 `;
 
 export default SectionUpdates;

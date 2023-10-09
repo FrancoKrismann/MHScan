@@ -118,12 +118,11 @@ const ContainerMangaRecomend = styled.div`
   height: fit-content;
   background-color: #262626;
   border-radius: 20px;
-
-  @media screen and (max-width: 1140px) {
+  
+  @media screen and (max-width: 1366px) {
     width: 100%;
   }
   .section-h2 {
-    /* border: 1px solid #fff; */
     width: 100%;
     h2 {
       margin: 0.83em 0 0.83em 2em;
@@ -133,7 +132,7 @@ const ContainerMangaRecomend = styled.div`
 `;
 const DataRecommendStl = styled.div`
   overflow: hidden;
-
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -143,11 +142,9 @@ const DataRecommendStl = styled.div`
   height: fit-content;
 
   .arrow-left {
-    /* margin: 0 10px 0 0; */
     animation: ${arrowFade} 0.3s ease-in-out;
   }
   .arrow-right {
-    /* margin: 0 10px 0 10px; */
     animation: ${arrowFade} 0.3s ease-in-out;
   }
   .arrow-left,
@@ -156,24 +153,18 @@ const DataRecommendStl = styled.div`
   }
 
   .arrow-left-disable {
-    /* margin: 0 10px 0 0; */
     opacity: 0.4;
   }
 
   .arrow-right-disable {
-    /* margin: 0 0 0 10px; */
     opacity: 0.4;
   }
 
   @media screen and (max-width: 1640px) {
-    /* .arrow-left-disable,.arrow-left {
-      margin: 0 15px 0 0;
-    } */
-
     width: 90%;
   }
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1366px) {
     width: 100%;
   }
 `;

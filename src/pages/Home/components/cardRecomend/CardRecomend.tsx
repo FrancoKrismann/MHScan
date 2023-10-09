@@ -1,10 +1,11 @@
+import { DataPortId, DataPortTitle, DataPortImage } from "@/types";
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
 interface CardRecomendProps {
-  id: string;
-  title: string;
-  image: string;
+  id: DataPortId["id"];
+  title: DataPortTitle["title"];
+  image: DataPortImage["image"];
 }
 
 const CardRecomend: React.FC<CardRecomendProps> = ({ id, title, image }) => {

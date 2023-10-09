@@ -1,13 +1,14 @@
 import { Chapters_Item } from "@/interface";
 import { LinkStyle } from "@/styled-components";
+import { DataUpdateId , DataUpdateTitle, DataUpdateImage, DataUpadteHref} from "@/types";
 import React from "react";
 import styled from "styled-components";
 
 interface CardUpdatesProps {
-  id: string;
-  title: string;
-  image: string;
-  href: string;
+  id:DataUpdateId["id"];
+  title: DataUpdateTitle["title"];
+  image: DataUpdateImage["image"];
+  href: DataUpadteHref["href"];
   chapters: Chapters_Item[];
 }
 
@@ -76,8 +77,8 @@ const CardUpdatesStl = styled.div`
   }
 
   @media screen and (max-width: 1366px) {
-    width: calc(27% - 2rem);
-    height: 26rem;
+    width: calc(24% - 2rem);
+    height: 23rem;
   }
 
   @media screen and (max-width: 1240px) {
@@ -107,6 +108,7 @@ const CardUpdatesStl = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.3s;
     }
   }
 
@@ -128,35 +130,32 @@ const CardUpdatesStl = styled.div`
     bottom: 0;
     width: 100%;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     /* border: 1px solid #f7df07; */
   }
 
   .div-title {
-    width: 90%;
-    display: flex;
-    align-items: center;
-    height: 50px;
-    flex-direction: column;
+    width: 80%;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp: 2;
+    /* flex-direction: column; */
     /* border: 1px solid #f7df07; */
-    overflow  :hidden ;
-    text-overflow: ellipsis;
-  white-space: inherit;
-  margin-bottom: 10px;
-
+    
+    margin-bottom: 5px;
 
     figcaption {
       /* ... Estilos para figcaption ... */
-      font-weight: 500;
+      font-weight: 600;
       font-size: 22px;
       color: #e8dfdf;
       line-height: 1.75rem;
       margin-bottom: 5px;
-      text-transform:none;
+      text-transform: none;
       font-family: Cabin, sans-serif;
-
     }
   }
 
@@ -191,7 +190,7 @@ const CardUpdatesStl = styled.div`
     /* border: 1px solid #fcfdfd; */
     display: flex;
     height: 100%;
-    font-size: 13px;
+    font-size: 12px;
     align-items: center;
     padding: 0.25em 0.4em;
   }
@@ -200,19 +199,24 @@ const CardUpdatesStl = styled.div`
     /* border: 1px solid #fe2f00; */
     display: flex;
     height: 100%;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 100;
     align-items: center;
     padding: 0.25em 0.4em;
   }
- 
 
   @media screen and (max-width: 1440px) {
     .chapter-Number {
-     font-size:12px ;
+      font-size: 11px;
     }
     .updateChapter {
-    font-size:10px;
+      font-size: 10px;
+    }
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.1);
     }
   }
 `;

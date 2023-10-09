@@ -10,11 +10,9 @@ export interface DataPort_Item {
     title:string
 }
 
-
-
+//Cards Section Updates
 export interface Chapters_Item {
     chapter:number
-    href:string
     updateTime:number
 }
 export interface DataUpdate_Item {

@@ -48,3 +48,8 @@ export const SESION_ITEMS: Record<string, Type_Item> = {
 export const typedNavbarButtons: For_Items = NAVBAR_BUTTONS;
 
 export const typedSesion:For_Items = SESION_ITEMS;
+
+
+//Variable for Local Storage
+
+export const MY_AUTH_APP = "MY_AUTH_APP";
