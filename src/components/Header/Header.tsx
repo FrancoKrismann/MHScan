@@ -85,8 +85,6 @@ const Header: React.FC = () => {
           <li key={key}>
             <LinkStyle
             to={href}
-            // className={className}
-            
             >
               {literal}
             </LinkStyle>

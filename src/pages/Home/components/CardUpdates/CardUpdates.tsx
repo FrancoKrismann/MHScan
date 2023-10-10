@@ -21,22 +21,21 @@ const CardUpdates: React.FC<CardUpdatesProps> = ({
 }) => {
   return (
     <CardUpdatesStl key={id}>
-      <LinkStyle to={`/library/${href}`} className="container-img">
+      <LinkStyle to={`manga/${href}`} className="container-img">
         <img src={image} alt={id} />
-      </LinkStyle>
-
       <div className="div-gradier"></div>
+      </LinkStyle>
 
       <div className="container-descrp">
         <div className="div-title">
-          <LinkStyle to={`/library/${href}`}>
+          <LinkStyle to={`manga/${href}`}>
             <figcaption>{title}</figcaption>
           </LinkStyle>
         </div>
 
         <ul className="container-chapters">
           {chapters.map(({ chapter, updateTime }, index) => (
-            <LinkStyle to={`/library/${href}/${chapter}`} key={index}>
+            <LinkStyle to={`manga/${href}/${chapter}`} key={index}>
               <li className="div-chapter">
                 <div className="chapter-Number">Capítulo {chapter}</div>
                 <div className="updateChapter">

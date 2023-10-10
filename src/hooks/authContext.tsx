@@ -12,7 +12,7 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined)
  
 interface AuthContextProviderProps {
-    children: JSX.Element[]
+    children: JSX.Element
 }
 
 export default function AuthContextProvider ({children}:AuthContextProviderProps)  {

@@ -1,3 +1,4 @@
+import { LinkStyle } from "@/styled-components";
 import { DataPortId, DataPortTitle, DataPortImage } from "@/types";
 import React from "react";
 import styled, { keyframes } from "styled-components";
@@ -11,10 +12,13 @@ interface CardRecomendProps {
 const CardRecomend: React.FC<CardRecomendProps> = ({ id, title, image }) => {
   return (
     <CardRecomendStl key={id}>
-      <img src={image} alt={id} />
+       <LinkStyle to={`manga/${title}`} className="container-img">
+<img src={image} alt={id} />
       <div className="container-title">
         <p>{title}</p>
       </div>
+       </LinkStyle>
+      
     </CardRecomendStl>
   );
 };
@@ -80,12 +84,16 @@ const CardRecomendStl = styled.div`
     margin:5px
 }
 
-  img {
+.container-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
-  }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+}
 
   .container-title {
     position: absolute;
