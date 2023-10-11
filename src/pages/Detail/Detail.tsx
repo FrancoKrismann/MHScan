@@ -1,22 +1,29 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { SectionDetail } from './SectionDetail';
 
 
 
 const Detail: React.FC  = () => {
-const {id} = useParams<{id?: string}>();
+// const {id} = useParams<{id?: string}>();
 
 	return <DetailStl>
-		<h1>Detail</h1>
-		<h2>{id}</h2>
+    <SectionDetail/>
 
 	</DetailStl>;
 };
 
 export const DetailStl = styled.div`
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
 width: 100%;
-height: 30rem;
+height: 100vh;
+
 `;
 
 export default Detail;
