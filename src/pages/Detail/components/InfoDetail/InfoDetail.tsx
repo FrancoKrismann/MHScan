@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export type InfoDetailProps = {
+interface InfoDetailProps {
 }
 
 const InfoDetail: React.FC<InfoDetailProps>  = ({}) => {

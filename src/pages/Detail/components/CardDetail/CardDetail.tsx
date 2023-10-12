@@ -1,39 +1,33 @@
-import { DataUpdateImage, DataUpdateTitle } from "@/types";
+import { DataUpdateImage } from "@/types";
 import React from "react";
 import styled from "styled-components";
 
 export interface CardDetailProps {
   id: string;
-  title: DataUpdateTitle["title"];
   image: DataUpdateImage["image"];
 }
 
-const CardDetail: React.FC<CardDetailProps> = ({ title, image, id }) => {
+const CardDetail: React.FC<CardDetailProps> = ({ image, id }) => {
   return (
     <CardDetailStl>
-      <div className="div-img">
-        <img src={image} alt={id} />
-      </div>
-      <div className="div-title">
-        <h2>{title}</h2>
-      </div>
+      <img src={image} alt={id} />
     </CardDetailStl>
   );
 };
 
 export const CardDetailStl = styled.div`
-  width: calc(20% - 2rem);
+  width: calc(67% - 2rem);
   border: inherit;
-  border: 1px solid #fff;
+  border-radius: 15px;
+  margin: 10px 0 70px 0;
+  box-shadow: 5px 5px 20px rgb(25, 25, 25), -1px -10px 40px rgb(60, 60, 60);
 
-  .div-img {
-	width: 100%;
+  img {
+    width: 100%;
     height: 100%;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    border-radius: 15px;
+
+    object-fit: cover;
   }
 `;
 
