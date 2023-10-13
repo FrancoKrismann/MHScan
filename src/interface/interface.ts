@@ -22,3 +22,13 @@ export interface DataUpdate_Item {
     href:string
     chapters:Chapters_Item[]
 }
+
+export interface InfoDetail_Item {
+    alternative:string
+    author:string
+    artist:string
+    genre:string[]
+    type:string
+    releaser:number
+    status:string
+}
