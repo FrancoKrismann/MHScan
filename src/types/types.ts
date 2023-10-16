@@ -43,6 +43,8 @@ export type DataInfoReleaser = Pick<InfoDetail_Item, "releaser">
 
 export type DataInfoStatus = Pick<InfoDetail_Item, "status">
 
+export type DataInfoDescription = Pick<InfoDetail_Item, "description">
+
 
 
 

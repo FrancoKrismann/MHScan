@@ -10,7 +10,7 @@ const Detail: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0); // Lleva el scroll al inicio
   }, []);
-  
+
   const DataDetail = {
     id: "1",
     image: Chaman,
@@ -46,13 +46,22 @@ const Detail: React.FC = () => {
     type: " Manhwa",
     releaser: 2021,
     status: "OnGoing",
+    description: [
+      "Si la Parca dice tu nombre tres veces, serás llevado al inframundo….",
+      "«Hyeo-kyeon Mugang».",
+      "«Hyeo-kyeon Mugang».",
+      "«Hyeo-kyeon Mu-…»",
+      "¡Bastardo!, ¡Quiero vivir más tiempo!, ¡Largate!",
+      "Tragué desesperadamente la Hierba de la Inmortalidad, y para mi sorpresa, ¡Realmente sobreviví!, Pero cuando finalmente abrí mis ojos y pensaba que todo fue un sueño… ¡¿Estaba rodeado de un montón de viejos?!… ¡¡¿En la Montaña de los Chamanes?!!",
+    ],
   };
 
   return (
     <DetailStl>
-      <SectionDetail DataDetail={DataDetail}
-       InfoDetail_items={InfoDetail_items}
-        />
+      <SectionDetail
+        DataDetail={DataDetail}
+        InfoDetail_items={InfoDetail_items}
+      />
     </DetailStl>
   );
 };

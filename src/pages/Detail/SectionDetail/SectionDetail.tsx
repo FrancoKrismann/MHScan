@@ -13,7 +13,7 @@ interface SectionDetailProps {
 const SectionDetail: React.FC <SectionDetailProps> = ({DataDetail, InfoDetail_items}) => {
 
   const { title, image, id } = DataDetail;
-  const { alternative, artist,author,genre,releaser,status,type } = InfoDetail_items;
+  const { alternative, artist,author,genre,releaser,status,type, description } = InfoDetail_items;
 
   return (
     <SectionDetailStl>
@@ -32,6 +32,7 @@ const SectionDetail: React.FC <SectionDetailProps> = ({DataDetail, InfoDetail_it
         releaser={releaser}
         status={status}
         type={type}
+        description={description}
         />
       </div>
     </SectionDetailStl>
@@ -39,7 +40,7 @@ const SectionDetail: React.FC <SectionDetailProps> = ({DataDetail, InfoDetail_it
 };
 
 export const SectionDetailStl = styled.div`
-  width: 80%;
+  width: 95%;
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -52,6 +53,10 @@ export const SectionDetailStl = styled.div`
 
   margin: 20px 0 20px 0;
 
+  @media screen and (max-width: 1060px) {
+    width: 100%;
+    
+  }
   .container-visual {
     display: flex;
     flex-direction: column;

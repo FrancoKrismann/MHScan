@@ -50,15 +50,22 @@ const RaitingStars: React.FC = () => {
 
 export const RaitingStarsStl = styled.div`
   display: flex;
-  justify-content: space-around;
-	border: 1px solid #ea0b0b;
-
+  /* justify-content: space-around; */
+  justify-content: center;
+  align-items: center;
+	/* border: 1px solid #ea0b0b; */
+  width: 70%;
+  margin-top: 15px;
   .container-raiting {
-	width: 50%;
+    /* border: 1px solid #baf203; */
+
+	/* width: 45%; */
   }
 
   .container-raiting-number {
-	width: 50%;
+    /* border: 1px solid #157c69; */
+
+	/* width: 5rem; */
 	display: flex;
 	align-items: center
 	;
@@ -75,6 +82,8 @@ export const RaitingStarsStl = styled.div`
   .react-icons {
     cursor: pointer;
   }
+
+  
 `;
 
 export default RaitingStars;

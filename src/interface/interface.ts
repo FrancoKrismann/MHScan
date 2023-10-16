@@ -31,4 +31,5 @@ export interface InfoDetail_Item {
     type:string
     releaser:number
     status:string
+    description:string[]
 }
