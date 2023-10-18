@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { SectionDetail } from "./SectionDetail";
 import Chaman from "@/assets/images/El camino del chamán.jpg";
+import { SectionChapters } from "./SectionChapters";
 
 const Detail: React.FC = () => {
   // const {id} = useParams<{id?: string}>();
@@ -20,11 +21,27 @@ const Detail: React.FC = () => {
     chapters: [
       {
         chapter: 1,
-        updateTime: 8,
+        updateTime: 20,
       },
       {
         chapter: 2,
-        updateTime: 2,
+        updateTime: 18,
+      },
+      {
+        chapter: 3,
+        updateTime: 15,
+      },
+      {
+        chapter: 4,
+        updateTime:12 ,
+      },
+      {
+        chapter: 5,
+        updateTime: 10,
+      },
+      {
+        chapter: 6,
+        updateTime: 9,
       },
     ],
   };
@@ -56,11 +73,16 @@ const Detail: React.FC = () => {
     ],
   };
 
+  
+
   return (
     <DetailStl>
       <SectionDetail
         DataDetail={DataDetail}
         InfoDetail_items={InfoDetail_items}
+      />
+      <SectionChapters
+      DataDetail={DataDetail}
       />
     </DetailStl>
   );

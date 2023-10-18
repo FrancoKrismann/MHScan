@@ -1,5 +1,5 @@
 import { NAVBAR_BUTTONS } from "@/consts";
-import { DataPort_Item, Type_Item ,DataUpdate_Item, InfoDetail_Item} from "@/interface";
+import { DataPort_Item, Type_Item ,DataUpdate_Item, InfoDetail_Item, Chapters_Item} from "@/interface";
 
 //Type of Section Recomend Cards
 
@@ -45,6 +45,10 @@ export type DataInfoStatus = Pick<InfoDetail_Item, "status">
 
 export type DataInfoDescription = Pick<InfoDetail_Item, "description">
 
+//Type of Secton Chapters
 
+export type DataChapterNumber = Pick<Chapters_Item, "chapter">
+
+export type DataChapterUpdateTime = Pick<Chapters_Item, "updateTime">
 
 

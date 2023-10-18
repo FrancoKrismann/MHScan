@@ -2,18 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import { CardDetail } from "../components/CardDetail";
 import { InfoDetail } from "../components/InfoDetail";
-import { DataUpdate_Item as DataDetail_Item, InfoDetail_Item} from "@/interface";
-
+import {
+  DataUpdate_Item as DataDetail_Item,
+  InfoDetail_Item,
+} from "@/interface";
 
 interface SectionDetailProps {
-  DataDetail: DataDetail_Item
-  InfoDetail_items: InfoDetail_Item
+  DataDetail: DataDetail_Item;
+  InfoDetail_items: InfoDetail_Item;
 }
 
-const SectionDetail: React.FC <SectionDetailProps> = ({DataDetail, InfoDetail_items}) => {
-
+const SectionDetail: React.FC<SectionDetailProps> = ({
+  DataDetail,
+  InfoDetail_items,
+}) => {
   const { title, image, id } = DataDetail;
-  const { alternative, artist,author,genre,releaser,status,type, description } = InfoDetail_items;
+  const {
+    alternative,
+    artist,
+    author,
+    genre,
+    releaser,
+    status,
+    type,
+    description,
+  } = InfoDetail_items;
 
   return (
     <SectionDetailStl>
@@ -25,14 +38,14 @@ const SectionDetail: React.FC <SectionDetailProps> = ({DataDetail, InfoDetail_it
       </div>
       <div className="container-detail">
         <InfoDetail
-        alternative={alternative}
-        artist={artist}
-        author={author}
-        genre={genre}
-        releaser={releaser}
-        status={status}
-        type={type}
-        description={description}
+          alternative={alternative}
+          artist={artist}
+          author={author}
+          genre={genre}
+          releaser={releaser}
+          status={status}
+          type={type}
+          description={description}
         />
       </div>
     </SectionDetailStl>
@@ -43,7 +56,6 @@ export const SectionDetailStl = styled.div`
   width: 95%;
   height: fit-content;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 
@@ -55,7 +67,9 @@ export const SectionDetailStl = styled.div`
 
   @media screen and (max-width: 1060px) {
     width: 100%;
-    
+  }
+  @media screen and (max-width: 880px) {
+    flex-direction: column;
   }
   .container-visual {
     display: flex;
@@ -72,8 +86,14 @@ export const SectionDetailStl = styled.div`
 
   .container-detail {
     display: flex;
-
     width: 50%;
+
+    @media screen and (max-width: 880px) {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 `;
 

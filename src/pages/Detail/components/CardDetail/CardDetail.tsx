@@ -29,6 +29,13 @@ export const CardDetailStl = styled.div`
 
     object-fit: cover;
   }
+
+  @media screen and (max-width: 880px) {
+    width: calc(120% - 1rem);
+  }
+  @media screen and (max-width: 600px) {
+    width: calc(170% - 1rem);
+  }
 `;
 
 export default CardDetail;

@@ -31,11 +31,10 @@ const InfoDetail: React.FC<InfoDetailProps> = ({
   releaser,
   status,
   type,
-  description
+  description,
 }) => {
-
   // const descriptionHTML = description.join('<br/>');
-  
+
   const info = [
     "Alternative:",
     "Author(s):",
@@ -72,13 +71,13 @@ const InfoDetail: React.FC<InfoDetailProps> = ({
         </ul>
       </div>
       <div className="div-description">
-            {/* <p dangerouslySetInnerHTML={{ __html: descriptionHTML }}></p> */}
-            <h4>Description:</h4>
-            {
-              description.map((item, index) => {
-                return <p key={index}>{item}</p>;
-              })
-            }
+        {/* <p dangerouslySetInnerHTML={{ __html: descriptionHTML }}></p> */}
+        <h4>Description:</h4>
+        <div className="container-dataDescription">
+          {description.map((item, index) => {
+            return <p key={index}>{item}</p>;
+          })}
+        </div>
       </div>
     </InfoDetailStl>
   );
@@ -86,60 +85,76 @@ const InfoDetail: React.FC<InfoDetailProps> = ({
 
 export const InfoDetailStl = styled.div`
   background: #313030;
-  width: 92%;
+  width: 95%;
   height: 100%;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  gap:20px;
-  margin:10px 0 10px 0;
+  gap: 20px;
+  margin: 10px 0 10px 0;
 
   .container-list-item {
     /* border: 1px solid #093ff2; */
-    height:fit-content;
+    height: fit-content;
     display: flex;
     flex-wrap: wrap;
-    }
-  
+  }
 
   .div-description {
     /* border: 1px solid yellow; */
     display: flex;
     flex-direction: column;
-    margin: 0px 40px 15px ;
+    margin: 0px 40px 30px;
 
-    @media screen and (max-width: 1060px) {
-    overflow-y: scroll;
-    height: 10rem;
+    .container-dataDescription {
+      margin-top: 10px;
+    }
+
+    @media screen and (max-width :  1440px) {
+      .container-dataDescription {
+        overflow-y: scroll;
+        height: 10rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 880px) {
+    width: 80%;
     
   }
-    
+  .container-dataDescription::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento */
   }
-  
+
+  /* Estilo del riel de la barra de desplazamiento */
+  .container-dataDescription::-webkit-scrollbar-track {
+    background-color: transparent; /* Color del riel */
+  }
+
+  /* Estilo del mango de la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color del mango */
+    border-radius: 6px; /* Radio de borde del mango */
+  }
+
+  /* Estilo del mango al pasar el ratón por encima */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color del mango al pasar el ratón por encima */
+  }
+
   ul {
-      margin-block-end: 0;
-      margin-block-start: 0;
-      display: flex;
-      flex-direction: column;
-    }
+    display: flex;
+    flex-direction: column;
+  }
 
-    li {
-      font-size: 1em;
-      list-style: none;
-      margin-top: 12px;
-      display: flex;
-      flex-wrap: wrap;
-    }
-      h4 {
-        margin-block-end: 0;
-        margin-block-start: 0;
-      }
+  li {
+    font-size: 1em;
+    list-style: none;
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-      p {
-        margin-block-end: 0;
-        margin-block-start: 0;
-      }
-    
 `;
 
 export default InfoDetail;
