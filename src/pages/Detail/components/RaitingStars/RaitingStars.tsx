@@ -65,7 +65,7 @@ export const RaitingStarsStl = styled.div`
   .container-raiting-number {
     /* border: 1px solid #157c69; */
 
-	/* width: 5rem; */
+	width: 4rem;
 	display: flex;
 	align-items: center
 	;

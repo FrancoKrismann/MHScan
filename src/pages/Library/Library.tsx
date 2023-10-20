@@ -11,11 +11,19 @@ const Library: React.FC  = () => {
 	}, []);
 
 	return <LibraryStl>
-		<h1>Libraries</h1>
+		
 		<Outlet/>
 	</LibraryStl>;
 };
 
-export const LibraryStl = styled.div``;
+export const LibraryStl = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+  height: fit-content;
+`;
 
 export default Library;

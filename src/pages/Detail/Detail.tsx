@@ -12,7 +12,7 @@ const Detail: React.FC = () => {
     window.scrollTo(0, 0); // Lleva el scroll al inicio
   }, []);
 
-  const DataDetail = {
+ const DataDetail = {
     id: "1",
     image: Chaman,
     title: "El camino del Chaman",
@@ -43,6 +43,43 @@ const Detail: React.FC = () => {
         chapter: 6,
         updateTime: 9,
       },
+      {
+        chapter: 7,
+        updateTime: 8,
+      },
+      {
+        chapter: 8,
+        updateTime: 7,
+      },
+      {
+        chapter: 9,
+        updateTime: 6,
+      },
+      {
+        chapter: 10,
+        updateTime: 5,
+      },
+      {
+        chapter: 11,
+        updateTime: 4,
+      },
+      {
+        chapter: 12,
+        updateTime: 3,
+      },
+      {
+        chapter: 13,
+        updateTime: 2,
+      },
+      {
+        chapter: 14,
+        updateTime: 1,
+      },
+      {
+        chapter: 15,
+        updateTime: 0,
+      },
+      
     ],
   };
 
@@ -96,6 +133,7 @@ export const DetailStl = styled.div`
 
   width: 100%;
   height: fit-content;
+  
 `;
 
 export default Detail;

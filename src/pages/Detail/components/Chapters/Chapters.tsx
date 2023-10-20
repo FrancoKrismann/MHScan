@@ -27,7 +27,7 @@ const Chapters: React.FC<ChaptersProps> = ({ chapter, updateTime }) => {
 export const ChaptersStl = styled.div`
   width:14rem;
   height: 3rem;
-
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -42,6 +42,8 @@ export const ChaptersStl = styled.div`
 
   --un-border-opacity: 1;
     border-color: rgba(55,65,81,var(--un-border-opacity));
+
+    
 
   h4 {
     margin-left: 10px;
