@@ -1,35 +1,44 @@
-
+//Navbar buttons
 export interface Type_Item {
     literal: string
-    href:string
+    href: string
 }
 
-export interface DataPort_Item {
-    id:string
-    image:string
-    title:string
-}
+// export interface DataPort_Item {
+//     id:string
+//     image:string
+//     title:string
+// }
 
 //Cards Section Updates
-export interface Chapters_Item {
-    chapter:number
-    updateTime:number
-}
-export interface DataUpdate_Item {
-    id:string
-    image:string
-    title:string
-    href:string
-    chapters:Chapters_Item[]
-}
+// export interface DataUpdate_Item {
+//     id:string
+//     image:string
+//     title:string
+//     href:string
+//     chapters:Chapters_Item[]
+// }
 
+//Cards Details
 export interface InfoDetail_Item {
-    alternative:string
-    author:string
-    artist:string
-    genre:string[]
-    type:string
-    releaser:number
-    status:string
-    description:string[]
+    alternative: string
+    author: string
+    artist: string
+    genre: string[]
+    type: string
+    releaser: number
+    status: string
+    description: string[]
 }
+export interface Chapters_Item {
+    chapter: number
+    updateTime: number
+}
+export interface DataViewType {
+    id: string
+    image: string
+    title: string
+    href: string
+    chapters: Chapters_Item[]
+    detail: InfoDetail_Item[]
+} 

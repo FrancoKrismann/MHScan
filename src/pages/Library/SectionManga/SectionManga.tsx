@@ -1,34 +1,30 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-import { DataViewType } from "@/interface";
-import React from "react";
-import styled from "styled-components";
-import { CardUpdates } from "../components/CardUpdates";
+import { DataViewType } from '@/interface';
+import React from 'react';
+import styled from 'styled-components';
+import { CardLibrary } from '../components/CardLibrary';
 
-interface SectionUpdatesProps {
-  DataView: DataViewType[];
+interface SectionMangaProps {
+	DataView: DataViewType[];
 }
 
-const SectionUpdates: React.FC<SectionUpdatesProps> = ({ DataView }) => {
-
-const DataSlice = DataView.reverse().slice(-8)
-
-  return (
-    <SectionUpdatesStl>
-      <ContainerCards>
-        {DataSlice.map((item) => (
-          <CardUpdates
+const SectionManga: React.FC<SectionMangaProps>  = ({DataView}) => {
+	return <SectionMangaStl>
+		<ContainerCards>
+		{DataView.map((item) => (
+          <CardLibrary
             id={item.id}
             image={item.image}
             title={item.title}
             chapters={item.chapters}
             href={item.href}
+            detail={item.detail}
             key={item.id}
           />
         ))}
-      </ContainerCards>
-    </SectionUpdatesStl>
-  );
+		</ContainerCards>
+	</SectionMangaStl>;
 };
+
 
 const ContainerCards = styled.div`
   /* border: 1px solid #df0c0c; */
@@ -51,7 +47,7 @@ const ContainerCards = styled.div`
   }
 `;
 
-const SectionUpdatesStl = styled.div`
+export const SectionMangaStl = styled.div`
   margin: 10rem 0 10rem 0;
   display: flex;
   justify-content: center;
@@ -67,10 +63,6 @@ const SectionUpdatesStl = styled.div`
   @media screen and (max-width: 1366px) {
     width: 100%;
   }
-
-  /* @media screen and (max-width: 840px) {
-    width: 100%;
-  } */
 `;
 
-export default SectionUpdates;
+export default SectionManga;

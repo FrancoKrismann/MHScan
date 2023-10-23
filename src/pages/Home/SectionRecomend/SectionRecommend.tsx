@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
-import { DataPort_Item } from "@/interface";
+import { DataViewType } from "@/interface";
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
@@ -7,10 +7,10 @@ import { PiArrowCircleLeftFill, PiArrowCircleRightFill } from "react-icons/pi";
 import { CardRecomend } from "../components/cardRecomend";
 
 interface SectionRecommendProps {
-  DataPorts: DataPort_Item[];
+  DataView: DataViewType[];
 }
 
-const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataPorts }) => {
+const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataView }) => {
   // const [indexRecomend, setIndexRecomend] = useState<number>(0);
 
   //Recorre el indice segun el numero del estado local
@@ -26,7 +26,7 @@ const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataPorts }) => {
     const widthWindow = window.innerWidth;
     setCardNumbers(widthWindow < 1260 ? 2 : 4);
     setMaxIndex(
-      widthWindow < 1260 ? DataPorts.length - 2 : DataPorts.length - 4
+      widthWindow < 1260 ? DataView.length - 2 : DataView.length - 4
     );
   };
 
@@ -46,7 +46,7 @@ const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataPorts }) => {
   }, []);
 
   const cardsCount = indexRecomend + cardsNumbers;
-  const DataSlice = DataPorts.slice(indexRecomend, cardsCount);
+  const DataSlice = DataView.slice(indexRecomend, cardsCount);
 
   const handleNextClick = (): void => {
     if (indexRecomend !== maxIndex)

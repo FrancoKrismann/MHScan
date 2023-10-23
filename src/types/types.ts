@@ -1,15 +1,15 @@
 import { NAVBAR_BUTTONS } from "@/consts";
-import { DataPort_Item, Type_Item ,DataUpdate_Item, InfoDetail_Item, Chapters_Item} from "@/interface";
+import { Type_Item , InfoDetail_Item, Chapters_Item, DataViewType} from "@/interface";
 
 //Type of Section Recomend Cards
 
-export type DataPortId = Pick<DataPort_Item, "id">
+// export type DataPortId = Pick<DataPort_Item, "id">
 
-export type DataPortTitle = Pick<DataPort_Item, "title">
+// export type DataPortTitle = Pick<DataPort_Item, "title">
 
-export type DataPortImage = Pick<DataPort_Item, "image">
+// export type DataPortImage = Pick<DataPort_Item, "image">
 
-export type DataPortAll = Pick<DataPort_Item, "image" | "title" |"id" >
+// export type DataPortAll = Pick<DataPort_Item, "image" | "title" |"id" >
 
 
 //NavBar buttons
@@ -19,13 +19,13 @@ export type For_Items = {
 
 //Type of Section Updates Cards
 
-export type DataUpdateId = Pick<DataUpdate_Item, "id">
+// export type DataUpdateId = Pick<DataUpdate_Item, "id">
 
-export type DataUpdateTitle = Pick<DataUpdate_Item, "title">
+// export type DataUpdateTitle = Pick<DataUpdate_Item, "title">
 
-export type DataUpdateImage = Pick<DataUpdate_Item, "image">
+// export type DataUpdateImage = Pick<DataUpdate_Item, "image">
 
-export type DataUpadteHref = Pick<DataUpdate_Item, "href">
+// export type DataUpadteHref = Pick<DataUpdate_Item, "href">
 
 //Type of section Details
 
@@ -50,5 +50,20 @@ export type DataInfoDescription = Pick<InfoDetail_Item, "description">
 export type DataChapterNumber = Pick<Chapters_Item, "chapter">
 
 export type DataChapterUpdateTime = Pick<Chapters_Item, "updateTime">
+
+//Type DataView 
+
+export type DataViewId = Pick<DataViewType, "id">
+
+export type DataViewImage = Pick<DataViewType, "image">
+
+export type DataViewTitle = Pick<DataViewType, "title">
+
+export type DataViewHref = Pick<DataViewType, "href">
+
+export type DataViewChapters = Pick<DataViewType,"chapters">
+
+export type DataViewDetails = Pick<DataViewType, "detail">
+
 
 

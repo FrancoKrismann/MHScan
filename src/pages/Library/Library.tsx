@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import { SectionManga } from './SectionManga';
+import { SectionFilters } from './SectionFilters';
+import { DataView } from '@/data';
 
 
 
@@ -10,9 +13,12 @@ const Library: React.FC  = () => {
 		window.scrollTo(0, 0); // Lleva el scroll al inicio
 	}, []);
 
+  
+
 	return <LibraryStl>
-		
-		<Outlet/>
+    <SectionFilters/>
+		<SectionManga DataView={DataView}/>
+    <Outlet/>
 	</LibraryStl>;
 };
 
