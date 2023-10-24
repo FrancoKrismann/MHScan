@@ -35,22 +35,10 @@ const CardLibrary: React.FC<CardLibraryProps> = ({
         <img src={image} alt={id} />
         <div className="div-gradier"></div>
       </LinkStyle>
-
       <div className="container-descrp">
         <div className="div-title">
           <figcaption>{title}</figcaption>
         </div>
-
-        {/* <ul className="container-chapters">
-          {chapters.map(({ chapter, updateTime }, index) => (
-            <LinkStyle to={`/manga/${href}/capitulo-${chapter}`} key={index}>
-              <li className="div-chapter">
-                <div className="chapter-Number">{TotalChapters} Capítulos</div>
-                
-              </li>
-            </LinkStyle>
-          ))}
-        </ul> */}
         <div className="container-infoDetail">
           <ul>
             <li className="chapter-total">
@@ -80,7 +68,7 @@ export const CardLibraryStl = styled.div`
   overflow: hidden;
   cursor: pointer;
 
-  width: calc(24% - 2rem);
+  width: calc(20% - 2rem);
   height: 24rem;
   min-height: 22rem;
 

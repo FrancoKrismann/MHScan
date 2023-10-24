@@ -1,18 +1,19 @@
 import { LinkStyle } from "@/styled-components";
-import { DataPortId, DataPortTitle, DataPortImage } from "@/types";
+import {DataViewHref, DataViewId, DataViewImage, DataViewTitle } from "@/types";
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
 interface CardRecomendProps {
-  id: DataPortId["id"];
-  title: DataPortTitle["title"];
-  image: DataPortImage["image"];
+  id: DataViewId["id"];
+  title: DataViewTitle["title"];
+  image: DataViewImage["image"];
+  href: DataViewHref["href"];
 }
 
-const CardRecomend: React.FC<CardRecomendProps> = ({ id, title, image }) => {
+const CardRecomend: React.FC<CardRecomendProps> = ({ id, title, image,href }) => {
   return (
     <CardRecomendStl key={id}>
-       <LinkStyle to={`manga/${title}`} className="container-img">
+       <LinkStyle to={`manga/${href}`} className="container-img">
 <img src={image} alt={id} />
       <div className="container-title">
         <p>{title}</p>

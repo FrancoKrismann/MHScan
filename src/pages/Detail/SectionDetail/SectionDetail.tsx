@@ -2,53 +2,45 @@ import React from "react";
 import styled from "styled-components";
 import { CardDetail } from "../components/CardDetail";
 import { InfoDetail } from "../components/InfoDetail";
-import {
-  DataUpdate_Item as DataDetail_Item,
-  InfoDetail_Item,
-} from "@/interface";
+import { DataViewType } from "@/interface";
 
 interface SectionDetailProps {
-  DataDetail: DataDetail_Item;
-  InfoDetail_items: InfoDetail_Item;
+  DataForDetail: DataViewType[];
 }
 
-const SectionDetail: React.FC<SectionDetailProps> = ({
-  DataDetail,
-  InfoDetail_items,
-}) => {
-  const { title, image, id } = DataDetail;
-  const {
-    alternative,
-    artist,
-    author,
-    genre,
-    releaser,
-    status,
-    type,
-    description,
-  } = InfoDetail_items;
+const SectionDetail: React.FC<SectionDetailProps> = ({ DataForDetail }) => {
 
   return (
-    <SectionDetailStl>
-      <div className="container-visual">
-        <div className="div-title">
-          <h1>{title}</h1>
-        </div>
-        <CardDetail image={image} id={id} />
-      </div>
-      <div className="container-detail">
-        <InfoDetail
-          alternative={alternative}
-          artist={artist}
-          author={author}
-          genre={genre}
-          releaser={releaser}
-          status={status}
-          type={type}
-          description={description}
-        />
-      </div>
-    </SectionDetailStl>
+    <>
+      {DataForDetail.map((item) => {
+        return (
+          <SectionDetailStl>
+            <div className="container-visual">
+              <div className="div-title">
+                <h1>{item.title}</h1>
+              </div>
+              <CardDetail image={item.image} id={item.id} />
+            </div>
+            <div className="container-detail">
+              {item.detail.map((itemDetail) => {
+                return (
+                  <InfoDetail
+                    alternative={itemDetail.alternative}
+                    artist={itemDetail.artist}
+                    author={itemDetail.author}
+                    genre={itemDetail.genre}
+                    releaser={itemDetail.releaser}
+                    status={itemDetail.status}
+                    type={itemDetail.type}
+                    description={itemDetail.description}
+                  />
+                );
+              })}
+            </div>
+          </SectionDetailStl>
+        );
+      })}
+    </>
   );
 };
 

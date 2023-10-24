@@ -33,7 +33,6 @@ const InfoDetail: React.FC<InfoDetailProps> = ({
   type,
   description,
 }) => {
-  // const descriptionHTML = description.join('<br/>');
 
   const info = [
     "Alternative:",
@@ -95,8 +94,12 @@ export const InfoDetailStl = styled.div`
 
   .container-list-item {
     /* border: 1px solid #093ff2; */
+    width: 80%;
     height: fit-content;
+    
     display: flex;
+    justify-content: center;
+    align-self: center;
     flex-wrap: wrap;
   }
 
@@ -104,6 +107,8 @@ export const InfoDetailStl = styled.div`
     /* border: 1px solid yellow; */
     display: flex;
     flex-direction: column;
+    align-self: center;
+width: 80%;
     margin: 0px 40px 30px;
 
     .container-dataDescription {

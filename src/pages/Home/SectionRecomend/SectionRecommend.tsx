@@ -76,6 +76,7 @@ const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataView }) => {
             id={item.id}
             title={item.title}
             image={item.image}
+            href={item.href}
             key={item.id}
           />
         ))}

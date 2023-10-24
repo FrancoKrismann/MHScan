@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Chapters } from "../components/Chapters";
-import { DataUpdate_Item as DataDetail_Item } from "@/interface";
+import { DataViewType } from "@/interface";
 import { BiSort } from "react-icons/bi";
 
 interface SectionChaptersProps {
-  DataDetail: DataDetail_Item;
+  DataForDetail:DataViewType[];
 }
 
-const SectionChapters: React.FC<SectionChaptersProps> = ({ DataDetail }) => {
-  const { chapters } = DataDetail;
-
+const SectionChapters: React.FC<SectionChaptersProps> = ({ DataForDetail }) => {
+  
+  const chapters = DataForDetail.map((item) => item.chapters).flat(); // Extrae y aplana el array 'chapters'
+  
   const chaptersCount = chapters.length;
   const [isSortedDescending, setIsSortedDescending] = useState(true);
 

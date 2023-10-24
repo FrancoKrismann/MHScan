@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const FooterStl = styled.footer`
 width: 100%;
 height: 20rem;
-background-color: grey;
+background-color: #363636;
 `;
 
 const Footer: React.FC  = () => {
