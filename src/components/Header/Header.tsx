@@ -84,10 +84,11 @@ const HeaderStl = styled.header`
     display: flex;
     align-items: center;
     border: #07e73c solid 1px;
-    width: 70%;
+    width: 60%;
   }
 
   .Div-searchBar {
+    position: relative;
     display: flex;
     width: 20%;
     border: #6c07e7 solid 1px;
