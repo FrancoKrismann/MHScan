@@ -30,18 +30,3 @@ export const router = createBrowserRouter([
 ]);
 
 
-// export const RoutesApp = (): JSX.Element => {
-//   const location = useLocation();
-
-//   return (
-//     <Routes>
-//       <Route path="/" element={<Layout />}>
-//         <Route index element={<Home/>}/>
-//       </Route>
-//       <Route path="/libreria" element={<Library />}>
-//           <Route path="detail" element={<Detail />} />
-//       </Route>
-      
-//     </Routes>
-//   );
-// };

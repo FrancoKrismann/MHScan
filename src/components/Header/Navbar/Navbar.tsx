@@ -7,18 +7,22 @@ interface NavbarProps {
 
 
 const NavbarStl = styled.nav`
-/* background-color: blue; */
+/* background-color: blue;
 display: flex;
 height: 7rem;
-width: 80vh;
-align-items: center;
 
+align-items: center; */
+width: 100%;
   
   ul {
-    list-style: none;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+    
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+    
+ 
   }
 
  
