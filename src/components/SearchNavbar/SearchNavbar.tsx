@@ -2,6 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { AiOutlineSearch } from "react-icons/ai";
+import { CardSearch } from "./CardSearch";
+import { DataView } from "@/data";
+import LogoMHSCan from "@/assets/Logo.svg.webp";
+
 
 interface SearchNavbarProps {}
 
@@ -15,42 +19,74 @@ const SearchNavbar: React.FC<SearchNavbarProps> = ({}) => {
 
   const searchRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
-        setSearchOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (e: MouseEvent) => {
+  //     if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+  //       setSearchOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  //   document.addEventListener("click", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("click", handleClickOutside);
+  //   };
+  // }, []);
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
 
-  const handleClickSearch = (): void => {
-    setSearchOpen(!searchOpen);
+  // const handleClickSearch = (): void => {
+  //   setSearchOpen(!searchOpen);
+  // };
+  console.log(query);
+
+  const FilterData = () => {
+    if (!query.length) return [];
+    const DataFilter = DataView.filter((item) =>
+      item.title.toUpperCase().includes(query.toUpperCase())
+    );
+     
+    return DataFilter.length > 0 ? DataFilter : null;
   };
 
   return (
     <ContainerSearchBar expanded={searchOpen}>
       <SearchNavbarStl ref={searchRef}>
         <div className="container-searchHeader">
-        <div className="Div-button-close">
-          <AiFillCloseCircle size="3em" className="Button-close" />
+          <div className="Div-button-close">
+            <AiFillCloseCircle size="3em" className="Button-close" />
+          </div>
+          <div className="Div-search-input">
+            <input type="text" value={query} onChange={handleInputChange} />
+            <button className="buttonSearch">
+              <AiOutlineSearch size="2.5em" className="searchIcon" />
+            </button>
+          </div>
         </div>
-        <div className="Div-search-input">
-          <input type="text" />
-          <button className="buttonSearch">
-            <AiOutlineSearch size="2.5em" className="searchIcon" />
-          </button>
+        <div className="Div-resultsSearch">
+          <CardContainer>
+          
+          {query.length > 0 ? (
+  FilterData()?.map((item) => (
+    <CardSearch
+      key={item.id}
+      href={item.href}
+      id={item.id}
+      image={item.image}
+      title={item.title}
+      chapters={item.chapters}
+      detail={item.detail}
+    />
+  ))
+) : (
+  
+  <div className="Div-nothing">
+    <img src={LogoMHSCan} alt="log"/>
+  </div>
+)}
+          </CardContainer>
         </div>
-        </div>
-        
       </SearchNavbarStl>
     </ContainerSearchBar>
   );
@@ -74,7 +110,7 @@ const SearchNavbarStl = styled.div<SearchNavbarProps>`
   align-items: center;
 
   background-color: #262626;
-  width: 40rem;
+  width: 35rem;
   height: 40rem;
   opacity: 1;
   border-radius: 15px;
@@ -88,20 +124,19 @@ const SearchNavbarStl = styled.div<SearchNavbarProps>`
     height: 30rem;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     width: 20rem;
     height: 30rem;
   }
 
   .container-searchHeader {
     display: flex;
-  flex-direction: column;
-  align-items: center;
-      /* border:1px solid #fff; */
-      box-shadow: 0px 2px 4px rgba(16, 16, 16, 0.5);      
-      width: 100%;
-      padding-bottom: 20px;
-
+    flex-direction: column;
+    align-items: center;
+    /* border:1px solid #fff; */
+    box-shadow: 0px 2px 4px rgba(16, 16, 16, 0.5);
+    width: 100%;
+    padding-bottom: 20px;
   }
   .Div-button-close {
     width: 100%;
@@ -131,11 +166,11 @@ const SearchNavbarStl = styled.div<SearchNavbarProps>`
       border: transparent;
       font-size: 17px;
     }
-    input:focus{
+    input:focus {
       outline: none;
     }
 
-    .buttonSearch{
+    .buttonSearch {
       border: none;
       cursor: pointer;
       background-color: #9b51e0;
@@ -151,6 +186,43 @@ const SearchNavbarStl = styled.div<SearchNavbarProps>`
       .searchIcon {
         color: #fff;
       }
+    }
+  }
+
+  .Div-resultsSearch {
+    width: 100%;
+    height: 100%;
+    background: #3c3b3b;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-bottom-left-radius: 15px;
+  }
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  /* border: 1px solid #e2e0e0; */
+  height: 99%;
+
+  .Div-nothing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    img {
+      opacity: 0.3;
+      width: 11rem;
+
+      @media (max-width: 1600px) {
+    width: 9rem;
+
+  }
     }
   }
 `;

@@ -1,14 +1,14 @@
 import { Chapters_Item } from "@/interface";
 import { LinkStyle } from "@/styled-components";
-import { DataUpdateId , DataUpdateTitle, DataUpdateImage, DataUpadteHref} from "@/types";
+import { DataViewHref, DataViewId , DataViewImage, DataViewTitle} from "@/types";
 import React from "react";
 import styled from "styled-components";
 
 interface CardUpdatesProps {
-  id:DataUpdateId["id"];
-  title: DataUpdateTitle["title"];
-  image: DataUpdateImage["image"];
-  href: DataUpadteHref["href"];
+  id:DataViewId["id"];
+  title: DataViewTitle["title"];
+  image: DataViewImage["image"];
+  href: DataViewHref["href"];
   chapters: Chapters_Item[];
 }
 
