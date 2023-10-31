@@ -1,9 +1,9 @@
-import { Home } from "@/pages";
 import { Library } from "@/pages/Library";
 import { Detail } from "@/pages/Detail";
 import { Layout } from "./layout";
 import {createBrowserRouter,} from "react-router-dom";
 import ErrorPage from "@/pages/Error/ErrorPage";
+import { Home } from "@/pages";
 
 
 export const router = createBrowserRouter([

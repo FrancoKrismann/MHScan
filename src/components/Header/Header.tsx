@@ -6,13 +6,16 @@ import { Navbar } from "./Navbar";
 import { typedNavbarButtons } from "@/consts";
 import MenuButton from "./Menu/Menu";
 import { AiOutlineSearch } from "react-icons/ai";
-
 import { BiLogIn } from "react-icons/bi";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  handleSearchClick: (boolValue: boolean) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({handleSearchClick}) => {
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleClick = (): void => {
+  const handleClick = (): void => {    
     setOpen(!open);
   };
 
@@ -46,8 +49,10 @@ const Header: React.FC = () => {
             </Navbar>
           </div>
         </div>
-        <div className="Div-searchBar">
-          <AiOutlineSearch size="2.5em"/>
+        <div className="Div-searchBar" onClick={(e) => e.stopPropagation()}>
+          <div className="circle-SearchBar">
+          <AiOutlineSearch className="searchIcon" size="2em"  onClick={() => handleSearchClick(true)}/>
+          </div>
         </div>
 
         <div className="menu-container">
@@ -57,10 +62,9 @@ const Header: React.FC = () => {
         </div>
         <div className="Div-user">
           <LinkStyle to="">
-          <BiLogIn size={"3rem"}/>
-        </LinkStyle>
+            <BiLogIn size={"3rem"} />
+          </LinkStyle>
         </div>
-        
       </HeaderStl>
       <div
         style={{ width: "100%", height: "35px", backgroundColor: "#9b51e0" }}
@@ -72,7 +76,7 @@ const HeaderStl = styled.header`
   align-items: center;
   display: flex;
   justify-content: center;
-  gap:20px;
+  gap: 20px;
   border-radius: 10px;
   width: 100%;
   box-sizing: inherit;
@@ -86,7 +90,7 @@ const HeaderStl = styled.header`
   @media screen and (max-width: 900px) {
     display: flex;
     justify-content: space-around;
-    }
+  }
 
   .Div-log-list {
     display: flex;
@@ -97,9 +101,8 @@ const HeaderStl = styled.header`
     width: 50%;
 
     @media (max-width: 1440px) {
-
-    width: 60%;
-    text-align: center;
+      width: 60%;
+      text-align: center;
     }
   }
 
@@ -109,9 +112,35 @@ const HeaderStl = styled.header`
     width: 10rem;
     /* border: #6c07e7 solid 1px; */
 
+    .circle-SearchBar {
+      background-color: #fff;
+      border-radius: 50%;
+      display: flex;
+      width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+
+    .searchIcon {
+      cursor: pointer;
+      color: #0b0710;
+    }
+    &:hover {
+ 
+        background-color:#0b0710;
+      
+
+      .searchIcon {
+        color: #fff;
+      }
+    }
+    
+    }
+    
+
     @media screen and (max-width: 900px) {
-    display: flex;
-    width: 50rem;
+      display: flex;
+      width: 50rem;
     }
   }
   .logo-container {
@@ -128,9 +157,7 @@ const HeaderStl = styled.header`
     width: 100%;
   }
 
-
   .Div-user {
-
     @media screen and (max-width: 900px) {
       display: none;
     }

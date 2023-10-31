@@ -6,56 +6,50 @@ import { CardSearch } from "./CardSearch";
 import { DataView } from "@/data";
 import LogoMHSCan from "@/assets/Logo.svg.webp";
 
-
-interface SearchNavbarProps {}
-
-interface SearchContainerProps {
-  expanded: boolean;
+interface SearchNavbarProps {
+  handleSearchClick:(boolValue: boolean) => void;
 }
 
-const SearchNavbar: React.FC<SearchNavbarProps> = ({}) => {
-  const [searchOpen, setSearchOpen] = useState<boolean>(false);
+const SearchNavbar: React.FC<SearchNavbarProps> = ({handleSearchClick}) => {
+
   const [query, setQuery] = useState("");
 
   const searchRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   const handleClickOutside = (e: MouseEvent) => {
-  //     if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
-  //       setSearchOpen(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        handleSearchClick(false)
+      }
+    };
 
-  //   document.addEventListener("click", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("click", handleClickOutside);
-  //   };
-  // }, []);
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
 
-  // const handleClickSearch = (): void => {
-  //   setSearchOpen(!searchOpen);
-  // };
-  console.log(query);
+
 
   const FilterData = () => {
     if (!query.length) return [];
     const DataFilter = DataView.filter((item) =>
       item.title.toUpperCase().includes(query.toUpperCase())
     );
-     
-    return DataFilter.length > 0 ? DataFilter : null;
+
+    return DataFilter.length > 0 ? DataFilter : [];
   };
 
   return (
-    <ContainerSearchBar expanded={searchOpen}>
+    <ContainerSearchBar>
       <SearchNavbarStl ref={searchRef}>
         <div className="container-searchHeader">
           <div className="Div-button-close">
-            <AiFillCloseCircle size="3em" className="Button-close" />
+            <AiFillCloseCircle size="3em" className="Button-close" onClick={() => handleSearchClick(false)} />
           </div>
           <div className="Div-search-input">
             <input type="text" value={query} onChange={handleInputChange} />
@@ -66,25 +60,29 @@ const SearchNavbar: React.FC<SearchNavbarProps> = ({}) => {
         </div>
         <div className="Div-resultsSearch">
           <CardContainer>
-          
-          {query.length > 0 ? (
-  FilterData()?.map((item) => (
-    <CardSearch
-      key={item.id}
-      href={item.href}
-      id={item.id}
-      image={item.image}
-      title={item.title}
-      chapters={item.chapters}
-      detail={item.detail}
-    />
-  ))
-) : (
-  
-  <div className="Div-nothing">
-    <img src={LogoMHSCan} alt="log"/>
-  </div>
-)}
+            {query.length > 0 && FilterData().length > 0 ? (
+              FilterData()?.map((item) => (
+                <CardSearch
+                  key={item.id}
+                  href={item.href}
+                  id={item.id}
+                  image={item.image}
+                  title={item.title}
+                  chapters={item.chapters}
+                  detail={item.detail}
+                />
+              ))
+            ) : (
+              <div className="Div-nothing">
+                {query.length > 0 ? (
+                  <span>No existe</span>
+                ) : (
+                  <>
+                    <img src={LogoMHSCan} alt="log" />
+                  </>
+                )}
+              </div>
+            )}
           </CardContainer>
         </div>
       </SearchNavbarStl>
@@ -92,7 +90,7 @@ const SearchNavbar: React.FC<SearchNavbarProps> = ({}) => {
   );
 };
 
-const ContainerSearchBar = styled.div<SearchContainerProps>`
+const ContainerSearchBar = styled.div`
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -104,7 +102,7 @@ const ContainerSearchBar = styled.div<SearchContainerProps>`
   align-items: center;
 `;
 
-const SearchNavbarStl = styled.div<SearchNavbarProps>`
+const SearchNavbarStl = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -220,9 +218,8 @@ const CardContainer = styled.div`
       width: 11rem;
 
       @media (max-width: 1600px) {
-    width: 9rem;
-
-  }
+        width: 9rem;
+      }
     }
   }
 `;
