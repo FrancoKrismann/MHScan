@@ -1,6 +1,7 @@
 import { LinkStyle } from "@/styled-components";
 import { DataChapterNumber, DataChapterUpdateTime } from "@/types";
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 interface ChaptersProps {
@@ -10,11 +11,12 @@ interface ChaptersProps {
 
 const Chapters: React.FC<ChaptersProps> = ({ chapter, updateTime }) => {
 
-	
+  const {id : TitleManga} = useParams<{id?: string}>();
+
  
 
   return (
-    <LinkStyle to={""}>
+    <LinkStyle to={`${chapter}`}>
       <ChaptersStl>
 		
         <h4>Capitulo {chapter}</h4>

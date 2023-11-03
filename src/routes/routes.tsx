@@ -4,6 +4,7 @@ import { Layout } from "./layout";
 import {createBrowserRouter,} from "react-router-dom";
 import ErrorPage from "@/pages/Error/ErrorPage";
 import { Home } from "@/pages";
+import { Chapter } from "@/pages/Chapter";
 
 
 export const router = createBrowserRouter([
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path:"manga/:id",
         element:<Detail/>,
+      },
+      {
+        path:"manga/:id/:chapter",
+        element:<Chapter/>,
       }
     ]
   },

@@ -8,7 +8,7 @@ interface SectionChaptersProps {
   DataForDetail:DataViewType[];
 }
 
-const SectionChapters: React.FC<SectionChaptersProps> = ({ DataForDetail }) => {
+const SectionChapters: React.FC<SectionChaptersProps> = ({ DataForDetail}) => {
   
   const chapters = DataForDetail.map((item) => item.chapters).flat(); // Extrae y aplana el array 'chapters'
   
