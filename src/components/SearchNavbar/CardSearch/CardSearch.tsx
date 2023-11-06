@@ -17,7 +17,7 @@ interface CardSearchProps {
   href: DataViewHref["href"];
   chapters: DataViewChapters["chapters"];
   detail: DataViewDetails["detail"];
-}
+  handleClickCard: () => void;}
 
 const CardSearch: React.FC<CardSearchProps> = ({
   href,
@@ -26,12 +26,13 @@ const CardSearch: React.FC<CardSearchProps> = ({
   title,
   chapters,
   detail,
+  handleClickCard
 }) => {
   const TotalChapters = chapters.length;
 
   return (
-    <LinkStyle to={`manga/${href}`}>
-      <CardSearchStl>
+    <LinkStyle to={`manga/${href}`} onClick={handleClickCard}>
+      <CardSearchStl >
         <div className="container-left">
           <img src={image} alt={id} />
         </div>

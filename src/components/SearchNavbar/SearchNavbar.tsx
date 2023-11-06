@@ -16,6 +16,14 @@ const SearchNavbar: React.FC<SearchNavbarProps> = ({handleSearchClick}) => {
 
   const searchRef = useRef<HTMLDivElement>(null);
 
+  const handleClickCard = () => {
+    console.log("funciona");
+    
+      handleSearchClick(false)
+    
+  };
+
+
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
@@ -70,6 +78,7 @@ const SearchNavbar: React.FC<SearchNavbarProps> = ({handleSearchClick}) => {
                   title={item.title}
                   chapters={item.chapters}
                   detail={item.detail}
+                  handleClickCard={handleClickCard}
                 />
               ))
             ) : (
