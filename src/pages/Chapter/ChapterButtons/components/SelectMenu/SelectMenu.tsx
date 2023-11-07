@@ -38,20 +38,32 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
 export const SelectMenuStl = styled.select`
   background-color: rgba(235, 235, 235, 0.2);
 
-  padding: 10px 30px 10px 16px;
-    border: none;
-    -webkit-transition: all ease-in-out .2s;
-    -moz-transition: all ease-in-out .2s;
-    -o-transition: all ease-in-out .2s;
-    transition: all ease-in-out .2s;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    box-sizing: border-box;
-    -webkit-box-shadow: none;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  height: fit-content;
+  border-radius: 4px;
+  padding: 8px;
+  width: 140px;
+  font-size: 17px;
 
-    color: #f2f2f2;
-    cursor: pointer;
+  &:focus {
+    border: 1px solid #666;
+  }
+
+  option {
+    font-family: Arial, sans-serif;
+    color: black;
+    background-color: #fff;
+  }
+
+  option:checked {
+    background-color: #c9c3c3;
+  }
+
+  &:hover {
+    border: 1px solid #666;
+  }
+  cursor: pointer;
 `;
 
 export default SelectMenu;
