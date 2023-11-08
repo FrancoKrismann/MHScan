@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { ChapterButtons } from "./ChapterButtons";
 import { SectionChapter } from "./SectionChapter";
 import { DataView } from "@/data";
+import {MangasChapters} from "@/data/chapters"
+
 
 export type ChapterProps = {};
 
@@ -15,13 +17,16 @@ const Chapter: React.FC<ChapterProps> = ({}) => {
 
   const DataForChapter = DataView.filter((data) => data.href === TitleManga);
 
+  const DataMangaChapter = MangasChapters.filter((data) => data.href === TitleManga)
+  
+  
   return (
     <ChapterStl>
       <ChapterButtons
         DataForChapter={DataForChapter}
         CurrentChapter={Number(chapter)}
       />
-      <SectionChapter />
+      <SectionChapter DataMangaChapter={DataMangaChapter} />
     </ChapterStl>
   );
 };

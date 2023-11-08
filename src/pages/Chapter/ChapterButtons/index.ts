@@ -1,1 +1,4 @@
-export { default as ChapterButtons } from './ChapterButtons';
+import { lazy } from "react";
+
+
+export const ChapterButtons = lazy(() => import("./ChapterButtons"));

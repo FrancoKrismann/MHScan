@@ -1,10 +1,12 @@
-import { Library } from "@/pages/Library";
-import { Detail } from "@/pages/Detail";
+
 import { Layout } from "./layout";
 import {createBrowserRouter,} from "react-router-dom";
-import ErrorPage from "@/pages/Error/ErrorPage";
-import { Home } from "@/pages";
-import { Chapter } from "@/pages/Chapter";
+
+// import { Home } from "@/pages";
+import { ChapterPage,DetailPage,ErrorPage,HomePage,LibraryPage } from "@/pages";
+
+
+
 
 
 export const router = createBrowserRouter([
@@ -15,20 +17,20 @@ export const router = createBrowserRouter([
     children:[
       {
         index:true,
-        element:<Home/>
+        element:<HomePage/>
       },
       {
         path:"manga",
-        element:<Library/>,
+        element:<LibraryPage/>,
       
       },
       {
         path:"manga/:id",
-        element:<Detail/>,
+        element:<DetailPage/>,
       },
       {
         path:"manga/:id/:chapter",
-        element:<Chapter/>,
+        element:<ChapterPage/>,
       }
     ]
   },

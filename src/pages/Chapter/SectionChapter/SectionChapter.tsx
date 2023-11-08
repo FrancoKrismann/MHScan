@@ -1,13 +1,27 @@
+import { DataChapters_Item } from '@/interface';
 import React from 'react';
 import styled from 'styled-components';
+import { ChapterPanel } from './components/ChapterPanel';
 
-export type SectionChapterProps = {
+interface SectionChapterProps {
+	DataMangaChapter: DataChapters_Item[]
 }
 
-const SectionChapter: React.FC<SectionChapterProps>  = ({}) => {
-	return <SectionChapterStl>SectionChapter</SectionChapterStl>;
+const SectionChapter: React.FC<SectionChapterProps>  = ({DataMangaChapter}) => {
+
+	const chapters = DataMangaChapter[0].chapters
+	
+	return <SectionChapterStl>
+           <ChapterPanel chapters={chapters}/>
+	</SectionChapterStl>;
 };
 
-export const SectionChapterStl = styled.div``;
+export const SectionChapterStl = styled.div`
+
+
+
+/* border: 1px solid #fff; */
+margin: 20px;
+`;
 
 export default SectionChapter;

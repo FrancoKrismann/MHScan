@@ -1,7 +1,7 @@
 import { LinkStyle } from "@/styled-components";
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
-export default function ErrorPage() {
+const ErrorPage = () => {
   const error = useRouteError() as Error;
   console.error(error);
 
@@ -32,3 +32,5 @@ export default function ErrorPage() {
     </div>
   );
 }
+
+export default ErrorPage

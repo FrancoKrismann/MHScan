@@ -1,8 +1,13 @@
-export * from './Detail';
-export { default as ErrorPage } from './Error/ErrorPage';
-export { default as Home } from './Home/Home';
-export * from './Home/SectionRecomend';
-export * from './Home/SectionUpdates';
-export * from './Home/components/CardUpdates';
-export * from './Home/components/cardRecomend';
-export * from './Library';
+import { lazy } from 'react';
+
+
+
+export const HomePage = lazy(() => import("./Home/Home"))
+
+export const LibraryPage = lazy(() => import("./Library/Library"))
+
+export const DetailPage = lazy(() => import("./Detail/Detail"))
+
+export const ChapterPage = lazy(() => import("./Chapter/Chapter"))
+
+export const ErrorPage = lazy(() => import("./Error/ErrorPage"))

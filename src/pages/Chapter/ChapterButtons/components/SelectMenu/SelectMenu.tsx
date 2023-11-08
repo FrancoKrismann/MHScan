@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 interface SelectMenuProps {
   Chapters: Chapters_Item[];
-  CurrentChapter: number | undefined;
+  CurrentChapter: string | undefined;
   Href: string | undefined;
 }
 
@@ -16,14 +16,15 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
 }) => {
   const navigate = useNavigate();
 
+
+
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault();
     const selectedChapter: string = e.target.value;
     navigate(`/manga/${Href}/${selectedChapter}`);
   };
-
+console.log("current chapter selected:", CurrentChapter);
   return (
-    <SelectMenuStl onChange={handleSelectChange} defaultValue={CurrentChapter}>
+    <SelectMenuStl key={CurrentChapter} onChange={handleSelectChange} defaultValue={CurrentChapter}>
       {Chapters.map((item, index) => {
         return (
           <option key={index} value={item.chapter}>

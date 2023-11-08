@@ -42,3 +42,14 @@ export interface DataViewType {
     chapters: Chapters_Item[]
     detail: InfoDetail_Item[]
 } 
+
+
+// export interface DataChapter_Item {
+// chapters
+// }
+
+export interface DataChapters_Item {
+    name: string
+    href: string
+    chapters:string[]
+}

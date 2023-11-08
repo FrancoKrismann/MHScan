@@ -33,7 +33,7 @@ const ChapterButtons: React.FC<ChapterButtonsProps> = ({
       <div className="container-buttons-nav">
         <SelectMenu
         Chapters={Chapters}
-        CurrentChapter={CurrentChapter}
+        CurrentChapter={String(CurrentChapter)}
         Href={Href}
       />
       <ButtonsNav

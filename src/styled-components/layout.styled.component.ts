@@ -4,6 +4,10 @@ import {Link} from "react-router-dom"
 
 export const LayoutContainer = styled.div`
 
+display: flex;
+justify-content: center;
+
+
 
 height: 100%;
 width: 100%;
