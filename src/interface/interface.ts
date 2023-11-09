@@ -41,15 +41,16 @@ export interface DataViewType {
     href: string
     chapters: Chapters_Item[]
     detail: InfoDetail_Item[]
-} 
+}
 
 
-// export interface DataChapter_Item {
-// chapters
-// }
+export interface DataChapter_numbers {
+    [key: string]: string[];
+}
 
 export interface DataChapters_Item {
     name: string
     href: string
-    chapters:string[]
+    chapters: DataChapter_numbers;
+
 }

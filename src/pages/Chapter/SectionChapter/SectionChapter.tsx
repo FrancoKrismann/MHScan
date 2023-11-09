@@ -5,14 +5,17 @@ import { ChapterPanel } from './components/ChapterPanel';
 
 interface SectionChapterProps {
 	DataMangaChapter: DataChapters_Item[]
+	CurrentChapter: number | undefined;
 }
 
-const SectionChapter: React.FC<SectionChapterProps>  = ({DataMangaChapter}) => {
+const SectionChapter: React.FC<SectionChapterProps>  = ({DataMangaChapter, CurrentChapter}) => {
 
 	const chapters = DataMangaChapter[0].chapters
 	
+	console.log(chapters);
+	
 	return <SectionChapterStl>
-           <ChapterPanel chapters={chapters}/>
+           <ChapterPanel chapters={chapters} CurrentChapter={CurrentChapter}/>
 	</SectionChapterStl>;
 };
 

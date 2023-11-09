@@ -1,5 +1,5 @@
 import { NAVBAR_BUTTONS } from "@/consts";
-import { Type_Item , InfoDetail_Item, Chapters_Item, DataViewType} from "@/interface";
+import { Type_Item , InfoDetail_Item, Chapters_Item, DataViewType, DataChapters_Item} from "@/interface";
 
 //Type of Section Recomend Cards
 
@@ -65,5 +65,8 @@ export type DataViewChapters = Pick<DataViewType,"chapters">
 
 export type DataViewDetails = Pick<DataViewType, "detail">
 
+//Type Chapter Panel
+
+export type ChapterPanel_item = Pick<DataChapters_Item, "chapters">
 
 

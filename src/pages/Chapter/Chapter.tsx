@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { ChapterButtons } from "./ChapterButtons";
+import { ChapterButtonsTop } from "./ChapterButtons";
 import { SectionChapter } from "./SectionChapter";
 import { DataView } from "@/data";
-import {MangasChapters} from "@/data/chapters"
-
+import { MangasChapters } from "@/data/chapters";
+import { ChapterButtonsBottom } from "./ChapterButtonsBottom";
 
 export type ChapterProps = {};
 
@@ -17,16 +17,28 @@ const Chapter: React.FC<ChapterProps> = ({}) => {
 
   const DataForChapter = DataView.filter((data) => data.href === TitleManga);
 
-  const DataMangaChapter = MangasChapters.filter((data) => data.href === TitleManga)
-  
-  
+  const DataMangaChapter = MangasChapters.filter(
+    (data) => data.href === TitleManga
+  );
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Lleva el scroll al inicio
+  }, []);
+
   return (
     <ChapterStl>
-      <ChapterButtons
+      <ChapterButtonsTop
         DataForChapter={DataForChapter}
         CurrentChapter={Number(chapter)}
       />
-      <SectionChapter DataMangaChapter={DataMangaChapter} />
+      <SectionChapter
+        DataMangaChapter={DataMangaChapter}
+        CurrentChapter={Number(chapter)}
+      />
+      <ChapterButtonsBottom
+        CurrentChapter={Number(chapter)}
+        DataForChapter={DataForChapter}
+      />
     </ChapterStl>
   );
 };
