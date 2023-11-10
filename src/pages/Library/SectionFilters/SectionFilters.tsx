@@ -9,9 +9,9 @@ export type SectionFiltersProps = {
 
 const SectionFilters: React.FC<SectionFiltersProps>  = ({}) => {
 	return <SectionFiltersStl>
-        <GenresSelect/>
+        {/* <GenresSelect/>
 		<TypeSelect/>
-		<StatusSelect/>
+		<StatusSelect/> */}
 	</SectionFiltersStl>;
 };
 
@@ -20,7 +20,6 @@ display: flex;
 justify-content: space-around;
 width: 100%;
 height: fit-content;
-border: 1px solid #fff;
 `;
 
 export default SectionFilters;
