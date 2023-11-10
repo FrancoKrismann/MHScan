@@ -44,13 +44,16 @@ export interface DataViewType {
 }
 
 
-export interface DataChapter_numbers {
-    [key: string]: string[];
-}
+// export interface DataChapter_numbers {
+//     [key: string]: string[];
+// }
 
 export interface DataChapters_Item {
     name: string
     href: string
-    chapters: DataChapter_numbers;
+    chapters: {
+        chapterNumber: number;
+        images: string[];
+      }[];
 
 }

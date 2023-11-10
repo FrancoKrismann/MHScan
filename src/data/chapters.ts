@@ -81,11 +81,14 @@ export const MangasChapters = [
         name: "El camino del Chaman",
         href: "El-camino-del-Chaman",
         chapters: [
-            
-            chapter_1_images,
-            
-            chapter_2_images
-            
-        ]
+            {
+                chapterNumber: 1,
+                images: chapter_1_images,
+            },
+            {
+                chapterNumber: 2,
+                images: chapter_2_images,
+            },
+        ],
     },
 ]

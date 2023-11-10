@@ -1,10 +1,9 @@
-import { DataChapters_Item } from "@/interface";
 import { ChapterPanel_item } from "@/types";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 interface ChapterPanelProps {
-  chapters: ChapterPanel_item[];
+  chapters: ChapterPanel_item["chapters"];
   CurrentChapter: number | undefined;
 }
 
@@ -16,16 +15,15 @@ const ChapterPanel: React.FC<ChapterPanelProps> = ({
   const [loading, setLoading] = useState(false);
 
   const totalChapters = chapters.length;
-
-  console.log(CurrentChapter);
   
   if(CurrentChapter === undefined) return <div>Error</div>
 
+  const currentChapterData = chapters.find((chapter) => chapter.chapterNumber === CurrentChapter);
 
-  const ChapterView = chapters[CurrentChapter - 1]
+  if(currentChapterData === undefined) return <div>Error Data</div>
 
-  console.log(ChapterView);
-
+  const DataPanelImg = currentChapterData.images
+  
   const handleScroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
@@ -52,7 +50,7 @@ const ChapterPanel: React.FC<ChapterPanelProps> = ({
 
   return (
     <ChapterPanelStl>
-      {ChapterView.slice(0, visibleChapters).map((chapter, index) => (
+      {DataPanelImg?.slice(0, visibleChapters).map((chapter, index) => (
         <div key={index} className="div-panel">
           <img src={chapter} alt={chapter} />
         </div>

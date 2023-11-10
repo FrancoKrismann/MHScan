@@ -14,6 +14,9 @@ const DataSlice = DataView.reverse().slice(-8)
 
   return (
     <SectionUpdatesStl>
+      <div className="section-h2">
+        <h2>ACTUALIZACIONES</h2>
+      </div>
       <ContainerCards>
         {DataSlice.map((item) => (
           <CardUpdates
@@ -42,6 +45,8 @@ const ContainerCards = styled.div`
 
   width: 90%;
 
+  
+
   @media screen and (max-width: 1440px) {
     width: 95%;
   }
@@ -63,6 +68,14 @@ const SectionUpdatesStl = styled.div`
   /* height: 50rem; */
   background-color: #262626;
   border-radius: 20px;
+
+  .section-h2 {
+    width: 100%;
+    h2 {
+      margin: 0.83em 0 0.83em 2em;
+      text-decoration-line: underline;
+    }
+  }
 
   @media screen and (max-width: 1366px) {
     width: 100%;
