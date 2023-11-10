@@ -1,6 +1,5 @@
 :root {
   font-family: poppins,sans-serif;
-  line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -41,3 +40,24 @@ body {
 
 }
 
+h4 {
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+
+p {
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+
+ul {
+  margin-block-end: 0;
+  margin-block-start: 0;
+  padding-inline-start:0;
+  list-style-type:none;
+}
+
+img {
+  overflow-clip-margin: inherit;
+  overflow: inherit;
+}

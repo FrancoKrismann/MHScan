@@ -1,0 +1,1 @@
+export { default as RaitingStars } from './RaitingStars';

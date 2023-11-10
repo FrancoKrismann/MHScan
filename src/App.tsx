@@ -1,22 +1,19 @@
-import "./App.css"
-import { Footer, Header } from "./components"
-import { Home } from "./pages"
-import { LayoutContainer } from "./styled-components"
+import "./App.css";
+import AuthContextProvider from "./hooks/authContext";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/routes";
 
 
-const App = ():JSX.Element => {
-
-
-
+const App = (): JSX.Element => {
   return (
     <>
-     <Header/>
-     <LayoutContainer>
-        <Home/>
-     </LayoutContainer>
-     <Footer/>
+    
+    <AuthContextProvider>
+       
+      <RouterProvider router={router} />
+    </AuthContextProvider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

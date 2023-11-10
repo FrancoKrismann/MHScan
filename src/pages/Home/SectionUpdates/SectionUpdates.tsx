@@ -1,63 +1,59 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import { DataUpdate_Item } from "@/interface";
+import { DataViewType } from "@/interface";
 import React from "react";
 import styled from "styled-components";
 import { CardUpdates } from "../components/CardUpdates";
 
 interface SectionUpdatesProps {
-  DataUpdates: DataUpdate_Item[];
+  DataView: DataViewType[];
 }
 
-const SectionUpdates: React.FC<SectionUpdatesProps> = ({ DataUpdates }) => {
+const SectionUpdates: React.FC<SectionUpdatesProps> = ({ DataView }) => {
 
-  const updatedDataUpdates = DataUpdates.map((item) => {
-    const updatedChapters = item.chapters.map((chapter, index) => {
-      const updatedChapter = {
-        chapter: String(index + 1),
-        href: chapter,
-        updateTime: `Hace ${index} horas`,
-      };
-      return updatedChapter;
-    });
-
-    return {
-      ...item,
-      chapters: updatedChapters,
-    };
-  });
+const DataSlice = DataView.reverse().slice(-8)
 
   return (
     <SectionUpdatesStl>
+      <div className="section-h2">
+        <h2>ACTUALIZACIONES</h2>
+      </div>
       <ContainerCards>
-		{
-			updatedDataUpdates.map(item => (
-				<CardUpdates
-				id={item.id}
-				image={item.image}
-				title={item.title}
-        chapters={item.chapters}
-				key={item.id}
-				/>
-			))
-		}
-	  </ContainerCards>
+        {DataSlice.map((item) => (
+          <CardUpdates
+            id={item.id}
+            image={item.image}
+            title={item.title}
+            chapters={item.chapters}
+            href={item.href}
+            key={item.id}
+          />
+        ))}
+      </ContainerCards>
     </SectionUpdatesStl>
   );
 };
 
 const ContainerCards = styled.div`
-border: 1px solid #df0c0c;
+  /* border: 1px solid #df0c0c; */
 
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
+  display: flex;
 
-flex-wrap: wrap;
-gap: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px auto;
 
-/* width: 90%; */
-/* height: fit-content; */
+  width: 90%;
+
+  
+
+  @media screen and (max-width: 1440px) {
+    width: 95%;
+  }
+
+  @media screen and (max-width: 1366px) {
+    width: 100%;
+  }
 `;
 
 const SectionUpdatesStl = styled.div`
@@ -69,9 +65,25 @@ const SectionUpdatesStl = styled.div`
 
   width: 90%;
   /* height: fit-content; */
-  height: 50rem;
+  /* height: 50rem; */
   background-color: #262626;
   border-radius: 20px;
+
+  .section-h2 {
+    width: 100%;
+    h2 {
+      margin: 0.83em 0 0.83em 2em;
+      text-decoration-line: underline;
+    }
+  }
+
+  @media screen and (max-width: 1366px) {
+    width: 100%;
+  }
+
+  /* @media screen and (max-width: 840px) {
+    width: 100%;
+  } */
 `;
 
 export default SectionUpdates;

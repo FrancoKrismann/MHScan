@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
-import { DataPort_Item } from "@/interface";
+import { DataViewType } from "@/interface";
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
@@ -7,10 +7,10 @@ import { PiArrowCircleLeftFill, PiArrowCircleRightFill } from "react-icons/pi";
 import { CardRecomend } from "../components/cardRecomend";
 
 interface SectionRecommendProps {
-  DataPorts: DataPort_Item[];
+  DataView: DataViewType[];
 }
 
-const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataPorts }) => {
+const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataView }) => {
   // const [indexRecomend, setIndexRecomend] = useState<number>(0);
 
   //Recorre el indice segun el numero del estado local
@@ -26,7 +26,7 @@ const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataPorts }) => {
     const widthWindow = window.innerWidth;
     setCardNumbers(widthWindow < 1260 ? 2 : 4);
     setMaxIndex(
-      widthWindow < 1260 ? DataPorts.length - 2 : DataPorts.length - 4
+      widthWindow < 1260 ? DataView.length - 2 : DataView.length - 4
     );
   };
 
@@ -46,7 +46,7 @@ const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataPorts }) => {
   }, []);
 
   const cardsCount = indexRecomend + cardsNumbers;
-  const DataSlice = DataPorts.slice(indexRecomend, cardsCount);
+  const DataSlice = DataView.slice(indexRecomend, cardsCount);
 
   const handleNextClick = (): void => {
     if (indexRecomend !== maxIndex)
@@ -76,6 +76,7 @@ const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataPorts }) => {
             id={item.id}
             title={item.title}
             image={item.image}
+            href={item.href}
             key={item.id}
           />
         ))}
@@ -118,9 +119,11 @@ const ContainerMangaRecomend = styled.div`
   height: fit-content;
   background-color: #262626;
   border-radius: 20px;
-
+  
+  @media screen and (max-width: 1366px) {
+    width: 100%;
+  }
   .section-h2 {
-    /* border: 1px solid #fff; */
     width: 100%;
     h2 {
       margin: 0.83em 0 0.83em 2em;
@@ -130,7 +133,7 @@ const ContainerMangaRecomend = styled.div`
 `;
 const DataRecommendStl = styled.div`
   overflow: hidden;
-
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -140,11 +143,9 @@ const DataRecommendStl = styled.div`
   height: fit-content;
 
   .arrow-left {
-    /* margin: 0 10px 0 0; */
     animation: ${arrowFade} 0.3s ease-in-out;
   }
   .arrow-right {
-    /* margin: 0 10px 0 10px; */
     animation: ${arrowFade} 0.3s ease-in-out;
   }
   .arrow-left,
@@ -153,24 +154,18 @@ const DataRecommendStl = styled.div`
   }
 
   .arrow-left-disable {
-    /* margin: 0 10px 0 0; */
     opacity: 0.4;
   }
 
   .arrow-right-disable {
-    /* margin: 0 0 0 10px; */
     opacity: 0.4;
   }
 
   @media screen and (max-width: 1640px) {
-    /* .arrow-left-disable,.arrow-left {
-      margin: 0 15px 0 0;
-    } */
-
     width: 90%;
   }
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1366px) {
     width: 100%;
   }
 `;
