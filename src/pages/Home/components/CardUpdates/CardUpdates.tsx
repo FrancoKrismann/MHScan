@@ -19,6 +19,8 @@ const CardUpdates: React.FC<CardUpdatesProps> = ({
   image,
   href,
 }) => {
+
+  const Chapters = chapters.length
   return (
     <CardUpdatesStl key={id}>
       <LinkStyle to={`manga/${href}`} className="container-img">
@@ -34,7 +36,7 @@ const CardUpdates: React.FC<CardUpdatesProps> = ({
         </div>
 
         <ul className="container-chapters">
-          {chapters.map(({ chapter, updateTime }, index) => (
+          {chapters.slice(Chapters - 2, Chapters).map(({ chapter, updateTime }, index) => (
             <LinkStyle to={`manga/${href}/${chapter}`} key={index}>
               <li className="div-chapter">
                 <div className="chapter-Number">Capítulo {chapter}</div>

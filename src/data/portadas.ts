@@ -11,6 +11,82 @@ import SoldadoMonarca from "@/assets/images/De un Simple Soldado a Monarca.webp"
 
 
 export const DataView = [
+   
+    {
+        id: "2",
+        image: InvocadorSSS,
+        title: "Invocador Solitario de Rango SSS",
+        href: "Invocador-Solitario-de-Rango-SSS",
+        chapters: [{
+            chapter: 1,
+            updateTime: 7
+        },
+        {
+            chapter: 2,
+            updateTime: 2
+        }
+        ],
+        detail: [{
+            alternative: "",
+            author: "竹楼听细雨 (Zhu Lou Ting Xiyu),马小刀 (Ma XiaoDao)",
+            artist: "三横一竖动漫 (San Heng Yishu Dongman)",
+            genre: [
+                "Acción",
+                "Aventura",
+                "Fantasía",
+                "Manhua",
+                "Sci-fi",
+                "Shounen",
+                "Sistema"
+            ],
+            type: "Manhua",
+            releaser: 2022,
+            status: "OnGoing",
+            description: [
+                "Zhang Ze cruza a un mundo paralelo en el que la gente confía en el Dominio Mágico para luchar contra los monstruos y hacerse más fuerte para resistir la invasión de los demonios de la Cueva del Diablo. Por el bien de su hermana, Zhang Ze entra en el reino mágico bajo el nombre de Asura, ¡y entonces despierta inesperadamente la capacidad de invocación de talentos más fuerte de nivel SSS!",
+                "Cuanto más alto sea el nivel del arte de invocación, más monstruos podrá invocar, y cuanto más pueda mejorar, ¡simplemente desafiará al cielo!"
+            ]
+        }
+        ]
+
+    },
+    {
+        id: "3",
+        image: TalentoSSS,
+        title: "Matanza global despertar del talento de rango SSS",
+        href: "Matanza-global-despertar-del-talento-de-rango-SSS",
+        chapters: [{
+            chapter: 1,
+            updateTime: 2
+        },
+        {
+            chapter: 2,
+            updateTime: 6
+        }
+        ],
+        detail: [{
+            alternative: "",
+            author: "漫潮社 (Club Manchao)",
+            artist: "漫潮社 (Club Manchao)",
+            genre: [
+                "Acción",
+                "Aventura",
+                "Fantasía",
+                "Manhua",
+                "Sci-fi",
+                "Shounen",
+                "Sistema"
+            ],
+            type: "Manhua",
+            releaser: 2022,
+            status: "OnGoing",
+            description: [
+                "¡Un inicio violento con el despertar del talento de grado SSS! Diez mil millones de personas de todo el mundo descienden al mismo tiempo al mundo de los mundos de la muerte. El Reino del Faro, el Reino del Dragón, el Reino de la Isla Sakura y un centenar de naciones más compiten entre sí. El perdedor Qin Feng se estrena con el despertar de un talento de rango SSS: ¡Extracción sin fin! ¡Puede extraerlo todo! ¡Incluyendo la extracción de dioses y demonios! A partir de entonces, ¡está en modo de matanza infinita!"
+            ]
+        }]
+
+
+    },
     {
         id: "1",
         image: Chaman,
@@ -108,81 +184,6 @@ export const DataView = [
         ]
     },
     {
-        id: "2",
-        image: InvocadorSSS,
-        title: "Invocador Solitario de Rango SSS",
-        href: "Invocador-Solitario-de-Rango-SSS",
-        chapters: [{
-            chapter: 1,
-            updateTime: 7
-        },
-        {
-            chapter: 2,
-            updateTime: 2
-        }
-        ],
-        detail: [{
-            alternative: "",
-            author: "竹楼听细雨 (Zhu Lou Ting Xiyu),马小刀 (Ma XiaoDao)",
-            artist: "三横一竖动漫 (San Heng Yishu Dongman)",
-            genre: [
-                "Acción",
-                "Aventura",
-                "Fantasía",
-                "Manhua",
-                "Sci-fi",
-                "Shounen",
-                "Sistema"
-            ],
-            type: "Manhua",
-            releaser: 2022,
-            status: "OnGoing",
-            description: [
-                "Zhang Ze cruza a un mundo paralelo en el que la gente confía en el Dominio Mágico para luchar contra los monstruos y hacerse más fuerte para resistir la invasión de los demonios de la Cueva del Diablo. Por el bien de su hermana, Zhang Ze entra en el reino mágico bajo el nombre de Asura, ¡y entonces despierta inesperadamente la capacidad de invocación de talentos más fuerte de nivel SSS!",
-                "Cuanto más alto sea el nivel del arte de invocación, más monstruos podrá invocar, y cuanto más pueda mejorar, ¡simplemente desafiará al cielo!"
-            ]
-        }
-        ]
-
-    },
-    {
-        id: "3",
-        image: TalentoSSS,
-        title: "Matanza global despertar del talento de rango SSS",
-        href: "Matanza-global-despertar-del-talento-de-rango-SSS",
-        chapters: [{
-            chapter: 1,
-            updateTime: 2
-        },
-        {
-            chapter: 2,
-            updateTime: 6
-        }
-        ],
-        detail: [{
-            alternative: "",
-            author: "漫潮社 (Club Manchao)",
-            artist: "漫潮社 (Club Manchao)",
-            genre: [
-                "Acción",
-                "Aventura",
-                "Fantasía",
-                "Manhua",
-                "Sci-fi",
-                "Shounen",
-                "Sistema"
-            ],
-            type: "Manhua",
-            releaser: 2022,
-            status: "OnGoing",
-            description: [
-                "¡Un inicio violento con el despertar del talento de grado SSS! Diez mil millones de personas de todo el mundo descienden al mismo tiempo al mundo de los mundos de la muerte. El Reino del Faro, el Reino del Dragón, el Reino de la Isla Sakura y un centenar de naciones más compiten entre sí. El perdedor Qin Feng se estrena con el despertar de un talento de rango SSS: ¡Extracción sin fin! ¡Puede extraerlo todo! ¡Incluyendo la extracción de dioses y demonios! A partir de entonces, ¡está en modo de matanza infinita!"
-            ]
-        }]
-
-
-    },
-    {
         id: "4",
         image: ReyGuerra,
         title: "Memorias del Rey de la Guerra",
@@ -263,7 +264,7 @@ export const DataView = [
         title: "Registros del Regreso de la Senda Demoníaca",
         href: "Registros-del-Regreso-de-la-Senda-Demoníaca",
         chapters: [{
-            chapter: 2,
+            chapter: 1,
             updateTime: 3
         },
         {

@@ -10,7 +10,9 @@ interface SectionUpdatesProps {
 
 const SectionUpdates: React.FC<SectionUpdatesProps> = ({ DataView }) => {
 
-const DataSlice = DataView.reverse().slice(-8)
+const DataSlice = DataView.slice(-8)
+
+
 
   return (
     <SectionUpdatesStl>
