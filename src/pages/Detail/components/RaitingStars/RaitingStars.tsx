@@ -7,6 +7,7 @@ import { FaStar } from "react-icons/fa";
 const RaitingStars: React.FC = () => {
   const [raiting, setRaiting] = useState<number | null>(null);
   const [hover, setHover] = useState<number | null>(null);
+
   return (
     <RaitingStarsStl>
       <div className="container-raiting">
@@ -27,12 +28,12 @@ const RaitingStars: React.FC = () => {
                 <FaStar
                   size="45"
                   color={
-                    currentRaiting <= (hover ?? raiting) ? "#ee225c" : "#e4e5e9"
+                    currentRaiting <= (hover ?? raiting ?? 0) ? "#ee225c" : "#e4e5e9"
                   }
                   onMouseEnter={() => {
                     setHover(currentRaiting);
                   }}
-                  OnMouseLeave={() => {
+                  onMouseLeave={() => {
                     setHover(null);
                   }}
                 />
@@ -41,9 +42,9 @@ const RaitingStars: React.FC = () => {
           })
         }
       </div>
-    <div className="container-raiting-number">
-      <p>{raiting}</p>
-	</div>
+      <div className="container-raiting-number">
+        <p>{raiting}</p>
+      </div>
     </RaitingStarsStl>
   );
 };
@@ -53,26 +54,25 @@ export const RaitingStarsStl = styled.div`
   /* justify-content: space-around; */
   justify-content: center;
   align-items: center;
-	/* border: 1px solid #ea0b0b; */
+  /* border: 1px solid #ea0b0b; */
   width: 70%;
   margin-top: 15px;
   .container-raiting {
     /* border: 1px solid #baf203; */
 
-	/* width: 45%; */
+    /* width: 45%; */
   }
 
   .container-raiting-number {
     /* border: 1px solid #157c69; */
 
-	width: 4rem;
-	display: flex;
-	align-items: center
-	;
-     p {
-		font-size: 30px;
-		margin:0 0 0 20px;
-	 }
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    p {
+      font-size: 30px;
+      margin: 0 0 0 20px;
+    }
   }
 
   input[type="radio"] {
@@ -82,8 +82,6 @@ export const RaitingStarsStl = styled.div`
   .react-icons {
     cursor: pointer;
   }
-
-  
 `;
 
 export default RaitingStars;
