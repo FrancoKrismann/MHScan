@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { ChapterButtonsTop } from "./ChapterButtons";
@@ -25,16 +25,25 @@ const Chapter: React.FC<ChapterProps> = ({}) => {
     window.scrollTo(0, 0); // Lleva el scroll al inicio
   }, []);
 
+  console.log(DataMangaChapter);
+  
   return (
     <ChapterStl>
       <ChapterButtonsTop
         DataForChapter={DataForChapter}
         CurrentChapter={Number(chapter)}
       />
-      <SectionChapter
+      {
+        DataMangaChapter.length > 0 ? (
+          <SectionChapter
         DataMangaChapter={DataMangaChapter}
         CurrentChapter={Number(chapter)}
       />
+        ) : (
+          <div className="ErrorData">Error: not found 404</div>
+        )
+      }
+      
       <ChapterButtonsBottom
         CurrentChapter={Number(chapter)}
         DataForChapter={DataForChapter}
@@ -51,6 +60,14 @@ export const ChapterStl = styled.div`
 
   width: 100%;
   height: fit-content;
+
+  .ErrorData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+  }
 `;
 
 export default Chapter;

@@ -2,7 +2,6 @@
 import { DataViewType } from "@/interface";
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
-
 import { PiArrowCircleLeftFill, PiArrowCircleRightFill } from "react-icons/pi";
 import { CardRecomend } from "../components/cardRecomend";
 
@@ -25,9 +24,7 @@ const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataView }) => {
   const updateCardsCount = () => {
     const widthWindow = window.innerWidth;
     setCardNumbers(widthWindow < 1260 ? 2 : 4);
-    setMaxIndex(
-      widthWindow < 1260 ? DataView.length - 2 : DataView.length - 4
-    );
+    setMaxIndex(widthWindow < 1260 ? DataView.length - 2 : DataView.length - 4);
   };
 
   useEffect(() => {
@@ -42,7 +39,6 @@ const SectionRecommend: React.FC<SectionRecommendProps> = ({ DataView }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cardsCount = indexRecomend + cardsNumbers;
@@ -119,7 +115,7 @@ const ContainerMangaRecomend = styled.div`
   height: fit-content;
   background-color: #262626;
   border-radius: 20px;
-  
+
   @media screen and (max-width: 1366px) {
     width: 100%;
   }

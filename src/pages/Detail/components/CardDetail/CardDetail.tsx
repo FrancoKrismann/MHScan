@@ -1,10 +1,10 @@
-import { DataUpdateImage } from "@/types";
+import { DataViewImage } from "@/types";
 import React from "react";
 import styled from "styled-components";
 
 export interface CardDetailProps {
   id: string;
-  image: DataUpdateImage["image"];
+  image: DataViewImage["image"];
 }
 
 const CardDetail: React.FC<CardDetailProps> = ({ image, id }) => {
