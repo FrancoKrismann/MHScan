@@ -1,14 +1,19 @@
+import "./App.css";
+import AuthContextProvider from "./hooks/authContext";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/routes";
 
 
-function App() {
-
-
-
+const App = (): JSX.Element => {
   return (
     <>
-     
+    
+    <AuthContextProvider>
+       
+      <RouterProvider router={router} />
+    </AuthContextProvider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
