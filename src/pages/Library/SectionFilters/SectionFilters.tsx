@@ -9,9 +9,9 @@ export type SectionFiltersProps = {
 
 const SectionFilters: React.FC<SectionFiltersProps>  = ({}) => {
 	return <SectionFiltersStl>
-        {/* <GenresSelect/>
+        <GenresSelect/>
 		<TypeSelect/>
-		<StatusSelect/> */}
+		<StatusSelect/>
 	</SectionFiltersStl>;
 };
 

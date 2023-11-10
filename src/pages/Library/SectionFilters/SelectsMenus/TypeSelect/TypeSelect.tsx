@@ -5,7 +5,7 @@ export type TypeSelectProps = {
 }
 
 const TypeSelect: React.FC<TypeSelectProps>  = ({}) => {
-	return <TypeSelectStl>TypeSelect</TypeSelectStl>;
+	return <TypeSelectStl></TypeSelectStl>;
 };
 
 export const TypeSelectStl = styled.div``;

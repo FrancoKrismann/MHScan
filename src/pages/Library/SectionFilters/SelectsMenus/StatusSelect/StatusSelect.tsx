@@ -5,7 +5,7 @@ export type StatusSelectProps = {
 }
 
 const StatusSelect: React.FC<StatusSelectProps>  = ({}) => {
-	return <StatusSelectStl>StatusSelect</StatusSelectStl>;
+	return <StatusSelectStl></StatusSelectStl>;
 };
 
 export const StatusSelectStl = styled.div``;
