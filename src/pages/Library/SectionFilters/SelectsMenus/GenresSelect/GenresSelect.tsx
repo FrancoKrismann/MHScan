@@ -5,7 +5,7 @@ export type GenresSelectProps = {
 }
 
 const GenresSelect: React.FC<GenresSelectProps>  = ({}) => {
-	return <GenresSelectStl>GenresSelect</GenresSelectStl>;
+	return <GenresSelectStl></GenresSelectStl>;
 };
 
 export const GenresSelectStl = styled.div``;
