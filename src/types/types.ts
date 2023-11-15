@@ -1,15 +1,7 @@
-import { NAVBAR_BUTTONS } from "@/consts";
-import { Type_Item , InfoDetail_Item, Chapters_Item, DataViewType, DataChapters_Item} from "@/interface";
+import { NAVBAR_BUTTONS ,Side_Buttons} from "@/consts";
+import { Type_Item , InfoDetail_Item, Chapters_Item, DataViewType, DataChapters_Item, TypeSideButtons} from "@/interface";
 
-//Type of Section Recomend Cards
 
-// export type DataPortId = Pick<DataPort_Item, "id">
-
-// export type DataPortTitle = Pick<DataPort_Item, "title">
-
-// export type DataPortImage = Pick<DataPort_Item, "image">
-
-// export type DataPortAll = Pick<DataPort_Item, "image" | "title" |"id" >
 
 
 //NavBar buttons
@@ -17,15 +9,11 @@ export type For_Items = {
     [key in keyof typeof NAVBAR_BUTTONS]: Type_Item;
 };
 
-//Type of Section Updates Cards
+export type Aside_Items = {
+    [key in keyof typeof Side_Buttons]: TypeSideButtons;
+};
 
-// export type DataUpdateId = Pick<DataUpdate_Item, "id">
 
-// export type DataUpdateTitle = Pick<DataUpdate_Item, "title">
-
-// export type DataUpdateImage = Pick<DataUpdate_Item, "image">
-
-// export type DataUpadteHref = Pick<DataUpdate_Item, "href">
 
 //Type of section Details
 

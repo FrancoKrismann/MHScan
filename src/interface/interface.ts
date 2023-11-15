@@ -4,6 +4,10 @@ export interface Type_Item {
     href: string
 }
 
+export interface TypeSideButtons extends Type_Item {
+    icons: React.ComponentType<any> | string;
+}
+
 // export interface DataPort_Item {
 //     id:string
 //     image:string
