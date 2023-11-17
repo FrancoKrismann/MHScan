@@ -1,27 +1,23 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { Formulario } from "./components/Formulario";
 
-interface FormAddProps {
-}
+interface FormAddProps {}
 
-const FormAdd: React.FC<FormAddProps>  = ({}) => {
-
-	const handleTitle = () => {
-
-	}
-
-	const handleFile = () => {
-		
-	}
-	return <FormAddStl>
-		<form>
-			<input type='text' placeholder='Titulo' onChange={handleTitle}/>
-			<input type="file" onChange={handleFile} />
-		</form>
-        
-	</FormAddStl>;
+const FormAdd: React.FC<FormAddProps> = ({}) => {
+  
+  return (
+    <FormAddStl>
+		<Formulario/>
+     
+    </FormAddStl>
+  );
 };
 
-const FormAddStl = styled.div``;
+const FormAddStl = styled.div`
+display: flex;
+height: 100%;
+width: 100%;
+`;
 
 export default FormAdd;

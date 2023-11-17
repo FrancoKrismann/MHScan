@@ -30,17 +30,16 @@ export interface InfoDetail_Item {
     artist: string
     genre: string[]
     type: string
-    releaser: number
+    releaser: number | null
     status: string
     description: string[]
 }
 export interface Chapters_Item {
-    chapter: number
-    updateTime: number
+    chapter: number | null
+    data: string[]
 }
 export interface DataViewType {
-    id: string
-    image: string
+    image: File| null
     title: string
     href: string
     chapters: Chapters_Item[]
