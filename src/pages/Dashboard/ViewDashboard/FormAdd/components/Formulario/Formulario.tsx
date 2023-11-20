@@ -1,6 +1,7 @@
 import { DataViewType } from "@/interface";
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 interface FormularioProps {}
 
@@ -63,13 +64,20 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
   };
 
   const handleDetailChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
     index: number
   ) => {
+    const { name, value } = e.currentTarget;
     const newDetail = [...formValue.detail];
+
+    // Convertir el valor a número o mantener null si es cadena vacía
+    const parsedValue = value !== "" ? parseFloat(value) : null;
+
     newDetail[index] = {
       ...newDetail[index],
-      [e.target.name]: e.target.value,
+      [name]: name === "releaser" ? parsedValue : value,
     };
     setFormValue({
       ...formValue,
@@ -89,6 +97,19 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
     });
   };
 
+  const genreOptions = [
+    "Acción",
+    "Artes Marciales",
+    "Aventura",
+    "Comedia",
+    "Fantasía",
+    "Manhwa",
+    "Murim",
+    "Reencarnación",
+  ];
+
+  console.log(formValue);
+
   return (
     <FormularioStl>
       <form>
@@ -103,10 +124,7 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
 
         <FileInputWrapper onClick={handleFileClick}>
           <AddSymbol>+</AddSymbol>
-          <HiddenInput
-            type="file"
-            onChange={handleFileChange}
-          />
+          <HiddenInput type="file" onChange={handleFileChange} />
         </FileInputWrapper>
 
         {/* Detalles */}
@@ -130,7 +148,7 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
               <input
                 type="text"
                 placeholder="Autor"
-                name="autor"
+                name="author"
                 onChange={(e) => handleDetailChange(e, index)}
                 value={detail.author}
               />
@@ -143,28 +161,48 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
               <input
                 type="text"
                 placeholder="Artista"
-                name="artista"
+                name="artist"
                 onChange={(e) => handleDetailChange(e, index)}
                 value={detail.artist}
               />
             </div>
           ))}
         </div>
-		<div className="div-detailInput-genres">
+        <div className="div-detailInput-genres">
           {formValue.detail.map((detail, index) => (
             <div key={`detail-${index}`}>
-              <input
-                type="text"
-                placeholder="Generos"
-                name="alternative"
-                onChange={(e) => handleDetailChange(e, index)}
+              <select
+                name="genre"
                 value={detail.genre}
-              />
+                onChange={(e) => handleDetailChange(e, index)}
+              >
+                <option value="">Agregar un genero</option>
+                {genreOptions.map((option, optIndex) => (
+                  <option key={`genre-${optIndex}`} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </div>
-			//Agrager select para generos
           ))}
         </div>
-		<div className="div-detailInput-artist">
+        {formValue.detail.map((detail, index) => (
+          <div key={index} className="genres-add">
+            {detail.genre.length ? (
+              <div className="genres-selected">
+                <div className="genre-s">
+                  <span>{detail.genre}</span>
+                </div>
+                <div className="icon-eliminate">
+                  <IoIosCloseCircleOutline size="1.5em" />
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+        ))}
+        <div className="div-detailInput-type">
           {formValue.detail.map((detail, index) => (
             <div key={`detail-${index}`}>
               <input
@@ -177,20 +215,22 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
             </div>
           ))}
         </div>
-		<div className="div-detailInput-artist">
+        <div className="div-detailInput-releaser">
           {formValue.detail.map((detail, index) => (
             <div key={`detail-${index}`}>
               <input
                 type="text"
                 placeholder="Estreno"
                 name="releaser"
-                // onChange={}
-                // value={detail.releaser}
+                onChange={(e) => handleDetailChange(e, index)}
+                value={
+                  detail.releaser !== null ? detail.releaser.toString() : ""
+                }
               />
             </div>
           ))}
         </div>
-		<div className="div-detailInput-artist">
+        <div className="div-detailInput-status">
           {formValue.detail.map((detail, index) => (
             <div key={`detail-${index}`}>
               <input
@@ -203,12 +243,22 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
             </div>
           ))}
         </div>
-		<div>
-			<textarea/>
-		</div>
+        <div>
+          <div>
+            {formValue.detail.map((detail, index) => (
+              <div key={`detail-${index}`}>
+                <textarea
+                  placeholder="Descripcion"
+                  name="description"
+                  defaultValue={detail.description}
+                  onChange={(e) => handleDetailChange(e, index)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
 
-        {/* Capítulos */}
-        {formValue.chapters.map((chapter, index) => (
+        {/* {formValue.chapters.map((chapter, index) => (
           <div key={`chapter-${index}`}>
             <input
               type="number"
@@ -217,9 +267,8 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
               onChange={addChapter}
               value={chapter.chapter || ""}
             />
-            {/* Agregar más campos para las propiedades de Chapters según sea necesario */}
           </div>
-        ))}
+        ))} */}
       </form>
     </FormularioStl>
   );
@@ -238,7 +287,10 @@ const FormularioStl = styled.div`
   .div-detailInput-alternative,
   .div-detailInput-author,
   .div-detailInput-artist,
-  .div-detailInput-genres {
+  .div-detailInput-genres,
+  .div-detailInput-type,
+  .div-detailInput-releaser,
+  .div-detailInput-status {
     width: fit-content;
     display: flex;
     /* border: 1px solid #e75353; */
@@ -248,6 +300,44 @@ const FormularioStl = styled.div`
       width: 350px;
       height: 25px;
       border-radius: 10px;
+    }
+  }
+
+  .genres-add {
+    display: flex;
+    gap: 20px;
+    width: 30rem;
+    height: 8rem;
+    border: 1px solid #e75353;
+
+    .genres-selected {
+      display: flex;
+      align-items: center;
+      border: 1px solid #9fe753;
+      width: 6rem;
+      height: 2rem;
+      padding: 10px;
+
+      .icon-eliminate {
+        display: flex;
+        height: 100%;
+        border: 1px solid #9fe753;
+        width: 50%;
+      }
+      .genre-s {
+        display: flex;
+        width: 50%;
+
+         span {
+        font-size: 18px;
+      }
+      }
+     
+    }
+    .react-icons {
+      background: #ee0905;
+      border-radius: 50%;
+      padding: 0;
     }
   }
 `;
