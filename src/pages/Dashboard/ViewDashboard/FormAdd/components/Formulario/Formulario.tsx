@@ -1,7 +1,7 @@
 import { DataViewType } from "@/interface";
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import { IoIosCloseCircleOutline } from "react-icons/io";
+import { IoIosClose } from "react-icons/io";
 
 interface FormularioProps {}
 
@@ -72,18 +72,39 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
     const { name, value } = e.currentTarget;
     const newDetail = [...formValue.detail];
 
-    // Convertir el valor a número o mantener null si es cadena vacía
     const parsedValue = value !== "" ? parseFloat(value) : null;
 
-    newDetail[index] = {
+    const updatedDetail = {
       ...newDetail[index],
       [name]: name === "releaser" ? parsedValue : value,
     };
+    newDetail[index] = updatedDetail;
+
     setFormValue({
       ...formValue,
       detail: newDetail,
     });
   };
+
+  const handleAddGenres = ( e: React.ChangeEvent<HTMLSelectElement>,index: number) => {
+    const { value } = e.currentTarget;
+    const newDetail = [...formValue.detail];
+      
+    newDetail[index] = {
+      ...newDetail[index],
+      genre: [...(newDetail[index].genre || []), value],
+    };
+    
+    setFormValue({
+      ...formValue,
+      detail: newDetail,
+    });
+    
+  }
+
+  const handleDeleteGenres = () => {
+    
+  }
 
   const addChapter = () => {
     const updatedChapters = [...formValue.chapters];
@@ -99,16 +120,67 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
 
   const genreOptions = [
     "Acción",
+    "Adult",
+    "Ángeles",
+    "Anime",
+    "Apocalíptico",
     "Artes Marciales",
     "Aventura",
+    "Bucle Temporal",
+    "Cartoon",
     "Comedia",
+    "Comic",
+    "Cooking",
+    "Demonios",
+    "Deportes",
+    "Detective",
+    "Doujinshi",
+    "Drama",
+    "Ecchi",
     "Fantasía",
-    "Manhwa",
+    "Gender Bender",
+    "Harem",
+    "Hermes Scans",
+    "Histórico",
+    "Horror",
+    "Josei",
+    "Live action",
+    "Magia",
+    "Mature",
+    "Mazmorras",
+    "Mecha",
     "Murim",
+    "Mystery",
+    "One shot",
+    "Psicológico",
+    "Recomendado",
     "Reencarnación",
+    "Regresión",
+    "Retornardo",
+    "Romance",
+    "School Life",
+    "Sci-fi",
+    "Seinen",
+    "Shoujo",
+    "Shoujo Ai",
+    "Shounen",
+    "Shounen Ai",
+    "Sistema",
+    "Slice of Life",
+    "Smut",
+    "Soft Yaoi",
+    "Soft Yuri",
+    "Supernatural",
+    "Tragedia",
+    "Vida Escolar",
+
+    "Yaoi",
+    "Yuri",
   ];
 
-  console.log(formValue);
+  const TypeSelect = ["Manga", "Manhua", "Manhwa", "Webtoon"];
+
+  console.log(formValue.detail);
 
   return (
     <FormularioStl>
@@ -174,7 +246,7 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
               <select
                 name="genre"
                 value={detail.genre}
-                onChange={(e) => handleDetailChange(e, index)}
+                onChange={(e) => handleAddGenres(e, index)}
               >
                 <option value="">Agregar un genero</option>
                 {genreOptions.map((option, optIndex) => (
@@ -189,14 +261,18 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
         {formValue.detail.map((detail, index) => (
           <div key={index} className="genres-add">
             {detail.genre.length ? (
-              <div className="genres-selected">
-                <div className="genre-s">
-                  <span>{detail.genre}</span>
-                </div>
-                <div className="icon-eliminate">
-                  <IoIosCloseCircleOutline size="1.5em" />
-                </div>
-              </div>
+              detail.genre.map((item, index) => {
+                return (
+                  <div key={index} className="genres-selected">
+                    <div className="genre-s">
+                      <span>{item}</span>
+                    </div>
+                    <div className="icon-eliminate">
+                      <IoIosClose size="2em" />
+                    </div>
+                  </div>
+                );
+              })
             ) : (
               <></>
             )}
@@ -305,37 +381,46 @@ const FormularioStl = styled.div`
 
   .genres-add {
     display: flex;
-    gap: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+    
     width: 30rem;
-    height: 8rem;
+    /* height: 8rem; */
     border: 1px solid #e75353;
 
     .genres-selected {
       display: flex;
       align-items: center;
-      border: 1px solid #9fe753;
-      width: 6rem;
-      height: 2rem;
-      padding: 10px;
+      /* border: 1px solid #9fe753; */
+      /* width: 8rem; */
+      height: 3rem;
+      border-radius: 10px;
+      background: #615f5fd2;
+      padding: 3px;
+      /* margin: 5px; */
 
       .icon-eliminate {
         display: flex;
+        justify-content: flex-end;
+        /* align-items: center; */
+
         height: 100%;
-        border: 1px solid #9fe753;
-        width: 50%;
+        /* border: 1px solid #9fe753; */
+        /* width: 30%; */
       }
       .genre-s {
         display: flex;
-        width: 50%;
+        justify-content: center;
+        /* width: 70%; */
+        margin: 0 10px 0 10px;
 
-         span {
-        font-size: 18px;
+        span {
+          font-size: 20px;
+        }
       }
-      }
-     
     }
     .react-icons {
-      background: #ee0905;
+      /* background: #ee0905; */
       border-radius: 50%;
       padding: 0;
     }
