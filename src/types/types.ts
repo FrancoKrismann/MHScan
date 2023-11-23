@@ -37,11 +37,11 @@ export type DataInfoDescription = Pick<InfoDetail_Item, "description">
 
 export type DataChapterNumber = Pick<Chapters_Item, "chapter">
 
-export type DataChapterUpdateTime = Pick<Chapters_Item, "updateTime">
+// export type DataChapterUpdateTime = Pick<Chapters_Item, "updateTime">
 
 //Type DataView 
 
-export type DataViewId = Pick<DataViewType, "id">
+// export type DataViewId = Pick<DataViewType, "id">
 
 export type DataViewImage = Pick<DataViewType, "image">
 

@@ -1,7 +1,7 @@
 import { DataViewType } from "@/interface";
-import React, { useRef, useState } from "react";
+import React, {  useRef, useState } from "react";
 import styled from "styled-components";
-import { IoIosClose } from "react-icons/io";
+import DetailInputs from "../DetailInputs/DetailInputs";
 
 interface FormularioProps {}
 
@@ -86,35 +86,78 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
     });
   };
 
-  const handleAddGenres = ( e: React.ChangeEvent<HTMLSelectElement>,index: number) => {
+  const handleAddGenres = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    index: number
+  ) => {
     const { value } = e.currentTarget;
     const newDetail = [...formValue.detail];
-      
+
+    if (!newDetail[index].genre.includes(value)) {
+      newDetail[index] = {
+        ...newDetail[index],
+        genre: [...(newDetail[index].genre || []), value],
+      };
+      setFormValue({
+        ...formValue,
+        detail: newDetail,
+      });
+    } else {
+      return null;
+    }
+  };
+
+  const handleDeleteGenres = (
+    e: React.MouseEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    const value = e.currentTarget.getAttribute("data-value");
+    const newDetail = [...formValue.detail];
+
+    const updatedGenres = newDetail[index].genre.filter(
+      (genre) => genre !== value
+    );
     newDetail[index] = {
       ...newDetail[index],
-      genre: [...(newDetail[index].genre || []), value],
+      genre: updatedGenres,
     };
-    
     setFormValue({
       ...formValue,
       detail: newDetail,
     });
-    
-  }
+  };
 
-  const handleDeleteGenres = () => {
-    
-  }
+  const handleType = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    index: number
+  ) => {
+    const { value } = e.currentTarget;
+    const newDetail = formValue.detail;
 
-  const addChapter = () => {
-    const updatedChapters = [...formValue.chapters];
-    updatedChapters.push({
-      chapter: null,
-      data: [],
-    });
+    newDetail[index] = {
+      ...newDetail[index],
+      type: value,
+    };
     setFormValue({
       ...formValue,
-      chapters: updatedChapters,
+      detail: newDetail,
+    });
+  };
+
+  const handleStatus = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    index: number
+  ) => {
+    const { value } = e.currentTarget;
+    const newDetail = formValue.detail;
+
+    newDetail[index] = {
+      ...newDetail[index],
+      status: value,
+    };
+    setFormValue({
+      ...formValue,
+      detail: newDetail,
     });
   };
 
@@ -180,7 +223,9 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
 
   const TypeSelect = ["Manga", "Manhua", "Manhwa", "Webtoon"];
 
-  console.log(formValue.detail);
+  const StatusSelect = ["Ongoing", "Completed", "Hiatus", "Canceled"];
+
+  console.log(formValue);
 
   return (
     <FormularioStl>
@@ -200,151 +245,19 @@ const Formulario: React.FC<FormularioProps> = ({}) => {
         </FileInputWrapper>
 
         {/* Detalles */}
-        <div className="div-detailInput-alternative">
-          {formValue.detail.map((detail, index) => (
-            <div key={`detail-${index}`}>
-              <input
-                type="text"
-                placeholder="Titulo alternativo"
-                name="alternative"
-                onChange={(e) => handleDetailChange(e, index)}
-                value={detail.alternative}
-              />
-              {/* Agregar más campos para las propiedades de Detail según sea necesario */}
-            </div>
-          ))}
-        </div>
-        <div className="div-detailInput-author">
-          {formValue.detail.map((detail, index) => (
-            <div key={`detail-${index}`}>
-              <input
-                type="text"
-                placeholder="Autor"
-                name="author"
-                onChange={(e) => handleDetailChange(e, index)}
-                value={detail.author}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="div-detailInput-artist">
-          {formValue.detail.map((detail, index) => (
-            <div key={`detail-${index}`}>
-              <input
-                type="text"
-                placeholder="Artista"
-                name="artist"
-                onChange={(e) => handleDetailChange(e, index)}
-                value={detail.artist}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="div-detailInput-genres">
-          {formValue.detail.map((detail, index) => (
-            <div key={`detail-${index}`}>
-              <select
-                name="genre"
-                value={detail.genre}
-                onChange={(e) => handleAddGenres(e, index)}
-              >
-                <option value="">Agregar un genero</option>
-                {genreOptions.map((option, optIndex) => (
-                  <option key={`genre-${optIndex}`} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </div>
-          ))}
-        </div>
-        {formValue.detail.map((detail, index) => (
-          <div key={index} className="genres-add">
-            {detail.genre.length ? (
-              detail.genre.map((item, index) => {
-                return (
-                  <div key={index} className="genres-selected">
-                    <div className="genre-s">
-                      <span>{item}</span>
-                    </div>
-                    <div className="icon-eliminate">
-                      <IoIosClose size="2em" />
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              <></>
-            )}
-          </div>
-        ))}
-        <div className="div-detailInput-type">
-          {formValue.detail.map((detail, index) => (
-            <div key={`detail-${index}`}>
-              <input
-                type="text"
-                placeholder="Tipo de comic"
-                name="type"
-                onChange={(e) => handleDetailChange(e, index)}
-                value={detail.type}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="div-detailInput-releaser">
-          {formValue.detail.map((detail, index) => (
-            <div key={`detail-${index}`}>
-              <input
-                type="text"
-                placeholder="Estreno"
-                name="releaser"
-                onChange={(e) => handleDetailChange(e, index)}
-                value={
-                  detail.releaser !== null ? detail.releaser.toString() : ""
-                }
-              />
-            </div>
-          ))}
-        </div>
-        <div className="div-detailInput-status">
-          {formValue.detail.map((detail, index) => (
-            <div key={`detail-${index}`}>
-              <input
-                type="text"
-                placeholder="Estatus"
-                name="status"
-                onChange={(e) => handleDetailChange(e, index)}
-                value={detail.status}
-              />
-            </div>
-          ))}
-        </div>
-        <div>
-          <div>
-            {formValue.detail.map((detail, index) => (
-              <div key={`detail-${index}`}>
-                <textarea
-                  placeholder="Descripcion"
-                  name="description"
-                  defaultValue={detail.description}
-                  onChange={(e) => handleDetailChange(e, index)}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* {formValue.chapters.map((chapter, index) => (
-          <div key={`chapter-${index}`}>
-            <input
-              type="number"
-              placeholder="Chapter"
-              name="chapter"
-              onChange={addChapter}
-              value={chapter.chapter || ""}
-            />
-          </div>
-        ))} */}
+        {/* <DetailInputs
+          index={0}
+          detail={formValue.detail}
+          handleDetailChange={handleDetailChange}
+          handleAddGenres={handleAddGenres}
+          handleDeleteGenres={handleDeleteGenres}
+          genreOptions={genreOptions}
+          TypeSelect={TypeSelect}
+          StatusSelect={StatusSelect}
+          handleType={handleType}
+          handleStatus={handleStatus}
+        /> */}
       </form>
     </FormularioStl>
   );
@@ -355,38 +268,25 @@ const FormularioStl = styled.div`
   flex-direction: column;
   width: 50%;
   height: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #2c1b1b;
   align-items: center;
-  margin-top: 20px;
 
-  .div-titleInput,
-  .div-detailInput-alternative,
-  .div-detailInput-author,
-  .div-detailInput-artist,
-  .div-detailInput-genres,
-  .div-detailInput-type,
-  .div-detailInput-releaser,
-  .div-detailInput-status {
-    width: fit-content;
-    display: flex;
-    /* border: 1px solid #e75353; */
-    margin: 20px 0 20px 0;
-
-    input {
-      width: 350px;
-      height: 25px;
-      border-radius: 10px;
-    }
+  textarea {
+    resize: none;
+    width: 20rem;
+    height: 15rem;
   }
 
   .genres-add {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
-    
-    width: 30rem;
-    /* height: 8rem; */
-    border: 1px solid #e75353;
+
+    width: 32rem;
+    height: fit-content;
+    background: #5a5858d2;
+    border-radius: 20px;
+    /* border: 1px solid #e75353; */
 
     .genres-selected {
       display: flex;
@@ -423,6 +323,7 @@ const FormularioStl = styled.div`
       /* background: #ee0905; */
       border-radius: 50%;
       padding: 0;
+      cursor: pointer;
     }
   }
 `;

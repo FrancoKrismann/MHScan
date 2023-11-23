@@ -12,7 +12,7 @@ const ViewDashboard: React.FC<ViewDashboardProps>  = ({children}) => {
 };
 
 export const ViewDashboardStl = styled.div`
-border: 1px solid #fff;
+/* border: 1px solid #fff; */
 
 width: 100%;
 `;

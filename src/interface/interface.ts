@@ -39,7 +39,7 @@ export interface Chapters_Item {
     data: string[]
 }
 export interface DataViewType {
-    image: File| null
+    image: File | null
     title: string
     href: string
     chapters: Chapters_Item[]
@@ -53,6 +53,6 @@ export interface DataChapters_Item {
     chapters: {
         chapterNumber: number;
         images: string[];
-      }[];
+    }[];
 
 }
