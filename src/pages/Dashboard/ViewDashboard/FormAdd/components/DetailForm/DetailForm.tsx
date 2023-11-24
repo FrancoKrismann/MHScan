@@ -2,6 +2,7 @@ import { DataViewDetails } from "@/types";
 import styled from "styled-components";
 import { ChangeEvent } from "react";
 import { IoIosClose } from "react-icons/io";
+import FormWrapper from "../../FormWrapper";
 
 interface DetailInputsProps {
   detail: DataViewDetails["detail"];
@@ -27,7 +28,7 @@ interface DetailInputsProps {
   handleStatus: (event: ChangeEvent<HTMLSelectElement>, index: number) => void;
 }
 
-const DetailInputs: React.FC<DetailInputsProps> = ({
+const DetailForm: React.FC<DetailInputsProps> = ({
   detail,
   handleDetailChange,
   handleDeleteGenres,
@@ -39,10 +40,11 @@ const DetailInputs: React.FC<DetailInputsProps> = ({
   handleStatus,
 }) => {
   return (
-    <DetailInputsStl>
+    <FormWrapper title="Detail">
       <div className="div-detailInput-alternative">
         {detail.map((detail, index) => (
           <div key={`detail-${index}`}>
+            <label>Titulo alternativo</label>
             <input
               type="text"
               placeholder="Titulo alternativo"
@@ -56,6 +58,8 @@ const DetailInputs: React.FC<DetailInputsProps> = ({
       <div className="div-detailInput-author">
         {detail.map((detail, index) => (
           <div key={`detail-${index}`}>
+            <label>Autor</label>
+
             <input
               type="text"
               placeholder="Autor"
@@ -69,6 +73,7 @@ const DetailInputs: React.FC<DetailInputsProps> = ({
       <div className="div-detailInput-artist">
         {detail.map((detail, index) => (
           <div key={`detail-${index}`}>
+            <label>Artista</label>
             <input
               type="text"
               placeholder="Artista"
@@ -82,6 +87,7 @@ const DetailInputs: React.FC<DetailInputsProps> = ({
       <div className="div-detailInput-genres">
         {detail.map((detail, index) => (
           <div key={`detail-${index}`}>
+            
             <select
               name="genre"
               value={detail.genre}
@@ -142,6 +148,7 @@ const DetailInputs: React.FC<DetailInputsProps> = ({
       <div className="div-detailInput-releaser">
         {detail.map((detail, index) => (
           <div key={`detail-${index}`}>
+            <label>Estreno</label>
             <input
               type="text"
               placeholder="Estreno"
@@ -174,6 +181,7 @@ const DetailInputs: React.FC<DetailInputsProps> = ({
         <div>
           {detail.map((detail, index) => (
             <div key={`detail-${index}`}>
+              <label>Descripcion</label>
               <textarea
                 placeholder="Descripcion"
                 name="description"
@@ -184,7 +192,7 @@ const DetailInputs: React.FC<DetailInputsProps> = ({
           ))}
         </div>
       </div>
-    </DetailInputsStl>
+    </FormWrapper>
   );
 };
 
@@ -216,4 +224,4 @@ const DetailInputsStl = styled.div`
   }
 `;
 
-export default DetailInputs;
+export default DetailForm;
