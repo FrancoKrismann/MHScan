@@ -2,7 +2,8 @@ import {useState} from "react";
 
 interface Step {
     name: string;
-    component: React.ReactElement;
+    componentForm: React.ReactElement;
+    componentPreview: React.ReactElement;
   }
 
 export function useMultiStepForm(steps: Step[]){
@@ -28,13 +29,14 @@ export function useMultiStepForm(steps: Step[]){
     }
 
     const currentStep = steps[currentStepIndex];
-    const { name, component } = currentStep;
-    console.log(steps);
+    
+    const { name,componentForm, componentPreview  } = currentStep;
     
 
     return {
         name,
-        component,
+        componentForm,
+        componentPreview,
         currentStepIndex,
         step: steps[currentStepIndex],
         isFirstStep: currentStepIndex !== 0,

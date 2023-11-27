@@ -1,10 +1,9 @@
-import { log } from "console";
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 interface Step {
   name: string;
-  component: React.ReactElement;
+  componentForm: React.ReactElement;
 }
 
 interface StepperProps {
@@ -33,7 +32,7 @@ const Stepper: React.FC<StepperProps> = ({ steps, currentStepIndex }) => {
       : currentStepIndex === steps.length - 1
       ? '100%'
       : `44%`;  
-      const progressColor = currentStepIndex === steps.length - 1 ? "#2ecc71" : "#3498db";
+      const progressColor = currentStepIndex === steps.length - 1 ? "#cc36ff" : "#df6dff";
 
   return (
     <StepperStl>
@@ -63,7 +62,7 @@ position: relative;
   align-items: center;
   height: 100%;
   width: 100%;
-
+  
   background: #303030d2;
 
   .container-steps {
@@ -87,7 +86,7 @@ const StepNumber = styled.div<StepNumberProps>`
   width: 33px;
   height: 33px;
   border-radius: 50%;
-  background-color: ${(props) => (props.isActive ? "#3498db" : "#2ecc71")};
+  background-color: ${(props) => (props.isActive ? "#df6dff" : "#6a117e")};
   color: white;
   display: flex;
   justify-content: center;
@@ -97,7 +96,10 @@ const StepNumber = styled.div<StepNumberProps>`
 `;
 
 const StepName = styled.span<StepNameProps>`
-  color: ${(props) => (props.isActive ? "#3498db" : "#2ecc71")};
+  /* color: ${(props) => (props.isActive ? "#3498db" : "#2ecc71")}; */
+  font-size: 17px;
+  font-weight: ${(props) => (props.isActive ? "700" : "200")}; /* Tamaño de fuente más grande cuando isActive es true */
+  transition: font-size 0.3s ease;
   z-index: 1;
 `;
 

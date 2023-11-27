@@ -6,6 +6,9 @@ import { useMultiStepForm } from "@/hooks/useMultiStepsForm";
 import InfoForm from "./components/InfoForm/InfoForm";
 import DetailForm from "./components/DetailForm/DetailForm";
 import ChaptersForm from "./components/ChaptersForm/ChaptersForm";
+import PreviewInfo from "./components/PreviewForm/PreviewInfo";
+import { PreviewDetail } from "./components/PreviewForm/PreviewDetail";
+import { PreviewChapters } from "./components/PreviewForm/PreviewChapters";
 
 const INITIAL_DATA: DataViewType = {
   title: "",
@@ -17,24 +20,17 @@ const INITIAL_DATA: DataViewType = {
       data: [],
     },
   ],
-  detail: [
-    {
-      alternative: "",
-      author: "",
-      artist: "",
-      genre: [],
-      type: "",
-      releaser: null,
-      status: "",
-      description: [],
-    },
-  ],
+  detail: {
+    alternative: "",
+    author: "",
+    artist: "",
+    genre: [],
+    type: "",
+    releaser: null,
+    status: "",
+    description: "",
+  },
 };
-
-
-
-
-
 
 const genreOptions = [
   "Acción",
@@ -91,7 +87,6 @@ const genreOptions = [
   "Supernatural",
   "Tragedia",
   "Vida Escolar",
-
   "Yaoi",
   "Yuri",
 ];
@@ -139,19 +134,16 @@ const FormAdd: React.FC = ({}) => {
   const handleDetailChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-    index: number
+    >
   ) => {
     const { name, value } = e.currentTarget;
-    const newDetail = [...data.detail];
-
-    const parsedValue = value !== "" ? parseFloat(value) : null;
+    const newDetail = { ...data.detail };
 
     const updatedDetail = {
-      ...newDetail[index],
-      [name]: name === "releaser" ? parsedValue : value,
+      ...newDetail,
+      [name]: value,
     };
-    newDetail[index] = updatedDetail;
+    newDetail[name] = updatedDetail[name];
 
     setData({
       ...data,
@@ -159,85 +151,47 @@ const FormAdd: React.FC = ({}) => {
     });
   };
 
-  const handleAddGenres = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    index: number
-  ) => {
+  const handleAddGenres = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.currentTarget;
-    const newDetail = [...data.detail];
+    const newDetail = { ...data.detail };
 
-    if (!newDetail[index].genre.includes(value)) {
-      newDetail[index] = {
-        ...newDetail[index],
-        genre: [...(newDetail[index].genre || []), value],
+    if (!newDetail.genre.includes(value)) {
+      const updatedGenres = [...newDetail.genre, value];
+
+      const updatedDetail = {
+        ...newDetail,
+        genre: updatedGenres,
       };
+
       setData({
         ...data,
-        detail: newDetail,
+        detail: updatedDetail,
       });
     } else {
       return null;
     }
   };
 
-  const handleDeleteGenres = (
-    e: React.MouseEvent<HTMLDivElement>,
-    index: number
-  ) => {
+  const handleDeleteGenres = (e: React.MouseEvent<HTMLDivElement>) => {
     const value = e.currentTarget.getAttribute("data-value");
-    const newDetail = [...data.detail];
 
-    const updatedGenres = newDetail[index].genre.filter(
-      (genre) => genre !== value
-    );
-    newDetail[index] = {
-      ...newDetail[index],
+    const newDetail = { ...data.detail };
+    const updatedGenres = newDetail.genre.filter((genre) => genre !== value);
+
+    const updatedDetail = {
+      ...newDetail,
       genre: updatedGenres,
     };
     setData({
       ...data,
-      detail: newDetail,
-    });
-  };
-
-  const handleType = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    index: number
-  ) => {
-    const { value } = e.currentTarget;
-    const newDetail = data.detail;
-
-    newDetail[index] = {
-      ...newDetail[index],
-      type: value,
-    };
-    setData({
-      ...data,
-      detail: newDetail,
-    });
-  };
-
-  const handleStatus = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    index: number
-  ) => {
-    const { value } = e.currentTarget;
-    const newDetail = data.detail;
-
-    newDetail[index] = {
-      ...newDetail[index],
-      status: value,
-    };
-    setData({
-      ...data,
-      detail: newDetail,
+      detail: updatedDetail,
     });
   };
 
   const stepsComponents = [
     {
-      name: 'InfoForm',
-      component: (
+      name: "InfoForm",
+      componentForm: (
         <InfoForm
           handleFile={handleFileChange}
           handleTitle={handleTitle}
@@ -245,12 +199,12 @@ const FormAdd: React.FC = ({}) => {
           title={data.title}
         />
       ),
+      componentPreview: <PreviewInfo title={data.title} archivo={data.image} />,
     },
     {
-      name: 'DetailForm',
-      component: (
+      name: "DetailForm",
+      componentForm: (
         <DetailForm
-          index={0}
           detail={data.detail}
           handleDetailChange={handleDetailChange}
           handleAddGenres={handleAddGenres}
@@ -258,22 +212,22 @@ const FormAdd: React.FC = ({}) => {
           genreOptions={genreOptions}
           TypeSelect={TypeSelect}
           StatusSelect={StatusSelect}
-          handleType={handleType}
-          handleStatus={handleStatus}
         />
       ),
+      componentPreview: <PreviewDetail detail={data.detail} />,
     },
     {
-      name: 'ChaptersForm',
-      component: <ChaptersForm />,
+      name: "ChaptersForm",
+      componentForm: <ChaptersForm />,
+      componentPreview: <PreviewChapters />,
     },
   ];
   const {
     back,
     currentStepIndex,
-    goTo,
     next,
-    component,
+    componentForm,
+    componentPreview,
     steps,
     isFirstStep,
     isLastStep,
@@ -283,21 +237,23 @@ const FormAdd: React.FC = ({}) => {
       <div className="container-Stepper">
         <Stepper steps={steps} currentStepIndex={currentStepIndex} />
       </div>
-      <div className="container-addForm">
-        <form>
-          {component}
-          <div>
-            {isFirstStep && (
-            <button type="button" onClick={back}>
-              Atras
-            </button>
-          )}
-          <button type="button" onClick={next}>
-            {isLastStep ? "Finalizar" : "Siguiente"}
-          </button>
-          </div>
-          
-        </form>
+      <div className="div-container">
+        <div className="container-addForm">
+          <form>
+            {componentForm}
+            <div className="buttons-form">
+              {isFirstStep && (
+                <button type="button" onClick={back}>
+                  Atras
+                </button>
+              )}
+              <button type="button" onClick={next}>
+                {isLastStep ? "Finalizar" : "Siguiente"}
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className="container-preview">{componentPreview}</div>
       </div>
     </FormAddStl>
   );
@@ -305,22 +261,48 @@ const FormAdd: React.FC = ({}) => {
 
 const FormAddStl = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+
   flex-direction: column;
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
   .container-Stepper {
     width: 100%;
     height: 5rem;
-    border: 1px solid #09cfe9;
   }
-  .container-addForm {
-    display: flex;
-    flex-direction: column;
-    height: 90%;
+  .div-container {
+    height: 100%;
     width: 100%;
-    border: 1px solid #fff;
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid #09cfe9; */
+
+    .container-addForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 95%;
+      width: 50%;
+      /* border: 1px solid #fff; */
+      border-right: 1px solid #fff;
+
+      form {
+        height: 90%;
+      }
+
+      .buttons-form {
+        width: 100%;
+        /* height: 10%; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid #ef8383; */
+      }
+    }
+    .container-preview {
+      width: 50%;
+      height: 100%;
+      /* border: 1px solid #968608; */
+    }
   }
 
   background: #303030d2;

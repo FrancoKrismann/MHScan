@@ -6,26 +6,16 @@ import FormWrapper from "../../FormWrapper";
 
 interface DetailInputsProps {
   detail: DataViewDetails["detail"];
-  index: number;
   handleDetailChange: (
     event: ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-    index: number
+    >
   ) => void;
-  handleDeleteGenres: (
-    event: React.MouseEvent<HTMLDivElement>,
-    index: number
-  ) => void;
-  handleAddGenres: (
-    event: ChangeEvent<HTMLSelectElement>,
-    index: number
-  ) => void;
+  handleDeleteGenres: (event: React.MouseEvent<HTMLDivElement>) => void;
+  handleAddGenres: (event: ChangeEvent<HTMLSelectElement>) => void;
   genreOptions: string[];
   TypeSelect: string[];
   StatusSelect: string[];
-  handleType: (event: ChangeEvent<HTMLSelectElement>, index: number) => void;
-  handleStatus: (event: ChangeEvent<HTMLSelectElement>, index: number) => void;
 }
 
 const DetailForm: React.FC<DetailInputsProps> = ({
@@ -36,192 +26,148 @@ const DetailForm: React.FC<DetailInputsProps> = ({
   genreOptions,
   TypeSelect,
   StatusSelect,
-  handleType,
-  handleStatus,
 }) => {
+  const {
+    alternative,
+    artist,
+    author,
+    description,
+    genre,
+    releaser,
+    status,
+    type,
+  } = detail;
   return (
     <FormWrapper title="Detail">
       <div className="div-detailInput-alternative">
-        {detail.map((detail, index) => (
-          <div key={`detail-${index}`}>
-            <label>Titulo alternativo</label>
-            <input
-              type="text"
-              placeholder="Titulo alternativo"
-              name="alternative"
-              onChange={(e) => handleDetailChange(e, index)}
-              value={detail.alternative}
-            />
-          </div>
-        ))}
+        <div>
+          <label>Titulo alternativo</label>
+          <input
+            type="text"
+            placeholder="Titulo alternativo"
+            name="alternative"
+            onChange={(e) => handleDetailChange(e)}
+            value={alternative}
+          />
+        </div>
       </div>
       <div className="div-detailInput-author">
-        {detail.map((detail, index) => (
-          <div key={`detail-${index}`}>
-            <label>Autor</label>
-
-            <input
-              type="text"
-              placeholder="Autor"
-              name="author"
-              onChange={(e) => handleDetailChange(e, index)}
-              value={detail.author}
-            />
-          </div>
-        ))}
+        <div>
+          <label>Autor</label>
+          <input
+            type="text"
+            placeholder="Autor"
+            name="author"
+            onChange={(e) => handleDetailChange(e)}
+            value={author}
+          />
+        </div>
       </div>
       <div className="div-detailInput-artist">
-        {detail.map((detail, index) => (
-          <div key={`detail-${index}`}>
-            <label>Artista</label>
-            <input
-              type="text"
-              placeholder="Artista"
-              name="artist"
-              onChange={(e) => handleDetailChange(e, index)}
-              value={detail.artist}
-            />
-          </div>
-        ))}
+        <div>
+          <label>Artista</label>
+          <input
+            type="text"
+            placeholder="Artista"
+            name="artist"
+            onChange={(e) => handleDetailChange(e)}
+            value={artist}
+          />
+        </div>
       </div>
       <div className="div-detailInput-genres">
-        {detail.map((detail, index) => (
-          <div key={`detail-${index}`}>
-            
-            <select
-              name="genre"
-              value={detail.genre}
-              onChange={(e) => handleAddGenres(e, index)}
-            >
-              <option value="">Agregar un genero</option>
-              {genreOptions.map((option, optIndex) => (
-                <option key={`genre-${optIndex}`} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-        ))}
-      </div>
-      {detail.map((detail, indexCero) => (
-        <div key={indexCero} className="genres-add">
-          {detail.genre.length ? (
-            detail.genre.map((item, index) => {
-              return (
-                <div key={index} className="genres-selected">
-                  <div className="genre-s">
-                    <span>{item}</span>
-                  </div>
-                  <div
-                    className="icon-eliminate"
-                    onClick={(item) => handleDeleteGenres(item, indexCero)}
-                    data-value={item}
-                  >
-                    <IoIosClose size="2.4em" />
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <></>
-          )}
+        <div>
+          <select
+            name="genre"
+            value={genre}
+            onChange={(e) => handleAddGenres(e)}
+          >
+            <option value="">Agregar un genero</option>
+            {genreOptions.map((option, optIndex) => (
+              <option key={`genre-${optIndex}`} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
-      ))}
+      </div>
+
+      <div className="genres-add">
+        {genre.length ? (
+          detail.genre.map((item, index) => {
+            return (
+              <div key={index} className="genres-selected">
+                <div className="genre-s">
+                  <span>{item}</span>
+                </div>
+                <div
+                  className="icon-eliminate"
+                  onClick={(item) => handleDeleteGenres(item)}
+                  data-value={item}
+                >
+                  <IoIosClose size="2.4em" />
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <></>
+        )}
+      </div>
       <div className="div-detailInput-type">
-        {detail.map((detail, index) => (
-          <div key={`detail-${index}`}>
-            <select
-              name="type"
-              value={detail.type}
-              onChange={(e) => handleType(e, index)}
-            >
-              <option value="">Seleccionar un tipo</option>
-              {TypeSelect.map((option, optIndex) => (
-                <option key={`type-${optIndex}`} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-        ))}
+        <div>
+          <select name="type" value={type} onChange={(e) => handleDetailChange(e)}>
+            <option value="">Seleccionar un tipo</option>
+
+            {TypeSelect.map((option, optIndex) => (
+              <option key={`type-${optIndex}`} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       <div className="div-detailInput-releaser">
-        {detail.map((detail, index) => (
-          <div key={`detail-${index}`}>
-            <label>Estreno</label>
-            <input
-              type="text"
-              placeholder="Estreno"
-              name="releaser"
-              onChange={(e) => handleDetailChange(e, index)}
-              value={detail.releaser !== null ? detail.releaser.toString() : ""}
-            />
-          </div>
-        ))}
+        <div>
+          <label>Estreno</label>
+          <input
+            type="number"
+            placeholder="Estreno"
+            name="releaser"
+            onChange={(e) => handleDetailChange(e)}
+            value={releaser !== null ? releaser : ''}
+          />
+        </div>
       </div>
       <div className="div-detailInput-status">
-        {detail.map((detail, index) => (
-          <div key={`detail-${index}`}>
-            <select
-              name="status"
-              value={detail.status}
-              onChange={(e) => handleStatus(e, index)}
-            >
-              <option value="">Seleccionar el estatus</option>
-              {StatusSelect.map((option, optIndex) => (
-                <option key={`type-${optIndex}`} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-        ))}
+        <div>
+          <select
+            name="status"
+            value={status}
+            onChange={(e) => handleDetailChange(e)}
+          >
+            <option value="">Seleccionar el estatus</option>
+            {StatusSelect.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
+          </select>
+        </div>
       </div>
       <div>
         <div>
-          {detail.map((detail, index) => (
-            <div key={`detail-${index}`}>
-              <label>Descripcion</label>
-              <textarea
-                placeholder="Descripcion"
-                name="description"
-                defaultValue={detail.description}
-                onChange={(e) => handleDetailChange(e, index)}
-              />
-            </div>
-          ))}
+          <div>
+            <label>Descripcion</label>
+            <textarea
+              placeholder="Descripcion"
+              name="description"
+              defaultValue={description}
+              onChange={(e) => handleDetailChange(e)}
+            />
+          </div>
         </div>
       </div>
     </FormWrapper>
   );
 };
-
-const DetailInputsStl = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid red;
-  height: 100%;
-  width: 100%;
-
-  .div-titleInput,
-  .div-detailInput-alternative,
-  .div-detailInput-author,
-  .div-detailInput-artist,
-  .div-detailInput-genres,
-  .div-detailInput-type,
-  .div-detailInput-releaser,
-  .div-detailInput-status {
-    width: fit-content;
-    display: flex;
-    /* border: 1px solid #e75353; */
-    margin: 20px 0 20px 0;
-
-    input {
-      width: 350px;
-      height: 25px;
-      border-radius: 10px;
-    }
-  }
-`;
 
 export default DetailForm;

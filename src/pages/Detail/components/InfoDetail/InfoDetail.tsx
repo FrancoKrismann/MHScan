@@ -73,9 +73,8 @@ const InfoDetail: React.FC<InfoDetailProps> = ({
         {/* <p dangerouslySetInnerHTML={{ __html: descriptionHTML }}></p> */}
         <h4>Description:</h4>
         <div className="container-dataDescription">
-          {description.map((item, index) => {
-            return <p key={index}>{item}</p>;
-          })}
+         <p>{description}</p>;
+          
         </div>
       </div>
     </InfoDetailStl>

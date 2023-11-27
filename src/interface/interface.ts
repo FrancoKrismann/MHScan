@@ -32,7 +32,8 @@ export interface InfoDetail_Item {
     type: string
     releaser: number | null
     status: string
-    description: string[]
+    description: string
+    [key: string]: string | string[] | number | null | undefined;
 }
 export interface Chapters_Item {
     chapter: number | null
@@ -43,7 +44,7 @@ export interface DataViewType {
     title: string
     href: string
     chapters: Chapters_Item[]
-    detail: InfoDetail_Item[]
+    detail: InfoDetail_Item
 }
 
 
