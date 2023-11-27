@@ -40,7 +40,6 @@ const DetailForm: React.FC<DetailInputsProps> = ({
   return (
     <FormWrapper title="Detail">
       <div className="div-detailInput-alternative">
-        <div>
           <label>Titulo alternativo</label>
           <input
             type="text"
@@ -49,10 +48,8 @@ const DetailForm: React.FC<DetailInputsProps> = ({
             onChange={(e) => handleDetailChange(e)}
             value={alternative}
           />
-        </div>
       </div>
       <div className="div-detailInput-author">
-        <div>
           <label>Autor</label>
           <input
             type="text"
@@ -61,10 +58,8 @@ const DetailForm: React.FC<DetailInputsProps> = ({
             onChange={(e) => handleDetailChange(e)}
             value={author}
           />
-        </div>
       </div>
       <div className="div-detailInput-artist">
-        <div>
           <label>Artista</label>
           <input
             type="text"
@@ -73,10 +68,46 @@ const DetailForm: React.FC<DetailInputsProps> = ({
             onChange={(e) => handleDetailChange(e)}
             value={artist}
           />
-        </div>
       </div>
+     
+
+      
+      <div className="div-detailInput-type">
+          <select name="type" value={type} onChange={(e) => handleDetailChange(e)}>
+            <option value="">Seleccionar un tipo</option>
+            {TypeSelect.map((option, optIndex) => (
+              <option key={`type-${optIndex}`} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+      </div>
+      <div className="div-detailInput-releaser">
+        
+          <label>Estreno</label>
+          <input
+            type="number"
+            placeholder="Estreno"
+            name="releaser"
+            onChange={(e) => handleDetailChange(e)}
+            value={releaser !== null ? releaser : ''}
+          />
+        
+      </div>
+      <div className="div-detailInput-status">
+          <select
+            name="status"
+            value={status}
+            onChange={(e) => handleDetailChange(e)}
+          >
+            <option value="">Seleccionar el estatus</option>
+            {StatusSelect.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
+          </select>
+      </div>
+
       <div className="div-detailInput-genres">
-        <div>
           <select
             name="genre"
             value={genre}
@@ -89,7 +120,6 @@ const DetailForm: React.FC<DetailInputsProps> = ({
               </option>
             ))}
           </select>
-        </div>
       </div>
 
       <div className="genres-add">
@@ -114,48 +144,9 @@ const DetailForm: React.FC<DetailInputsProps> = ({
           <></>
         )}
       </div>
-      <div className="div-detailInput-type">
-        <div>
-          <select name="type" value={type} onChange={(e) => handleDetailChange(e)}>
-            <option value="">Seleccionar un tipo</option>
 
-            {TypeSelect.map((option, optIndex) => (
-              <option key={`type-${optIndex}`} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <div className="div-detailInput-releaser">
-        <div>
-          <label>Estreno</label>
-          <input
-            type="number"
-            placeholder="Estreno"
-            name="releaser"
-            onChange={(e) => handleDetailChange(e)}
-            value={releaser !== null ? releaser : ''}
-          />
-        </div>
-      </div>
-      <div className="div-detailInput-status">
-        <div>
-          <select
-            name="status"
-            value={status}
-            onChange={(e) => handleDetailChange(e)}
-          >
-            <option value="">Seleccionar el estatus</option>
-            {StatusSelect.map((option) => (
-              <option value={option}>{option}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <div>
-        <div>
-          <div>
+
+      <div className="div-textarea">
             <label>Descripcion</label>
             <textarea
               placeholder="Descripcion"
@@ -163,8 +154,6 @@ const DetailForm: React.FC<DetailInputsProps> = ({
               defaultValue={description}
               onChange={(e) => handleDetailChange(e)}
             />
-          </div>
-        </div>
       </div>
     </FormWrapper>
   );

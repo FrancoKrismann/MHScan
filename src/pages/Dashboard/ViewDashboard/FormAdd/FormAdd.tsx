@@ -233,25 +233,27 @@ const FormAdd: React.FC = ({}) => {
     isLastStep,
   } = useMultiStepForm(stepsComponents);
   return (
-    <FormAddStl>
+    <FormAddStl >
       <div className="container-Stepper">
         <Stepper steps={steps} currentStepIndex={currentStepIndex} />
       </div>
+      <div className="buttons-form">
+        
+          <button type="button" disabled={!isFirstStep} onClick={back} 
+          style={{
+            opacity: isFirstStep ? '1' : '0.5',
+            // Otros estilos
+          }}>
+            Atras
+          </button>
+        
+        <button type="button" onClick={next}>
+          {isLastStep ? "Finalizar" : "Siguiente"}
+        </button>
+      </div>
       <div className="div-container">
         <div className="container-addForm">
-          <form>
-            {componentForm}
-            <div className="buttons-form">
-              {isFirstStep && (
-                <button type="button" onClick={back}>
-                  Atras
-                </button>
-              )}
-              <button type="button" onClick={next}>
-                {isLastStep ? "Finalizar" : "Siguiente"}
-              </button>
-            </div>
-          </form>
+          <form>{componentForm}</form>
         </div>
         <div className="container-preview">{componentPreview}</div>
       </div>
@@ -259,18 +261,37 @@ const FormAdd: React.FC = ({}) => {
   );
 };
 
+
+
 const FormAddStl = styled.div`
   display: flex;
 
   flex-direction: column;
   height: 100%;
   /* width: 100%; */
+  .buttons-form {
+        width: 100%;
+        /* height: 10%; */
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+        border: 1px solid #ef8383;
+        
+        button {
+          width: 6rem;
+          padding: 10px;
+        background: #e03de6;
+        border-radius: 15px;
+        cursor: pointer;
+        }
+      }
   .container-Stepper {
     width: 100%;
-    height: 5rem;
+    height: 15%;
   }
   .div-container {
-    height: 100%;
+    height: 80%;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -284,19 +305,13 @@ const FormAddStl = styled.div`
       width: 50%;
       /* border: 1px solid #fff; */
       border-right: 1px solid #fff;
+      overflow: auto;
 
       form {
         height: 90%;
       }
 
-      .buttons-form {
-        width: 100%;
-        /* height: 10%; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* border: 1px solid #ef8383; */
-      }
+      
     }
     .container-preview {
       width: 50%;

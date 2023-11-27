@@ -30,15 +30,15 @@ const FormWrapperStl = styled.div`
     align-items: center;
     flex-direction: column;
     width: 100%;
-  height: 100%;
+    height: 100%;
   }
 
   .img-preview {
     width: 70%;
-      height: 80%;
-      border-radius: 15px;
+    height: 80%;
+    border-radius: 15px;
 
-      object-fit: cover;
+    object-fit: cover;
   }
   .div-titleInput,
   .div-detailInput-alternative,
@@ -48,21 +48,40 @@ const FormWrapperStl = styled.div`
   .div-detailInput-type,
   .div-detailInput-releaser,
   .div-detailInput-status {
-    width: fit-content;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     /* border: 1px solid #e75353; */
-    margin: 20px 0 20px 0;
+    margin: 20px 0 10px 0;
+
+    label {
+      align-self: flex-start;
+      margin-bottom: 10px;
+    }
 
     input {
       width: 350px;
-      height: 25px;
+      height: 35px;
       border-radius: 10px;
+      border: transparent;
     }
   }
-  textarea {
-    resize: none;
+  .div-textarea {
+    textarea {
+      /* resize: none;
     width: 20rem;
-    height: 10rem;
+    height: 10rem; */
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      resize: none;
+      color: #fff;
+      height: 130px;
+      border: 1px solid #414141;
+      background-color: transparent;
+      font-family: inherit;
+    }
   }
 
   .genres-add {
@@ -113,6 +132,49 @@ const FormWrapperStl = styled.div`
       padding: 0;
       cursor: pointer;
     }
+  }
+
+  .custum-file-upload {
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    gap: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #e8e8e8;
+    background-color: #212121;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -70px #e8e8e8;
+  }
+
+  .custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custum-file-upload .icon svg {
+    height: 80px;
+    fill: #e8e8e8;
+  }
+
+  .custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custum-file-upload .text span {
+    font-weight: 400;
+    color: #e8e8e8;
+  }
+
+  .custum-file-upload input {
+    display: none;
   }
 `;
 

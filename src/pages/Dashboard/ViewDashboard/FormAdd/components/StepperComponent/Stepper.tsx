@@ -110,7 +110,7 @@ const ProgressBar = styled.div`
   border-radius: 4px;
   margin-top: 16px;
   position: absolute;
-  bottom: 50px;
+  bottom: 80px;
   overflow: hidden;
 `;
 
