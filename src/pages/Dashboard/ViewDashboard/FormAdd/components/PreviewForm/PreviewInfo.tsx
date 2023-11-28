@@ -9,17 +9,31 @@ interface PreviewFormProps {
 
 const PreviewInfo: React.FC<PreviewFormProps> = ({ title, archivo }) => {
   console.log(archivo);
-  if (!archivo) {
-    return <div>No hay archivo seleccionado</div>;
-  }
-  if (typeof archivo === "string") {
-    return <div>El archivo no es válido</div>;
-  }
+  // if (!archivo) {
+  //   return null;
+  // }
+  // if (typeof archivo === "string") {
+  //   return <div>El archivo no es válido</div>;
+  // }
+  if (!archivo)
+    return (
+      <FormWrapper>
+        <PreviewFormStl>
+        <div className="div-infoTitle">
+          <h1>Titulo: {title}</h1>
+        </div>
+          <div className="container-img"> </div>
+        </PreviewFormStl>
+      </FormWrapper>
+    );
   const urlArchivo = URL.createObjectURL(archivo);
   return (
-    <FormWrapper title="Preview Form">
+    <FormWrapper>
       <PreviewFormStl>
-        <h1>Titulo: {title}</h1>
+        <div className="div-infoTitle">
+          <h1>Titulo: {title}</h1>
+        </div>
+        
         {/* <div className="container-img"> </div> */}
         <img className="img-preview" src={urlArchivo} alt={urlArchivo} />
       </PreviewFormStl>
@@ -39,7 +53,7 @@ const PreviewFormStl = styled.div`
   border-radius: 15px;
   padding: 10px;
 
-  
+
 `;
 
 export default PreviewInfo;

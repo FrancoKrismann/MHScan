@@ -2,38 +2,30 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 
 interface FormWrapperProps {
-  title: string;
   children: ReactNode;
 }
 
-const FormWrapper: React.FC<FormWrapperProps> = ({ title, children }) => {
-  return (
-    <FormWrapperStl>
-      <h2>{title}</h2>
-      <div className="component">{children}</div>
-    </FormWrapperStl>
-  );
+const FormWrapper: React.FC<FormWrapperProps> = ({ children }) => {
+  return <FormWrapperStl>{children}</FormWrapperStl>;
 };
 
 const FormWrapperStl = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
-
   flex-direction: column;
   width: 100%;
   height: 100%;
 
   /* border: 1px solid #5a5858d2; */
-  .component {
+
+  .div-infoTitle {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
   }
 
-  .img-preview {
+  .img-preview,
+  .container-img {
     width: 70%;
     height: 80%;
     border-radius: 15px;
@@ -47,32 +39,17 @@ const FormWrapperStl = styled.div`
   .div-detailInput-genres,
   .div-detailInput-type,
   .div-detailInput-releaser,
-  .div-detailInput-status {
+  .div-detailInput-status,
+  .div-textarea {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* border: 1px solid #e75353; */
-    margin: 20px 0 10px 0;
+    margin: 5px 0 5px 0;
 
-    label {
-      align-self: flex-start;
-      margin-bottom: 10px;
-    }
-
-    input {
-      width: 350px;
-      height: 35px;
-      border-radius: 10px;
-      border: transparent;
-    }
-  }
-  .div-textarea {
     textarea {
-      /* resize: none;
-    width: 20rem;
-    height: 10rem; */
-      width: 100%;
+      width: 20rem;
       padding: 12px 16px;
       border-radius: 8px;
       resize: none;
@@ -81,56 +58,21 @@ const FormWrapperStl = styled.div`
       border: 1px solid #414141;
       background-color: transparent;
       font-family: inherit;
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
     }
-  }
+    label {
+      align-self: flex-start;
+      margin-bottom: 10px;
+    }
 
-  .genres-add {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-
-    width: 32rem;
-    height: fit-content;
-    background: #5a5858d2;
-    border-radius: 20px;
-    /* border: 1px solid #e75353; */
-
-    .genres-selected {
-      display: flex;
-      align-items: center;
-      /* border: 1px solid #9fe753; */
-      /* width: 8rem; */
-      height: 3rem;
+    input,
+    select {
+      width: 350px;
+      height: 35px;
       border-radius: 10px;
-      background: #615f5fd2;
-      padding: 3px;
-      /* margin: 5px; */
-
-      .icon-eliminate {
-        display: flex;
-        justify-content: flex-end;
-        /* align-items: center; */
-
-        height: 100%;
-        /* border: 1px solid #9fe753; */
-        /* width: 30%; */
-      }
-      .genre-s {
-        display: flex;
-        justify-content: center;
-        /* width: 70%; */
-        margin: 0 10px 0 10px;
-
-        span {
-          font-size: 20px;
-        }
-      }
-    }
-    .react-icons {
-      /* background: #ee0905; */
-      border-radius: 50%;
-      padding: 0;
-      cursor: pointer;
+      border: transparent;
     }
   }
 

@@ -174,7 +174,8 @@ const FormAdd: React.FC = ({}) => {
 
   const handleDeleteGenres = (e: React.MouseEvent<HTMLDivElement>) => {
     const value = e.currentTarget.getAttribute("data-value");
-
+    console.log(value);
+    
     const newDetail = { ...data.detail };
     const updatedGenres = newDetail.genre.filter((genre) => genre !== value);
 
@@ -208,13 +209,17 @@ const FormAdd: React.FC = ({}) => {
           detail={data.detail}
           handleDetailChange={handleDetailChange}
           handleAddGenres={handleAddGenres}
-          handleDeleteGenres={handleDeleteGenres}
           genreOptions={genreOptions}
           TypeSelect={TypeSelect}
           StatusSelect={StatusSelect}
         />
       ),
-      componentPreview: <PreviewDetail detail={data.detail} />,
+      componentPreview: (
+        <PreviewDetail
+          detail={data.detail}
+          handleDeleteGenres={handleDeleteGenres}
+        />
+      ),
     },
     {
       name: "ChaptersForm",
@@ -233,20 +238,23 @@ const FormAdd: React.FC = ({}) => {
     isLastStep,
   } = useMultiStepForm(stepsComponents);
   return (
-    <FormAddStl >
+    <FormAddStl>
       <div className="container-Stepper">
         <Stepper steps={steps} currentStepIndex={currentStepIndex} />
       </div>
       <div className="buttons-form">
-        
-          <button type="button" disabled={!isFirstStep} onClick={back} 
+        <button
+          type="button"
+          disabled={!isFirstStep}
+          onClick={back}
           style={{
-            opacity: isFirstStep ? '1' : '0.5',
+            opacity: isFirstStep ? "1" : "0.5",
             // Otros estilos
-          }}>
-            Atras
-          </button>
-        
+          }}
+        >
+          Atras
+        </button>
+
         <button type="button" onClick={next}>
           {isLastStep ? "Finalizar" : "Siguiente"}
         </button>
@@ -261,8 +269,6 @@ const FormAdd: React.FC = ({}) => {
   );
 };
 
-
-
 const FormAddStl = styled.div`
   display: flex;
 
@@ -270,22 +276,22 @@ const FormAddStl = styled.div`
   height: 100%;
   /* width: 100%; */
   .buttons-form {
-        width: 100%;
-        /* height: 10%; */
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        align-items: center;
-        border: 1px solid #ef8383;
-        
-        button {
-          width: 6rem;
-          padding: 10px;
-        background: #e03de6;
-        border-radius: 15px;
-        cursor: pointer;
-        }
-      }
+    width: 100%;
+    /* height: 10%; */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    border: 1px solid #ef8383;
+
+    button {
+      width: 6rem;
+      padding: 10px;
+      background: #e03de6;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+  }
   .container-Stepper {
     width: 100%;
     height: 15%;
@@ -301,17 +307,16 @@ const FormAddStl = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 95%;
       width: 50%;
       /* border: 1px solid #fff; */
       border-right: 1px solid #fff;
-      overflow: auto;
+      /* overflow: auto; */
 
       form {
         height: 90%;
       }
-
-      
     }
     .container-preview {
       width: 50%;

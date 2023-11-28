@@ -11,7 +11,6 @@ interface DetailInputsProps {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => void;
-  handleDeleteGenres: (event: React.MouseEvent<HTMLDivElement>) => void;
   handleAddGenres: (event: ChangeEvent<HTMLSelectElement>) => void;
   genreOptions: string[];
   TypeSelect: string[];
@@ -21,7 +20,6 @@ interface DetailInputsProps {
 const DetailForm: React.FC<DetailInputsProps> = ({
   detail,
   handleDetailChange,
-  handleDeleteGenres,
   handleAddGenres,
   genreOptions,
   TypeSelect,
@@ -38,7 +36,8 @@ const DetailForm: React.FC<DetailInputsProps> = ({
     type,
   } = detail;
   return (
-    <FormWrapper title="Detail">
+    <FormWrapper>
+      {/* <DetailFormStl></DetailFormStl> */}
       <div className="div-detailInput-alternative">
           <label>Titulo alternativo</label>
           <input
@@ -73,6 +72,7 @@ const DetailForm: React.FC<DetailInputsProps> = ({
 
       
       <div className="div-detailInput-type">
+        <label>Tipo</label>
           <select name="type" value={type} onChange={(e) => handleDetailChange(e)}>
             <option value="">Seleccionar un tipo</option>
             {TypeSelect.map((option, optIndex) => (
@@ -95,6 +95,7 @@ const DetailForm: React.FC<DetailInputsProps> = ({
         
       </div>
       <div className="div-detailInput-status">
+        <label>Estatus</label>
           <select
             name="status"
             value={status}
@@ -108,6 +109,7 @@ const DetailForm: React.FC<DetailInputsProps> = ({
       </div>
 
       <div className="div-detailInput-genres">
+        <label>Generos</label>
           <select
             name="genre"
             value={genre}
@@ -122,30 +124,6 @@ const DetailForm: React.FC<DetailInputsProps> = ({
           </select>
       </div>
 
-      <div className="genres-add">
-        {genre.length ? (
-          detail.genre.map((item, index) => {
-            return (
-              <div key={index} className="genres-selected">
-                <div className="genre-s">
-                  <span>{item}</span>
-                </div>
-                <div
-                  className="icon-eliminate"
-                  onClick={(item) => handleDeleteGenres(item)}
-                  data-value={item}
-                >
-                  <IoIosClose size="2.4em" />
-                </div>
-              </div>
-            );
-          })
-        ) : (
-          <></>
-        )}
-      </div>
-
-
       <div className="div-textarea">
             <label>Descripcion</label>
             <textarea
@@ -155,8 +133,11 @@ const DetailForm: React.FC<DetailInputsProps> = ({
               onChange={(e) => handleDetailChange(e)}
             />
       </div>
+      
     </FormWrapper>
   );
 };
+
+
 
 export default DetailForm;
