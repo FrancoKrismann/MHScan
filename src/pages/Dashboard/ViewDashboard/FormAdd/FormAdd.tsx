@@ -261,7 +261,7 @@ const FormAdd: React.FC = ({}) => {
       </div>
       <div className="div-container">
         <div className="container-addForm">
-          <form>{componentForm}</form>
+          <form className="Form-father">{componentForm}</form>
         </div>
         <div className="container-preview">{componentPreview}</div>
       </div>
@@ -314,8 +314,9 @@ const FormAddStl = styled.div`
       border-right: 1px solid #fff;
       /* overflow: auto; */
 
-      form {
+      .Form-father {
         height: 90%;
+        width: 100%;
       }
     }
     .container-preview {
