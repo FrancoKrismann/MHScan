@@ -7,27 +7,22 @@ import { DataView } from "@/data";
 import LogoMHSCan from "@/assets/Logo.svg.webp";
 
 interface SearchNavbarProps {
-  handleSearchClick:(boolValue: boolean) => void;
+  handleSearchClick: (boolValue: boolean) => void;
 }
 
-const SearchNavbar: React.FC<SearchNavbarProps> = ({handleSearchClick}) => {
-
+const SearchNavbar: React.FC<SearchNavbarProps> = ({ handleSearchClick }) => {
   const [query, setQuery] = useState("");
 
   const searchRef = useRef<HTMLDivElement>(null);
 
   const handleClickCard = () => {
-    console.log("funciona");
-    
-      handleSearchClick(false)
-    
+    handleSearchClick(false);
   };
-
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
-        handleSearchClick(false)
+        handleSearchClick(false);
       }
     };
 
@@ -40,8 +35,6 @@ const SearchNavbar: React.FC<SearchNavbarProps> = ({handleSearchClick}) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
-
-
 
   const FilterData = () => {
     if (!query.length) return [];
@@ -57,7 +50,11 @@ const SearchNavbar: React.FC<SearchNavbarProps> = ({handleSearchClick}) => {
       <SearchNavbarStl ref={searchRef}>
         <div className="container-searchHeader">
           <div className="Div-button-close">
-            <AiFillCloseCircle size="3em" className="Button-close" onClick={() => handleSearchClick(false)} />
+            <AiFillCloseCircle
+              size="3em"
+              className="Button-close"
+              onClick={() => handleSearchClick(false)}
+            />
           </div>
           <div className="Div-search-input">
             <input type="text" value={query} onChange={handleInputChange} />

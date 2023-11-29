@@ -36,14 +36,14 @@ export interface InfoDetail_Item {
     [key: string]: string | string[] | number | null | undefined;
 }
 export interface Chapters_Item {
-    chapter: number | null
+    chapter: string | null
     data: string[]
 }
 export interface DataViewType {
     image: File | null
     title: string
     href: string
-    chapters: Chapters_Item[]
+    chapters: Chapters_Item[] | []
     detail: InfoDetail_Item
 }
 

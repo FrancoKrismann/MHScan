@@ -14,12 +14,7 @@ const INITIAL_DATA: DataViewType = {
   title: "",
   href: "",
   image: null,
-  chapters: [
-    {
-      chapter: null,
-      data: [],
-    },
-  ],
+  chapters: [],
   detail: {
     alternative: "",
     author: "",
@@ -223,7 +218,7 @@ const FormAdd: React.FC = ({}) => {
     },
     {
       name: "ChaptersForm",
-      componentForm: <ChaptersForm />,
+      componentForm: <ChaptersForm chapters={data.chapters} />,
       componentPreview: <PreviewChapters />,
     },
   ];

@@ -9,9 +9,9 @@ export function Layout() {
 
 const [searchComponent , setSearchComponent] = useState(false)
 
-const handleSearchClick = (boolValue: boolean):void => {
-  console.log("click");
-  
+
+
+const handleSearchClick = (boolValue: boolean):void => {  
   setSearchComponent(boolValue);
 };
 
