@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Stepper from "./components/StepperComponent/Stepper";
-import { DataViewType } from "@/interface";
+import { Chapters_Item, DataViewType } from "@/interface";
 import { useMultiStepForm } from "@/hooks/useMultiStepsForm";
 import InfoForm from "./components/InfoForm/InfoForm";
 import DetailForm from "./components/DetailForm/DetailForm";
@@ -184,6 +184,16 @@ const FormAdd: React.FC = ({}) => {
     });
   };
 
+  const handleAddChapter = (newChapter: Chapters_Item) => {
+    setData(prevData => ({
+      ...prevData,
+      chapters: [...prevData.chapters, newChapter],
+    }));
+  };
+
+  console.log(data.chapters);
+  
+
   const stepsComponents = [
     {
       name: "InfoForm",
@@ -218,7 +228,7 @@ const FormAdd: React.FC = ({}) => {
     },
     {
       name: "ChaptersForm",
-      componentForm: <ChaptersForm chapters={data.chapters} />,
+      componentForm: <ChaptersForm chaptersArray={data.chapters} handleAddChapter={handleAddChapter}  />,
       componentPreview: <PreviewChapters />,
     },
   ];

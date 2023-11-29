@@ -36,8 +36,8 @@ export interface InfoDetail_Item {
     [key: string]: string | string[] | number | null | undefined;
 }
 export interface Chapters_Item {
-    chapter: string | null
-    data: string[]
+    chapter: number
+    data: string[] | File[]
 }
 export interface DataViewType {
     image: File | null

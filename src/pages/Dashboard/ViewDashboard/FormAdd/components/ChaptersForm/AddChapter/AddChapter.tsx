@@ -2,26 +2,49 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { IoIosCloseCircle } from "react-icons/io";
-import { DataViewChapters } from "@/types";
 import { Chapters_Item } from "@/interface";
 
 interface AddChapterProps {
   handleComponent: (boolValue: boolean) => void;
-  ChaptersArray: DataViewChapters["chapters"];
+  setNewChapter: React.Dispatch<React.SetStateAction<Chapters_Item>>;
+  NewChapter: Chapters_Item;
+  HandleCreateChapter: () => void;
 }
 
 const AddChapter: React.FC<AddChapterProps> = ({
   handleComponent,
-  ChaptersArray,
+  setNewChapter,
+  NewChapter,
+  HandleCreateChapter
 }) => {
   const componentRef = useRef<HTMLDivElement>(null);
 
-  const [NewChapter, setNewChapter] = React.useState<Chapters_Item>({
-    chapter: "",
-    data: [],
-  });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Acceder al estado local newChapter y actualizarlo según los cambios en los inputs
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
+    if (e.target.type === 'number') {
+      // Manejar el cambio para input tipo number
+      const newValue = parseInt(e.target.value, 10);
+      setNewChapter(prevChapter => ({
+        ...prevChapter,
+        chapter: isNaN(newValue) ? 0 : newValue, // Manejar posibles errores al convertir a número
+      }));
+    } else if (e.target.type === 'file') {
+      const files = e.target.files;
+
+      if (files) {
+        const fileList: File[] = Array.from(files); // Convertir a array solo si 'files' no es null
+        // Iterar sobre cada archivo (imagen)
+        setNewChapter(prevChapter => ({
+          ...prevChapter,
+          data:fileList // Manejar posibles errores al convertir a número
+        }));
+        
+      }
+    }
+    }
+    
+  
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -55,7 +78,8 @@ const AddChapter: React.FC<AddChapterProps> = ({
             <input
               type="number"
               className="chapter-number"
-              min={0}
+              min={(NewChapter.chapter || 0) + 1}
+              value={NewChapter.chapter}
               onChange={(e) => handleInputChange(e)}
             />
           </div>
@@ -69,9 +93,10 @@ const AddChapter: React.FC<AddChapterProps> = ({
               <p>or</p>
               <span className="browse-button">Browse file</span>
             </div>
-            <input id="file" type="file" multiple />
+            <input  id="file" type="file" multiple onChange={(e) => handleInputChange(e)}/>
           </label>
         </div>
+        <button type="button" onClick={HandleCreateChapter}>Agregar capitulo</button>
       </div>
     </AddChapterStl>
   );

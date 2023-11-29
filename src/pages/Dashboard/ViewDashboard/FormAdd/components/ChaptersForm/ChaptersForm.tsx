@@ -4,18 +4,38 @@ import styled from "styled-components";
 import { IoMdAdd } from "react-icons/io";
 import { DataViewChapters } from "@/types";
 import { AddChapter } from "./AddChapter";
+import { Chapters_Item } from "@/interface";
+import { IoMdClose } from "react-icons/io";
 
 interface ChaptersFormProps {
-  chapters: DataViewChapters["chapters"];
+  chaptersArray: DataViewChapters["chapters"];
+  handleAddChapter: (newChapter: Chapters_Item) => void;
 }
-const ChaptersForm: React.FC<ChaptersFormProps> = ({ chapters }) => {
+const ChaptersForm: React.FC<ChaptersFormProps> = ({
+  chaptersArray,
+  handleAddChapter,
+}) => {
   const [ActiveComponent, setActiveComponent] = useState(false);
 
-  console.log(ActiveComponent);
-
+  const [NewChapter, setNewChapter] = useState<Chapters_Item>({
+    chapter: 0,
+    data: [],
+  });
   const handleComponent = (boolValue: boolean) => {
     setActiveComponent(boolValue);
   };
+
+  const HandleCreateChapter = (): void | null => {
+    //Validar
+    if (!NewChapter.chapter && !NewChapter.data)
+      return console.log("error: Cannot create");
+
+    handleAddChapter(NewChapter);
+    setActiveComponent(false);
+    setNewChapter({ chapter: 0, data: [] });
+  };
+
+  console.log(NewChapter);
 
   return (
     <FormWrapper>
@@ -28,12 +48,27 @@ const ChaptersForm: React.FC<ChaptersFormProps> = ({ chapters }) => {
         </div>
         {ActiveComponent && (
           <AddChapter
-            ChaptersArray={chapters}
+            NewChapter={NewChapter}
+            setNewChapter={setNewChapter}
             handleComponent={handleComponent}
+            HandleCreateChapter={HandleCreateChapter}
           />
         )}
-
-        <div className="container-Chapters">{chapters.length}</div>
+        <div className="container-Chapters">
+          {chaptersArray.length > 0 ? (
+            chaptersArray.map((chapter, index) => (
+              <div className="div-chapter" key={index}>
+                <h4>Capitulo: {chapter.chapter}</h4>
+                <p>Imagenes: {chapter.data.length}</p>
+                <IoMdClose size="2em" />
+              </div>
+            ))
+          ) : (
+            <div className="div-notChapters">
+              <h3>Agrega capitulos</h3>
+            </div>
+          )}
+        </div>
       </ChaptersFormStl>
     </FormWrapper>
   );
@@ -62,11 +97,36 @@ const ChaptersFormStl = styled.div`
     box-shadow: 0px 0px 200px -50px rgba(0, 0, 0, 0.719);
     cursor: pointer;
   }
+  .div-notChapters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    /* border: 1px solid red; */
+  }
 
   .container-Chapters {
     display: flex;
-    border: 1px solid grey;
+    flex-direction: column;
+    align-items: center;
+    background-color: #454545;
+    border-radius: 20px;
     height: 80%;
+    width: 80%;
+    margin-top: 20px;
+    overflow: auto;
+
+    .div-chapter {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 90%;
+      height: 60px;
+      background-color: #363535;
+      margin-bottom: 20px;
+    }
   }
 `;
 export default ChaptersForm;
