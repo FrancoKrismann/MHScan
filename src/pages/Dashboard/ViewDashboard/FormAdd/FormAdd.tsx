@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { SyntheticEvent, useRef, useState } from "react";
 import styled from "styled-components";
 import Stepper from "./components/StepperComponent/Stepper";
 import { Chapters_Item, DataViewType } from "@/interface";
@@ -93,6 +93,10 @@ const StatusSelect = ["Ongoing", "Completed", "Hiatus", "Canceled"];
 const FormAdd: React.FC = ({}) => {
   const [data, setData] = useState(INITIAL_DATA);
 
+  const [SelectChapterPreview, setSelectChapterPreview] = useState<
+    Chapters_Item[] | null
+  >();
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileClick = (e: React.MouseEvent<HTMLLabelElement>) => {
@@ -103,7 +107,8 @@ const FormAdd: React.FC = ({}) => {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
+    if(e.target.files === null) return
+    const file = e.target.files[0];
     console.log("Archivo seleccionado:", file);
     if (file) {
       // Aquí puedes manejar el archivo seleccionado (por ejemplo, subirlo)
@@ -170,7 +175,7 @@ const FormAdd: React.FC = ({}) => {
   const handleDeleteGenres = (e: React.MouseEvent<HTMLDivElement>) => {
     const value = e.currentTarget.getAttribute("data-value");
     console.log(value);
-    
+
     const newDetail = { ...data.detail };
     const updatedGenres = newDetail.genre.filter((genre) => genre !== value);
 
@@ -185,13 +190,26 @@ const FormAdd: React.FC = ({}) => {
   };
 
   const handleAddChapter = (newChapter: Chapters_Item) => {
-    setData(prevData => ({
+    setData((prevData) => ({
       ...prevData,
       chapters: [...prevData.chapters, newChapter],
     }));
   };
 
-  console.log(data.chapters);
+  const handleSelectChapterPreview = (e: React.MouseEvent<HTMLDivElement>) => {
+    const value = e.currentTarget.getAttribute("data-value");
+
+    const chapterFilter = data.chapters.filter(
+      (item) => item.chapter === Number(value)
+    );
+
+    console.log(chapterFilter);
+
+    if (chapterFilter !== undefined) {
+      setSelectChapterPreview(chapterFilter);
+    }
+  };
+
   
 
   const stepsComponents = [
@@ -228,20 +246,32 @@ const FormAdd: React.FC = ({}) => {
     },
     {
       name: "ChaptersForm",
-      componentForm: <ChaptersForm chaptersArray={data.chapters} handleAddChapter={handleAddChapter}  />,
-      componentPreview: <PreviewChapters />,
+      componentForm: (
+        <ChaptersForm
+          handleSelectChapterPreview={handleSelectChapterPreview}
+          chaptersArray={data.chapters}
+          handleAddChapter={handleAddChapter}
+        />
+      ),
+      componentPreview: (
+        <PreviewChapters SelectChapterPreview={SelectChapterPreview} />
+      ),
     },
   ];
   const {
     back,
     currentStepIndex,
     next,
+    handleNextOrFinish,
     componentForm,
     componentPreview,
     steps,
     isFirstStep,
     isLastStep,
   } = useMultiStepForm(stepsComponents);
+
+  console.log(data);
+
   return (
     <FormAddStl>
       <div className="container-Stepper">
@@ -254,19 +284,18 @@ const FormAdd: React.FC = ({}) => {
           onClick={back}
           style={{
             opacity: isFirstStep ? "1" : "0.5",
-            // Otros estilos
           }}
         >
           Atras
         </button>
 
-        <button type="button" onClick={next}>
+        <button type="button" onClick={handleNextOrFinish(data)}>
           {isLastStep ? "Finalizar" : "Siguiente"}
         </button>
       </div>
       <div className="div-container">
         <div className="container-addForm">
-          <form className="Form-father">{componentForm}</form>
+          <form className="Form-father" encType="multipart/form-data">{componentForm}</form>
         </div>
         <div className="container-preview">{componentPreview}</div>
       </div>
@@ -282,12 +311,11 @@ const FormAddStl = styled.div`
   /* width: 100%; */
   .buttons-form {
     width: 100%;
-    /* height: 10%; */
     display: flex;
     justify-content: center;
     gap: 20px;
     align-items: center;
-    border: 1px solid #ef8383;
+    margin: 10px 0 10px 0;
 
     button {
       width: 6rem;
@@ -299,7 +327,7 @@ const FormAddStl = styled.div`
   }
   .container-Stepper {
     width: 100%;
-    height: 15%;
+    /* height: 15%; */
   }
   .div-container {
     height: 80%;
@@ -312,12 +340,11 @@ const FormAddStl = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       height: 95%;
       width: 50%;
       /* border: 1px solid #fff; */
       border-right: 1px solid #fff;
-      /* overflow: auto; */
+      margin: 10px 0 10px 0;
 
       .Form-father {
         height: 90%;

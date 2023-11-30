@@ -60,7 +60,7 @@ position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 140px;
   width: 100%;
   
   background: #303030d2;

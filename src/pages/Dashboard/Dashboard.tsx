@@ -9,7 +9,9 @@ interface DashboardProps {}
 const Dashboard: React.FC<DashboardProps> = ({}) => {
   return (
     <DashboardStl>
+      <div className="container-Slide">
       <AsideButtons />
+      </div>
       <ViewDashboard>
         <Outlet />
       </ViewDashboard>
@@ -18,9 +20,16 @@ const Dashboard: React.FC<DashboardProps> = ({}) => {
 };
 
 const DashboardStl = styled.div`
+position: relative;
   display: flex;
   width: 100%;
-  height: 100%;
+
+  /* .container-Slide {
+    display: flex;
+    width: 13.7rem;
+    height: 100vh;
+  } */
+
 `;
 
 export default Dashboard;

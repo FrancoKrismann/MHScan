@@ -10,10 +10,10 @@ const FormWrapper: React.FC<FormWrapperProps> = ({ children }) => {
 };
 
 const FormWrapperStl = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  align-items: center; */
+  /* flex-direction: column; */
   width: 100%;
   height: 100%;
 
@@ -46,7 +46,7 @@ const FormWrapperStl = styled.div`
     justify-content: center;
     align-items: center;
     /* border: 1px solid #e75353; */
-    margin: 5px 0 5px 0;
+    margin: 0px 0 5px 0;
 
     textarea {
       width: 20rem;

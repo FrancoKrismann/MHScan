@@ -40,8 +40,9 @@ const AsideButtons: React.FC<AsideButtonsProps> = ({}) => {
 };
 
 export const AsideButtonsStl = styled.aside`
+/* position: fixed; */
   width: 12rem;
-  height: 100vh;
+  height: 100%;
   
   align-items: flex-start;
   background-color: #262626;

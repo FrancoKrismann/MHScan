@@ -37,7 +37,7 @@ const DetailForm: React.FC<DetailInputsProps> = ({
   } = detail;
   return (
     <FormWrapper>
-      {/* <DetailFormStl></DetailFormStl> */}
+      <DetailFormStl>
       <div className="div-detailInput-alternative">
           <label>Titulo alternativo</label>
           <input
@@ -133,11 +133,18 @@ const DetailForm: React.FC<DetailInputsProps> = ({
               onChange={(e) => handleDetailChange(e)}
             />
       </div>
-      
+      </DetailFormStl>
     </FormWrapper>
   );
 };
 
+const DetailFormStl = styled.div`
+height: 45rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
+`
 
 export default DetailForm;

@@ -46,12 +46,12 @@ const PreviewFormStl = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 90%;
+  height: 45rem;
   width: 80%;
   /* border: 1px solid green; */
   background-color: #262626;
   border-radius: 15px;
-  padding: 10px;
+  /* padding: 10px; */
 
 
 `;

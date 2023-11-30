@@ -10,10 +10,12 @@ import { IoMdClose } from "react-icons/io";
 interface ChaptersFormProps {
   chaptersArray: DataViewChapters["chapters"];
   handleAddChapter: (newChapter: Chapters_Item) => void;
+  handleSelectChapterPreview:(e: React.MouseEvent<HTMLDivElement>) => void;
 }
 const ChaptersForm: React.FC<ChaptersFormProps> = ({
   chaptersArray,
   handleAddChapter,
+  handleSelectChapterPreview
 }) => {
   const [ActiveComponent, setActiveComponent] = useState(false);
 
@@ -35,8 +37,6 @@ const ChaptersForm: React.FC<ChaptersFormProps> = ({
     setNewChapter({ chapter: 0, data: [] });
   };
 
-  console.log(NewChapter);
-
   return (
     <FormWrapper>
       <ChaptersFormStl>
@@ -57,10 +57,15 @@ const ChaptersForm: React.FC<ChaptersFormProps> = ({
         <div className="container-Chapters">
           {chaptersArray.length > 0 ? (
             chaptersArray.map((chapter, index) => (
-              <div className="div-chapter" key={index}>
-                <h4>Capitulo: {chapter.chapter}</h4>
+              <div className="div-chapter" key={index} >
+                <div className="container-items" data-value={chapter.chapter} onClick={(e) => handleSelectChapterPreview(e)}>
+                  <h4>Capitulo: {chapter.chapter}</h4>
                 <p>Imagenes: {chapter.data.length}</p>
+                </div>
+                
+                <div className="icon-deleted">
                 <IoMdClose size="2em" />
+                </div>
               </div>
             ))
           ) : (
@@ -81,7 +86,7 @@ const ChaptersFormStl = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100%;
   width: 100%;
 
@@ -125,7 +130,25 @@ const ChaptersFormStl = styled.div`
       width: 90%;
       height: 60px;
       background-color: #363535;
-      margin-bottom: 20px;
+      margin: 10px 0 20px 0;
+      cursor: pointer;
+      border-radius: 15px;
+
+      .container-items {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+      }
+      .icon-deleted {
+        display: flex;
+        align-self: flex-end;
+        justify-content: center;
+        align-items: center;
+        border-left: 2px solid #fff;
+        /* border: 1px solid #fff; */
+        width: 80px;
+        height: 100%;
+      }
     }
   }
 `;
