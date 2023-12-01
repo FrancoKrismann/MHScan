@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Stepper from "./components/StepperComponent/Stepper";
 import { Chapters_Item, DataViewType } from "@/interface";
@@ -261,7 +261,6 @@ const FormAdd: React.FC = ({}) => {
   const {
     back,
     currentStepIndex,
-    next,
     handleNextOrFinish,
     componentForm,
     componentPreview,
@@ -289,13 +288,13 @@ const FormAdd: React.FC = ({}) => {
           Atras
         </button>
 
-        <button type="button" onClick={handleNextOrFinish(data)}>
+        <button type={isLastStep ? "submit" : "button"} form={"FormManga"} onClick={handleNextOrFinish(data)}>
           {isLastStep ? "Finalizar" : "Siguiente"}
         </button>
       </div>
       <div className="div-container">
         <div className="container-addForm">
-          <form className="Form-father" encType="multipart/form-data">{componentForm}</form>
+          <form className="Form-father" encType="multipart/form-data" id="FormManga">{componentForm}</form>
         </div>
         <div className="container-preview">{componentPreview}</div>
       </div>

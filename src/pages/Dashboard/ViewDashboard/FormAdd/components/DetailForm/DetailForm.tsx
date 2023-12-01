@@ -25,6 +25,7 @@ const DetailForm: React.FC<DetailInputsProps> = ({
   TypeSelect,
   StatusSelect,
 }) => {
+  
   const {
     alternative,
     artist,
@@ -35,6 +36,7 @@ const DetailForm: React.FC<DetailInputsProps> = ({
     status,
     type,
   } = detail;
+  
   return (
     <FormWrapper>
       <DetailFormStl>
@@ -103,7 +105,7 @@ const DetailForm: React.FC<DetailInputsProps> = ({
           >
             <option value="">Seleccionar el estatus</option>
             {StatusSelect.map((option) => (
-              <option value={option}>{option}</option>
+              <option key={option} value={option}>{option}</option>
             ))}
           </select>
       </div>

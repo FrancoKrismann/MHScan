@@ -93,7 +93,7 @@ const AddChapter: React.FC<AddChapterProps> = ({
               <p>or</p>
               <span className="browse-button">Browse file</span>
             </div>
-            <input  id="file" type="file" multiple onChange={(e) => handleInputChange(e)}/>
+            <input name="data" id="data" type="file" multiple onChange={(e) => handleInputChange(e)}/>
           </label>
         </div>
         <button type="button" onClick={HandleCreateChapter}>Agregar capitulo</button>
