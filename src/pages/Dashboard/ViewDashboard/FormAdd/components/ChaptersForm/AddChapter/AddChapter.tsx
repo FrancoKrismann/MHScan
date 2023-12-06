@@ -15,36 +15,33 @@ const AddChapter: React.FC<AddChapterProps> = ({
   handleComponent,
   setNewChapter,
   NewChapter,
-  HandleCreateChapter
+  HandleCreateChapter,
 }) => {
   const componentRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Acceder al estado local newChapter y actualizarlo según los cambios en los inputs
 
-    if (e.target.type === 'number') {
+    if (e.target.type === "number") {
       // Manejar el cambio para input tipo number
       const newValue = parseInt(e.target.value, 10);
-      setNewChapter(prevChapter => ({
+      setNewChapter((prevChapter) => ({
         ...prevChapter,
         chapter: isNaN(newValue) ? 0 : newValue, // Manejar posibles errores al convertir a número
       }));
-    } else if (e.target.type === 'file') {
+    } else if (e.target.type === "file") {
       const files = e.target.files;
 
       if (files) {
         const fileList: File[] = Array.from(files); // Convertir a array solo si 'files' no es null
         // Iterar sobre cada archivo (imagen)
-        setNewChapter(prevChapter => ({
+        setNewChapter((prevChapter) => ({
           ...prevChapter,
-          data:fileList // Manejar posibles errores al convertir a número
+          data: fileList, // Manejar posibles errores al convertir a número
         }));
-        
       }
     }
-    }
-    
-  
+  };
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -93,10 +90,18 @@ const AddChapter: React.FC<AddChapterProps> = ({
               <p>or</p>
               <span className="browse-button">Browse file</span>
             </div>
-            <input name="data" id="data" type="file" multiple onChange={(e) => handleInputChange(e)}/>
+            <input
+              name="chapters.data"
+              id="data"
+              type="file"
+              multiple
+              onChange={(e) => handleInputChange(e)}
+            />
           </label>
         </div>
-        <button type="button" onClick={HandleCreateChapter}>Agregar capitulo</button>
+        <button type="button" onClick={HandleCreateChapter}>
+          Agregar capitulo
+        </button>
       </div>
     </AddChapterStl>
   );
@@ -159,7 +164,14 @@ const AddChapterStl = styled.div`
       }
 
       .file-upload-label input {
-        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 1;
       }
       .file-upload-label svg {
         height: 50px;
@@ -167,6 +179,7 @@ const AddChapterStl = styled.div`
         margin-bottom: 10px;
       }
       .file-upload-label {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -193,6 +206,7 @@ const AddChapterStl = styled.div`
         border-radius: 10px;
         color: white;
         transition: all 0.3s;
+        /* z-index: 5; */
       }
       .browse-button:hover {
         background-color: rgb(14, 14, 14);

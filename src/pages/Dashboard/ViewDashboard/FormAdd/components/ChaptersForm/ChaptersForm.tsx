@@ -29,8 +29,7 @@ const ChaptersForm: React.FC<ChaptersFormProps> = ({
 
   const HandleCreateChapter = (): void | null => {
     //Validar
-    if (!NewChapter.chapter && !NewChapter.data)
-      return console.log("error: Cannot create");
+    if (!NewChapter.chapter && !NewChapter.data.length) return console.log("error: Cannot create");
 
     handleAddChapter(NewChapter);
     setActiveComponent(false);

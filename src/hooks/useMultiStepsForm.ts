@@ -35,18 +35,36 @@ export function useMultiStepForm(steps: Step[]) {
         //     formData.append('image', data.image);
         // }
         // formData.append('chapters', JSON.stringify(data.chapters || []));
-        
+
         const formData = new FormData();
         formData.append('title', data.title);
         formData.append('href', data.href);
         if (data.image) {
             formData.append('image', data.image);
         }
-        if(data.detail) {
+        if (data.detail) {
             formData.append('detail', JSON.stringify(data.detail));
         }
-        formData.append('chapters', JSON.stringify(data.chapters));
-        
+
+        // for (let i = 0; i < data.chapters.length; i++) {
+        //     const chapter = data.chapters[i];
+        //     if (chapter.data && Array.isArray(chapter.data)) {
+        //       for (let j = 0; j < chapter.data.length; j++) {
+        //         formData.append(`chapters[${i}][data]`, chapter.data[j]);
+        //       }
+        //     }
+        //   }
+        data.chapters.forEach((chapter, index) => {
+            chapter.data.forEach((file, fileIndex) => {
+              formData.append(`chapters[${index}][data][${fileIndex}]`, file);
+            });
+          });
+
+        // if (data.chapters instanceof Blob) {
+        //     formData.append('chapters', data.chapters);
+        // }
+
+        // console.log(formData);
 
         try {
             const result = await axios.post('http://localhost:4000/api/manhuas', formData, {
@@ -67,11 +85,9 @@ export function useMultiStepForm(steps: Step[]) {
         // })
         //     .then((response) => response.json())
         //     .then((data) => {
-        //         // Maneja la respuesta del backend si es necesario
         //         console.log('Respuesta del servidor:', data);
         //     })
         //     .catch((error) => {
-        //         // Maneja cualquier error que ocurra durante la solicitud
         //         console.error('Error al enviar datos:', error);
         //     });
     }
