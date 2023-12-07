@@ -107,7 +107,7 @@ const FormAdd: React.FC = ({}) => {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if(e.target.files === null) return
+    if (e.target.files === null) return;
     const file = e.target.files[0];
     console.log("Archivo seleccionado:", file);
     if (file) {
@@ -210,8 +210,6 @@ const FormAdd: React.FC = ({}) => {
     }
   };
 
-  
-
   const stepsComponents = [
     {
       name: "InfoForm",
@@ -260,8 +258,9 @@ const FormAdd: React.FC = ({}) => {
   ];
   const {
     back,
+    next,
     currentStepIndex,
-    handleNextOrFinish,
+    handleSubmit,
     componentForm,
     componentPreview,
     steps,
@@ -269,7 +268,16 @@ const FormAdd: React.FC = ({}) => {
     isLastStep,
   } = useMultiStepForm(stepsComponents);
 
-  console.log(data);
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (data.chapters.length === 0 || !data.detail || !data.href || !data.image || !data.title) {
+      return console.error("Falta data");
+    }
+    
+    
+    handleSubmit(data);
+  };
 
   return (
     <FormAddStl>
@@ -287,14 +295,30 @@ const FormAdd: React.FC = ({}) => {
         >
           Atras
         </button>
-
-        <button type={isLastStep ? "submit" : "button"} form={"FormManga"} onClick={handleNextOrFinish(data)}>
-          {isLastStep ? "Finalizar" : "Siguiente"}
-        </button>
+        {
+          isLastStep ? (
+            <button type={isLastStep ? "submit" : "button"} form="FormManga">
+              Finalizar
+            </button>
+          ) : (
+            <button type="button" onClick={next}>
+              Siguiente
+            </button>
+          )
+        }
+      
       </div>
       <div className="div-container">
         <div className="container-addForm">
-          <form className="Form-father" encType="multipart/form-data" id="FormManga">{componentForm}</form>
+          <form
+            className="Form-father"
+            encType="multipart/form-data"
+            id="FormManga"
+            onSubmit={onSubmit}
+          >
+            {componentForm}
+            
+          </form>
         </div>
         <div className="container-preview">{componentPreview}</div>
       </div>

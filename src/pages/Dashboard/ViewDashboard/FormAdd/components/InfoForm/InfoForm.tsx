@@ -56,7 +56,7 @@ const InfoForm: React.FC<FormularioProps> = ({
           <div className="text">
             <span>Click to upload image</span>
           </div>
-          <input id="file" type="file" onChange={handleFile} />
+          <input name="image" id="file" type="file" onChange={handleFile} />
         </label>
       </InfoFormStl>
     </FormWrapper>

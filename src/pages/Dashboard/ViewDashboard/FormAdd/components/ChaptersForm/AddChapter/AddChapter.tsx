@@ -91,7 +91,7 @@ const AddChapter: React.FC<AddChapterProps> = ({
               <span className="browse-button">Browse file</span>
             </div>
             <input
-              name="chapters.data"
+              name="chapters"
               id="data"
               type="file"
               multiple

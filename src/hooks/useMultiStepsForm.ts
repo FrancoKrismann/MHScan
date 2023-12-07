@@ -1,6 +1,7 @@
 import { DataViewType, InfoDetail_Item } from "@/interface";
 import { useState } from "react";
 import axios from "axios";
+import { DataViewChapters, DataViewDetails, DataViewHref, DataViewImage, DataViewTitle } from "@/types";
 interface Step {
     name: string;
     componentForm: React.ReactElement;
@@ -8,6 +9,8 @@ interface Step {
 }
 
 export function useMultiStepForm(steps: Step[]) {
+
+
     const [currentStepIndex, setCurrentStepIndex] = useState(0)
 
     const next = () => {
@@ -25,72 +28,42 @@ export function useMultiStepForm(steps: Step[]) {
         })
     }
 
+
     const handleSubmit = async (data: DataViewType) => {
-
-        // /* The code is creating a new instance of the FormData class, which is used to construct and
-        // const formData = new FormData();
-        // formData.append('title', data.title);
-        // formData.append('href', data.href);
-        // if (data.image) {
-        //     formData.append('image', data.image);
-        // }
-        // formData.append('chapters', JSON.stringify(data.chapters || []));
-
+        console.log("DATA:" , data);
+        
         const formData = new FormData();
         formData.append('title', data.title);
         formData.append('href', data.href);
-        if (data.image) {
-            formData.append('image', data.image);
-        }
-        if (data.detail) {
-            formData.append('detail', JSON.stringify(data.detail));
-        }
+        if (data.image)
+        formData.append('image', data.image);
+        formData.append('detail', JSON.stringify(data.detail));
 
-        // for (let i = 0; i < data.chapters.length; i++) {
-        //     const chapter = data.chapters[i];
-        //     if (chapter.data && Array.isArray(chapter.data)) {
-        //       for (let j = 0; j < chapter.data.length; j++) {
-        //         formData.append(`chapters[${i}][data]`, chapter.data[j]);
-        //       }
-        //     }
-        //   }
+        // Agregar capítulos
         data.chapters.forEach((chapter, index) => {
+            formData.append(`chapters[${index}].chapter`, chapter.chapter.toString());
             chapter.data.forEach((file, fileIndex) => {
-              formData.append(`chapters[${index}][data][${fileIndex}]`, file);
+                formData.append(`chapters[${index + 1}].data[${fileIndex}]`, file);
             });
-          });
+        });
 
-        // if (data.chapters instanceof Blob) {
-        //     formData.append('chapters', data.chapters);
-        // }
-
-        // console.log(formData);
-
+        console.log([...formData]);
+        
         try {
-            const result = await axios.post('http://localhost:4000/api/manhuas', formData, {
-                headers: { "Content-Type": "multipart/form-data" },
+            const response = await axios.post('http://localhost:4000/api/manhuas', formData,{
+                
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+
+                },
+
             });
-            // Manejo de éxito
-            console.log("Éxito:", result.data);
+
+            console.log("Exitoso", response.data);
         } catch (error) {
-            // Manejo de error
-            console.error("Error al enviar los datos:", error);
+            console.error(error);
         }
-        // await fetch('http://localhost:4000/api/manhuas', {
-        //     method: 'POST', // Método HTTP que deseas usar (POST, PUT, etc.)
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: , // Convierte los datos del formulario a JSON para enviarlos al backend
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log('Respuesta del servidor:', data);
-        //     })
-        //     .catch((error) => {
-        //         console.error('Error al enviar datos:', error);
-        //     });
-    }
+    };
 
 
     const goTo = (index: number) => {
@@ -101,20 +74,7 @@ export function useMultiStepForm(steps: Step[]) {
 
     const currentStep = steps[currentStepIndex];
 
-    const handleNextOrFinish = (data: DataViewType): React.MouseEventHandler<HTMLButtonElement> => {
-        const handler: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-            event.preventDefault();
-            if (isLastStep) {
-                // Si es el último paso, realiza la acción de "Finalizar"
-                handleSubmit(data);
-            } else {
-                // Si no es el último paso, realiza la acción de "Siguiente" para avanzar al siguiente paso
-                next();
-            }
-        };
 
-        return handler;
-    };
 
     const { name, componentForm, componentPreview } = currentStep;
 
@@ -131,6 +91,6 @@ export function useMultiStepForm(steps: Step[]) {
         next,
         back,
         goTo,
-        handleNextOrFinish
+        handleSubmit
     }
 }
