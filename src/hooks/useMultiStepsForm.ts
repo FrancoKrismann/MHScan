@@ -30,28 +30,28 @@ export function useMultiStepForm(steps: Step[]) {
 
 
     const handleSubmit = async (data: DataViewType) => {
-        console.log("DATA:" , data);
-        
+        console.log("DATA:", data);
+
         const formData = new FormData();
         formData.append('title', data.title);
         formData.append('href', data.href);
         if (data.image)
-        formData.append('image', data.image);
+            formData.append('image', data.image);
         formData.append('detail', JSON.stringify(data.detail));
 
         // Agregar capítulos
         data.chapters.forEach((chapter, index) => {
             formData.append(`chapters[${index}].chapter`, chapter.chapter.toString());
             chapter.data.forEach((file, fileIndex) => {
-                formData.append(`chapters[${index + 1}].data[${fileIndex}]`, file);
+                formData.append(`chaptersImg`, file);
             });
         });
 
         console.log([...formData]);
-        
+
         try {
-            const response = await axios.post('http://localhost:4000/api/manhuas', formData,{
-                
+            const response = await axios.post('http://localhost:4000/api/manhuas', formData, {
+
                 headers: {
                     'Content-Type': 'multipart/form-data',
 
